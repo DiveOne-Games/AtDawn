@@ -1,0 +1,83 @@
+[gd_scene load_steps=12 format=3 uid="uid://bt5rpt2qc4lbg"]
+
+[ext_resource type="Texture2D" uid="uid://jfxi2w0o11hc" path="res://Assets/StaticAssets/Characters/enemy1-idle.png" id="1_ycjvl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8jff"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drf25"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(0, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_og547"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(192, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uovx6"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(384, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wanr"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(576, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m06ur"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(768, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wql4y"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(960, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lylo3"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(1152, 0, 192, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oj7po"]
+atlas = ExtResource("1_ycjvl")
+region = Rect2(1344, 0, 192, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gpwy5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drf25")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_og547")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uovx6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wanr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m06ur")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wql4y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lylo3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oj7po")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-15, 9)
+shape = SubResource("CapsuleShape2D_x8jff")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_gpwy5")
+metadata/_edit_lock_ = true
