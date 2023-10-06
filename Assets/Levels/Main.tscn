@@ -1,12 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://6joqjlshw67x"]
+[gd_scene load_steps=4 format=3 uid="uid://6joqjlshw67x"]
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_ir327"]
 [ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="2_ey7dy"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="2_gfeef"]
-[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/Characters/HedgeHog.tscn" id="3_ov8n7"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_usbyc"]
-size = Vector2(1213, 24)
 
 [node name="Crypt" type="Node2D"]
 
@@ -50,14 +46,4 @@ layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 
 [node name="Player" parent="TileMap" instance=ExtResource("2_gfeef")]
-z_index = 1
 position = Vector2(426, 194)
-
-[node name="Hog" parent="." instance=ExtResource("3_ov8n7")]
-position = Vector2(371, 184)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(594, -2)
-shape = SubResource("RectangleShape2D_usbyc")

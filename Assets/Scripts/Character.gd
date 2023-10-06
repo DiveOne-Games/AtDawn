@@ -43,7 +43,6 @@ func _ready():
 	animation_player = get_node('AnimationPlayer')
 	camera = get_node('Camera2D')
 	motion = Vector2.ZERO
-	health = max_health
 
 func _process(_delta):
 	motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
