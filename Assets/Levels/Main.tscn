@@ -52,7 +52,6 @@ layer_1/tile_data = PackedInt32Array()
 [node name="Player" parent="TileMap" instance=ExtResource("2_gfeef")]
 z_index = 1
 position = Vector2(426, 194)
-player_speed = 30
 
 [node name="Hog" parent="." instance=ExtResource("3_ov8n7")]
 position = Vector2(371, 184)
