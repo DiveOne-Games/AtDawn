@@ -1,11 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b6k71iwsj7j3d"]
 
-[ext_resource type="Script" path="res://Tests/test_player.gd" id="1_075yc"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_wobwl"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="3_3jgns"]
+[ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Assets/Prefabs/SpikeTrap.tscn" id="4_6fchf"]
 
 [node name="PlayerTest" type="Node2D"]
-script = ExtResource("1_075yc")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("2_wobwl")
@@ -14,3 +13,8 @@ layer_0/tile_data = PackedInt32Array(196615, 131072, 5, 196616, 131072, 5, 19661
 
 [node name="Player" parent="." instance=ExtResource("3_3jgns")]
 position = Vector2(307, 158)
+health = 100
+
+[node name="SpikeTrap" parent="." instance=ExtResource("4_6fchf")]
+position = Vector2(388, 164)
+damage = 10

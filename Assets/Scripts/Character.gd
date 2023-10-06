@@ -1,9 +1,11 @@
-class_name CharacterController
+class_name Character
 extends CharacterBody2D
 
 
 @export_group('Player Settings')
 @export var player_speed := 30
+@export var max_health := 100
+@export var health: int
 
 const ATTACK_SLASH = 'attack_slash'
 const ATTACK_BACK_SLASH = 'attack_back_slash'
@@ -41,7 +43,7 @@ func _ready():
 	animation_player = get_node('AnimationPlayer')
 	camera = get_node('Camera2D')
 	motion = Vector2.ZERO
-	# anim_tree.active = true
+	health = max_health
 
 func _process(_delta):
 	motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
@@ -51,6 +53,8 @@ func _physics_process(_delta):
 	change_face()
 
 	if is_dead:
+		state_machine.travel(DEATH)
+		# TODO: Death sfx, vfx and restart player from last checkpoint
 		return
 
 	if is_moving():
@@ -68,6 +72,7 @@ func _physics_process(_delta):
 		attack_timer(0.5)
 	if is_hurt:
 		state_machine.travel(HURT)
+		reaction_timer(0.5)
 	
 	velocity = motion.normalized() * speed(_delta)
 	move_and_slide()
