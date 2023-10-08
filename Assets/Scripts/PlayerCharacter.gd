@@ -1,38 +1,18 @@
-class_name Character
-extends CharacterBody2D
-
-
-@export_group('Player Settings')
-@export var player_speed := 30
-@export var max_health := 100
-@export var health: int
+extends BaseCharacter
 
 const ATTACK_SLASH = 'attack_slash'
 const ATTACK_BACK_SLASH = 'attack_back_slash'
 const ATTACK_COMBO = 'attack_combo'
 const ATTACK_STAB = 'attack_stab'
-const RUN = 'run'
-const HURT = 'hurt' 
-const DEATH = 'death'
-const IDLE = 'idle'
 const ATTACKS = [ATTACK_BACK_SLASH, ATTACK_STAB, ATTACK_COMBO, ATTACK_SLASH]
+
+
 var current_state = null
 
-var sprite: Sprite2D
-var screen_size: Vector2 
 var animation_player: AnimationPlayer
-var motion: Vector2
 var camera: Camera2D
-var speed_scale := 1000
 @onready var anim_tree := $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
-
-var is_idle := true
-var is_attacking := false 
-var is_combo := false
-var is_running := false 
-var is_hurt := false 
-var is_dead := false 
 
 var attack_delay := 1.0
 
@@ -43,6 +23,8 @@ func _ready():
 	animation_player = get_node('AnimationPlayer')
 	camera = get_node('Camera2D')
 	motion = Vector2.ZERO
+
+	anim_tree.active = true
 
 func _process(_delta):
 	motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")

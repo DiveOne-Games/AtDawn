@@ -2,7 +2,7 @@
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_wobwl"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="3_3jgns"]
-[ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Assets/Prefabs/SpikeTrap.tscn" id="4_6fchf"]
+[ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Tests/test_trap.tscn" id="4_6fchf"]
 
 [node name="PlayerTest" type="Node2D"]
 
@@ -16,5 +16,4 @@ position = Vector2(307, 158)
 health = 50
 
 [node name="SpikeTrap" parent="." instance=ExtResource("4_6fchf")]
-position = Vector2(388, 164)
-damage = 10
+position = Vector2(396, 158)

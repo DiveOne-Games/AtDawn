@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://cgj08n8up6dxm"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="1_isf6t"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5cucr"]
+size = Vector2(33, 11)
+
+[node name="WeaponZone" type="Area2D"]
+script = ExtResource("1_isf6t")
+
+[node name="WeaponShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(37.5, 5.5)
+shape = SubResource("RectangleShape2D_5cucr")
+disabled = true
+debug_color = Color(0, 0.635294, 0.411765, 0.419608)

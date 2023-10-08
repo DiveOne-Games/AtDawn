@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d2h0jwuw6qvbo"
-path="res://.godot/imported/atlas-props.png-747bebd7c279d0439c787569af53b95f.ctex"
+uid="uid://tledstynpvgq"
+path="res://.godot/imported/skeleton-variation2-all animations.png-c65424a60b10feca2514652965ad499b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/StaticAssets/Environments/Crypt/Props/atlas-props.png"
-dest_files=["res://.godot/imported/atlas-props.png-747bebd7c279d0439c787569af53b95f.ctex"]
+source_file="res://Assets/StaticAssets/Characters/Skeleton/skeleton-variation2-all animations.png"
+dest_files=["res://.godot/imported/skeleton-variation2-all animations.png-c65424a60b10feca2514652965ad499b.ctex"]
 
 [params]
 
@@ -21,7 +21,7 @@ compress/lossy_quality=0.7
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""

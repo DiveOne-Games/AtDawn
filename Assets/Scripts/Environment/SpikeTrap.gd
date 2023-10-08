@@ -1,9 +1,15 @@
 extends Hazard
 
+var animation_player : AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	animation_player = $AnimationPlayer
+
+
+func _physics_process(_delta):
+	if not animation_player.is_playing():
+		animation_player.play("active")
 
 
 func _on_area_2d_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
