@@ -35,7 +35,6 @@ func _physics_process(_delta):
 
 	if is_dead:
 		state_machine.travel(DEATH)
-		# TODO: Death sfx, vfx and restart player from last checkpoint
 		return
 
 	if is_moving():

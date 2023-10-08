@@ -61,7 +61,4 @@ func attack_timer(timeout: float):
 func reaction_timer(timeout: float):
 	await get_tree().create_timer(timeout).timeout
 	is_hurt = false 
-	if is_dead:
-		# TODO: Not very eloquent. polish up
-		queue_free()
 

@@ -1,12 +1,19 @@
 class_name HitBox
 extends Area2D
 
+@export var disabled := false 
 var character : CharacterBody2D
+var shape : CollisionShape2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	character = get_parent()
+	shape = get_node('CollisionShape2D')
 
+
+func _process(_delta):
+	shape.disabled = disabled
+	
 
 func take_damage(damage):
 	print_debug(character, ' HitBox damage received.')

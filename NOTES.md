@@ -26,3 +26,9 @@ Rudimentary system ...doesn't seem to work in any meaningful way.
 
 Checkout this guide instead: 
 https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
+
+
+## Coroutines
+
+https://gdscript.com/solutions/coroutines-and-yield/
+

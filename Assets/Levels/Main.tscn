@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://6joqjlshw67x"]
+[gd_scene load_steps=7 format=3 uid="uid://6joqjlshw67x"]
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_ir327"]
 [ext_resource type="Script" path="res://Assets/Scripts/MainLevel.gd" id="1_satwh"]
 [ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="2_ey7dy"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="2_gfeef"]
-[ext_resource type="PackedScene" uid="uid://iqtsijbbd4jo" path="res://Assets/Prefabs/spike_trap_animated.tscn" id="4_q3hpn"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Prefabs/skeleton.tscn" id="5_gx1mc"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6fy"]
@@ -103,9 +102,6 @@ player_speed = 15
 health = 25
 
 [node name="Props" type="Node2D" parent="."]
-
-[node name="SpikeTrap" parent="Props" instance=ExtResource("4_q3hpn")]
-position = Vector2(769, 311)
 
 [node name="Enemies" type="Node2D" parent="."]
 

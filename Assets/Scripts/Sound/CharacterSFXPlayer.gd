@@ -1,3 +1,4 @@
+class_name CharacterSFXPlayer
 extends AudioStreamPlayer2D
 
 
