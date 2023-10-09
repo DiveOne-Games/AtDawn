@@ -1,4 +1,10 @@
-# Character Movement
+# Godot Notes
+
+Scenes and nodes
+
+- `$Object` refers to the current scene's tree. If you run
+
+## Character Movement
 
 
 Several factors impact motion
@@ -26,6 +32,16 @@ Rudimentary system ...doesn't seem to work in any meaningful way.
 
 Checkout this guide instead: 
 https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
+
+```gdscript
+# if navigation_agent.is_navigation_finished():
+# 	is_idle = true
+# 	is_running = false
+# else:
+# 	# TODO: Figure out how to setup a patrol; currently just walks to 1 spot.
+# 	patrol()
+		
+```
 
 
 ## Coroutines

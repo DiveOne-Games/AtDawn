@@ -60,7 +60,6 @@ layer_5/tile_data = PackedInt32Array(262163, 1703936, 25, 327699, 1703936, 26, 3
 
 [node name="StaticProps" type="TileMap" parent="Level"]
 editor_description = "Static props are painted on. They can have collision, but otherwise no interaction."
-z_index = 1
 y_sort_enabled = true
 tile_set = ExtResource("2_ey7dy")
 cell_quadrant_size = 32
@@ -110,18 +109,17 @@ position = Vector2(1283, 101)
 collision_layer = 2
 collision_mask = 7
 can_patrol = true
-patrol_origin = NodePath("Marker2D")
-patrol_destination = NodePath("Marker2D2")
+patrol_origin = NodePath("../../Marker2D")
+patrol_destination = NodePath("../../Marker2D2")
 player_speed = 15
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="Enemies/Skeleton"]
-debug_enabled = true
 
-[node name="Marker2D" type="Marker2D" parent="Enemies/Skeleton"]
-position = Vector2(134, 13)
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(1417, 114)
 
-[node name="Marker2D2" type="Marker2D" parent="Enemies/Skeleton"]
-position = Vector2(-206, 26)
+[node name="Marker2D2" type="Marker2D" parent="."]
+position = Vector2(1077, 127)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_sk6fy")

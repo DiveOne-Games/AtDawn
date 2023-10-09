@@ -1,7 +1,7 @@
 [gd_scene load_steps=43 format=3 uid="uid://biapgn312ufql"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/PlayerCharacter.gd" id="1_lemmi"]
-[ext_resource type="PackedScene" uid="uid://d13vhnaodfxx2" path="res://Assets/Prefabs/hitbox.tscn" id="2_84rxt"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_84rxt"]
 [ext_resource type="Texture2D" uid="uid://sae4p1ab52oa" path="res://Assets/Resources/warrior_sprites.tres" id="3_yxrwp"]
 [ext_resource type="AudioStream" uid="uid://dd5bwb57qwgnk" path="res://Assets/StaticAssets/SFX/sword_swing_1.mp3" id="4_h1a3v"]
 [ext_resource type="PackedScene" uid="uid://cgj08n8up6dxm" path="res://Assets/Prefabs/weapon_zone.tscn" id="4_so2w1"]
@@ -485,7 +485,7 @@ position = Vector2(-1.5, 24)
 shape = SubResource("RectangleShape2D_nl87m")
 debug_color = Color(0.619608, 0.572549, 0.0235294, 0.419608)
 
-[node name="Hitbox" parent="." instance=ExtResource("2_84rxt")]
+[node name="HitBox" parent="." instance=ExtResource("2_84rxt")]
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0

@@ -18,7 +18,9 @@ var attack_delay := 1.0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	sprite = get_node('Sprite2D');
+	foot_shape = get_node('CollisionShape2D')
+	hitbox = get_node('HitBox')
+	sprite = get_node('Sprite2D')
 	screen_size = get_viewport_rect().size 
 	animation_player = get_node('AnimationPlayer')
 	camera = get_node('Camera2D')

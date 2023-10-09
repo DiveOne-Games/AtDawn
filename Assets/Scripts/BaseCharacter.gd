@@ -2,17 +2,11 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 
+# Public Members
 @export_group('Character Settings')
 @export var player_speed := 30
 @export var max_health := 100
 @export var health: int
-
-const RUN = 'run'
-const HURT = 'hurt' 
-const DEATH = 'death'
-const IDLE = 'idle'
-const ATTACK = 'attack'
-const WALK = 'walk'
 
 var sprite: Sprite2D
 var screen_size: Vector2 
@@ -25,8 +19,22 @@ var is_combo := false
 var is_running := false 
 var is_hurt := false 
 var is_dead := false 
+var is_disabled := false
+
+var foot_shape : CollisionShape2D
+var hitbox : HitBox
+
+# Constants
+const RUN = 'run'
+const HURT = 'hurt' 
+const DEATH = 'death'
+const IDLE = 'idle'
+const ATTACK = 'attack'
+const WALK = 'walk'
 
 
+# Enums
+# Functions: private > public > static
 func _ready():
 	sprite = get_node('Sprite2D');
 	screen_size = get_viewport_rect().size 
@@ -61,4 +69,8 @@ func attack_timer(timeout: float):
 func reaction_timer(timeout: float):
 	await get_tree().create_timer(timeout).timeout
 	is_hurt = false 
+
+
+func disable_character():
+	is_disabled = true
 
