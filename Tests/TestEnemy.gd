@@ -1,4 +1,3 @@
-class_name EnemyCharacter
 extends BaseCharacter
 
 
@@ -19,6 +18,13 @@ var character_disabled := false
 
 # Navigation
 var current_destination: Node2D
+var current_patrol_path: PackedVector2Array
+var current_path_point: Vector2
+var patrol_nodes: Array[Node2D]
+var default_2d_map_rid: RID 
+var current_path_index: int = 0
+var patrol_queue: Queue
+var is_patrolling := false 
 
 
 func _ready():
@@ -31,7 +37,11 @@ func _ready():
 	if not patrol_origin:
 		patrol_origin.position = position
 	current_destination = patrol_destination
-#
+	
+	default_2d_map_rid = get_world_2d().get_navigation_map()
+	patrol_nodes = get_patrol_nodes()
+	patrol_queue = Queue.new(patrol_nodes)
+	
 	call_deferred('actor_setup')
 
 
@@ -60,7 +70,8 @@ func _physics_process(delta):
 		is_running = false
 	else:
 		# TODO: how to add more more nodes to patrol to?
-		patrol()
+		# patrol()
+		get_patrol()
 
 	velocity = motion.normalized() * speed(delta)
 	move_and_slide()
@@ -72,7 +83,7 @@ func set_movement_target(movement_target: Vector2):
 
 func actor_setup():
 	await get_tree().physics_frame
-	set_movement_target(current_destination.position)
+	# set_movement_target(current_destination.position)
 
 
 func update_animations():
@@ -96,6 +107,55 @@ func get_next_position():
 	else:
 		navigation_agent.target_position = patrol_origin.position
 		current_destination = patrol_origin
+
+
+func get_new_nav_path(destination: Vector2):
+	await get_tree().create_timer(1).timeout
+	current_patrol_path = NavigationServer2D.map_get_path(default_2d_map_rid, 
+		position, 
+		destination, 
+		true)
+	if not current_patrol_path.is_empty():
+		current_path_index = 0
+		current_path_point = current_patrol_path[0]
+
+
+func get_patrol_nodes() -> Array[Node2D]:
+	var path_nodes: Array[Node2D] = []
+	for node_path in patrol_paths:
+		var node: Node2D = get_node(node_path)
+		path_nodes.append(node)
+	return path_nodes
+
+func get_patrol():
+	if is_patrolling:
+		print_debug('Patrolling ', current_destination)
+		if global_position.distance_to(current_path_point) <= patrol_point_margin:
+			current_path_index += 1
+			# Make sure the path index doesn't exceed the size of the patrol; reset patrol if
+			if current_path_index >= current_patrol_path.size():
+				current_patrol_path = []
+				current_path_index = 0
+				current_path_point = global_transform.origin
+				return
+	else:
+		# is_patrolling = true 
+		await get_new_nav_path(patrol_queue.dequeue().position)	
+		goto()
+		return
+	print_debug('Get patrol ...')
+	current_path_point = current_patrol_path[current_path_index]
+	motion = to_local(current_path_point)
+
+
+func goto():
+	is_patrolling = true
+	if patrol_queue.is_empty():
+		patrol_queue = Queue.new(patrol_nodes) 
+	if global_position.distance_to(current_destination.position) <= patrol_point_margin:
+		current_destination = patrol_queue.dequeue()
+		get_new_nav_path(current_destination.position)
+	print_debug('Start patrol on path ', current_patrol_path)
 
 
 func disable_character():

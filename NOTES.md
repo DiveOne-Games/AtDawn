@@ -22,26 +22,18 @@ Setting Area2D shape on/off as the animated spikes pop up so that the player tak
 
 ## Patrols (Navigation)
 
-Rudimentary system ...doesn't seem to work in any meaningful way.
+Using the Navigation system, to setup a patrol I have to interact directly with the `NavigationServer2D`. This means setting up a couple of functions to make it easy to call for path updates from `physics_process`.
 
-* home position
-* waypoints
-* place them all in a single list
-* randomly pick a position and move towards it.
-* can always reset to the home position.
+To set up a patrol, use some markers on the map to define where the unit will move. Then for a full patrol to work, you must:
+
+1. Create a new path for the current destination - server hands you an array of points.
+2. Update unit movement using the points in the path array.
+3. Once destination reached, repeat for any additional points on the patrol.
 
 Checkout this guide instead: 
 https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
 
-```gdscript
-# if navigation_agent.is_navigation_finished():
-# 	is_idle = true
-# 	is_running = false
-# else:
-# 	# TODO: Figure out how to setup a patrol; currently just walks to 1 spot.
-# 	patrol()
-		
-```
+
 
 
 ## Coroutines
