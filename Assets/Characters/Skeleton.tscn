@@ -1,14 +1,12 @@
-[gd_scene load_steps=44 format=3 uid="uid://dk4cw2yqd5jnp"]
+[gd_scene load_steps=42 format=3 uid="uid://dk4cw2yqd5jnp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Enemy.gd" id="1_10cr4"]
 [ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/StaticAssets/Characters/Skeleton/skeleton-variation1-all animations.png" id="1_fvibj"]
+[ext_resource type="Script" path="res://Assets/Scripts/Characters/Skeleton.gd" id="1_truh5"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_ua562"]
 [ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="4_dp75b"]
 [ext_resource type="AudioStream" uid="uid://iewyqhs71o6u" path="res://Assets/StaticAssets/SFX/attack_swing2.wav" id="5_ym7bb"]
 [ext_resource type="AudioStream" uid="uid://dkey2qtevfhaf" path="res://Assets/StaticAssets/SFX/being_hurt2.mp3" id="6_sgqua"]
-[ext_resource type="Script" path="res://Assets/Scripts/Sound/CharacterSFXPlayer.gd" id="7_jad0j"]
-[ext_resource type="AudioStream" uid="uid://by0m7bpiaf7ej" path="res://Assets/StaticAssets/SFX/attack_swing2.mp3" id="8_4xpcm"]
-[ext_resource type="AudioStream" uid="uid://7bbhrwwrfoo5" path="res://Assets/StaticAssets/SFX/footstep_grass1.mp3" id="9_x68dq"]
+[ext_resource type="Script" path="res://Assets/Scripts/Sound/character_sfx.gd" id="7_5e14b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]
 size = Vector2(18, 5)
@@ -33,7 +31,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/WeaponShape2D:disabled")
+tracks/1/path = NodePath("WeaponArea/WeaponShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -62,7 +60,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/WeaponShape2D:disabled")
+tracks/1/path = NodePath("WeaponArea/WeaponShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -283,7 +281,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("Area2D/WeaponShape2D:disabled")
+tracks/1/path = NodePath("WeaponArea/WeaponShape2D:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
@@ -508,9 +506,10 @@ states/run/position = Vector2(341, 195)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_28emq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_x75lg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lk2ac"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_xou83"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_3006x"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_limer"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_mjk3f"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnivs"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ybef6")]
 graph_offset = Vector2(-164, -87)
 
-[node name="Skeleton" type="CharacterBody2D"]
+[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("patrol_origin")]
 motion_mode = 1
-script = ExtResource("1_10cr4")
+script = ExtResource("1_truh5")
+patrol_origin = NodePath(".")
 health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -526,10 +525,10 @@ texture = ExtResource("1_fvibj")
 hframes = 17
 vframes = 5
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="WeaponArea" type="Area2D" parent="."]
 script = ExtResource("4_dp75b")
 
-[node name="WeaponShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="WeaponShape2D" type="CollisionShape2D" parent="WeaponArea"]
 position = Vector2(20, 13)
 shape = SubResource("RectangleShape2D_2yww8")
 disabled = true
@@ -542,11 +541,7 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
-script = ExtResource("7_jad0j")
-attack = ExtResource("8_4xpcm")
-hurt = ExtResource("6_sgqua")
-death = ExtResource("6_sgqua")
-footsteps = ExtResource("9_x68dq")
+script = ExtResource("7_5e14b")
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_bv0cy")

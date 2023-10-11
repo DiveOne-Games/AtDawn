@@ -1,12 +1,13 @@
 class_name BaseCharacter
 extends CharacterBody2D
 
+signal update_health(value: int, max: int)
+
 
 # Public Members
-@export_group('Character Settings')
 @export var player_speed := 30
-@export var max_health := 100
 @export var health: int
+@export var max_health := 100
 
 var sprite: Sprite2D
 var screen_size: Vector2 
@@ -17,6 +18,7 @@ var is_idle := true
 var is_attacking := false 
 var is_combo := false
 var is_running := false 
+var is_walking := false
 var is_hurt := false 
 var is_dead := false 
 var is_disabled := false
@@ -39,26 +41,27 @@ func _ready():
 	sprite = get_node('Sprite2D');
 	screen_size = get_viewport_rect().size 
 
+
+func _process(delta):
+	update_health.emit(health, max_health)
+
 func change_face():
 	if velocity.x < 0:
 		sprite.flip_h = true
 	elif velocity.x > 0:
 		sprite.flip_h = false
 
+
 func speed(delta: float = 1) -> float:
 	return player_speed * speed_scale * delta
 
 func update_animations():
 	pass
-	# anim_tree.set('parameters/conditions/is_running', is_moving())
-	# anim_tree.set('parameters/conditions/is_attacking', is_attacking)
-	# anim_tree.set('parameters/conditions/is_idle', is_idle)
-	# anim_tree.set('parameters/conditions/is_hurt', is_hurt)
-	# anim_tree.set('parameters/conditions/is_dead', is_dead)
 
 
 func is_moving():
 	return not velocity == Vector2.ZERO
+
 
 func attack_timer(timeout: float):
 	await get_tree().create_timer(timeout).timeout

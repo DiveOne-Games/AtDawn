@@ -6,7 +6,6 @@ const ATTACK_COMBO = 'attack_combo'
 const ATTACK_STAB = 'attack_stab'
 const ATTACKS = [ATTACK_BACK_SLASH, ATTACK_STAB, ATTACK_COMBO, ATTACK_SLASH]
 
-
 var current_state = null
 
 var animation_player: AnimationPlayer
@@ -28,7 +27,8 @@ func _ready():
 
 	anim_tree.active = true
 
-func _process(_delta):
+func _process(delta):
+	super(delta)
 	motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 
 

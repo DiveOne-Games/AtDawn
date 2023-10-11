@@ -9,10 +9,10 @@ extends AudioStreamPlayer2D
 
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
-	attack.loop = false
-	hurt.loop = false
-	death.loop = false
-	footsteps.loop = false
+#func _ready():
+#	attack.loop = false
+#	hurt.loop = false
+#	death.loop = false
+#	footsteps.loop = false
 
 

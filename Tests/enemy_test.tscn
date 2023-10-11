@@ -1,12 +1,12 @@
 [gd_scene load_steps=44 format=3 uid="uid://eabeqatvs4ur"]
 
-[ext_resource type="Script" path="res://Tests/TestEnemy.gd" id="1_hj3pu"]
+[ext_resource type="Script" path="res://Tests/test_unit_nav.gd" id="1_c27y1"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_2a61s"]
 [ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/StaticAssets/Characters/Skeleton/skeleton-variation1-all animations.png" id="3_xeegn"]
 [ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="4_p5tfb"]
 [ext_resource type="AudioStream" uid="uid://iewyqhs71o6u" path="res://Assets/StaticAssets/SFX/attack_swing2.wav" id="5_xsm6q"]
 [ext_resource type="AudioStream" uid="uid://dkey2qtevfhaf" path="res://Assets/StaticAssets/SFX/being_hurt2.mp3" id="6_gec7c"]
-[ext_resource type="Script" path="res://Assets/Scripts/Sound/CharacterSFXPlayer.gd" id="7_77g5i"]
+[ext_resource type="Script" path="res://Assets/Scripts/Sound/character_sfx.gd" id="7_77g5i"]
 [ext_resource type="AudioStream" uid="uid://by0m7bpiaf7ej" path="res://Assets/StaticAssets/SFX/attack_swing2.mp3" id="8_1sf3r"]
 [ext_resource type="AudioStream" uid="uid://7bbhrwwrfoo5" path="res://Assets/StaticAssets/SFX/footstep_grass1.mp3" id="9_grs57"]
 
@@ -508,7 +508,7 @@ graph_offset = Vector2(-164, -87)
 
 [node name="Skeleton" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_hj3pu")
+script = ExtResource("1_c27y1")
 health = 10
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
