@@ -3,8 +3,8 @@
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_ir327"]
 [ext_resource type="Script" path="res://Assets/Scripts/MainLevel.gd" id="1_satwh"]
 [ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="2_ey7dy"]
-[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="2_gfeef"]
-[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton.tscn" id="5_gx1mc"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_gfeef"]
+[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="5_gx1mc"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_efmpk"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6fy"]

@@ -24,6 +24,6 @@ func take_damage(damage):
 		character.is_dead = true
 
 func _on_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
-	print_debug('Hitbox struck by ', area)
 	if is_instance_of(area, WeaponZone):
+		print_debug('Hitbox struck by ', area)
 		take_damage(area.damage)

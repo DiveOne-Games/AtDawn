@@ -1,12 +1,12 @@
 [gd_resource type="SpriteFrames" load_steps=114 format=3 uid="uid://cb1grevjcb7yn"]
 
-[ext_resource type="Texture2D" uid="uid://0s00niaj5exj" path="res://Assets/StaticAssets/Characters/Warrior/warrior-attack-combo.png" id="1_o3h24"]
-[ext_resource type="Texture2D" uid="uid://bkeya5jip3dpo" path="res://Assets/StaticAssets/Characters/Warrior/warrior-attack-1.png" id="2_p0p34"]
-[ext_resource type="Texture2D" uid="uid://bt7vpsuqjpo3c" path="res://Assets/StaticAssets/Characters/Warrior/warrior-attack-2.png" id="3_gqtu3"]
-[ext_resource type="Texture2D" uid="uid://bvppspahe5aj1" path="res://Assets/StaticAssets/Characters/Warrior/warrior-death.png" id="4_6xkwf"]
-[ext_resource type="Texture2D" uid="uid://eya8am3mxsf3" path="res://Assets/StaticAssets/Characters/Warrior/warrior-hurt.png" id="5_nrygg"]
-[ext_resource type="Texture2D" uid="uid://dw1xmf34c6m1f" path="res://Assets/StaticAssets/Characters/Warrior/warrior-idle.png" id="6_yb8ir"]
-[ext_resource type="Texture2D" uid="uid://cs4iv2mf6223" path="res://Assets/StaticAssets/Characters/Warrior/warrior-run.png" id="7_kf82f"]
+[ext_resource type="Texture2D" uid="uid://0s00niaj5exj" path="res://Assets/Characters/Warrior/Sprites/warrior-attack-combo.png" id="1_o3h24"]
+[ext_resource type="Texture2D" uid="uid://bkeya5jip3dpo" path="res://Assets/Characters/Warrior/Sprites/warrior-attack-1.png" id="2_p0p34"]
+[ext_resource type="Texture2D" uid="uid://bt7vpsuqjpo3c" path="res://Assets/Characters/Warrior/Sprites/warrior-attack-2.png" id="3_gqtu3"]
+[ext_resource type="Texture2D" uid="uid://bvppspahe5aj1" path="res://Assets/Characters/Warrior/Sprites/warrior-death.png" id="4_6xkwf"]
+[ext_resource type="Texture2D" uid="uid://eya8am3mxsf3" path="res://Assets/Characters/Warrior/Sprites/warrior-hurt.png" id="5_nrygg"]
+[ext_resource type="Texture2D" uid="uid://dw1xmf34c6m1f" path="res://Assets/Characters/Warrior/Sprites/warrior-idle.png" id="6_yb8ir"]
+[ext_resource type="Texture2D" uid="uid://cs4iv2mf6223" path="res://Assets/Characters/Warrior/Sprites/warrior-run.png" id="7_kf82f"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a7sod"]
 atlas = ExtResource("1_o3h24")

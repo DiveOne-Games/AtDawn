@@ -1,0 +1,72 @@
+[gd_scene load_steps=9 format=3 uid="uid://686agt5r134h"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/collectible_item.gd" id="1_6jqi5"]
+[ext_resource type="Material" uid="uid://naysehsqb2fu" path="res://Assets/Resources/Materials/material_collectible_blend_add.tres" id="2_x3ttv"]
+[ext_resource type="Texture2D" uid="uid://7u3618s13vf7" path="res://Assets/StaticAssets/Items/32_shadows_shikashi.png" id="4_gsrut"]
+[ext_resource type="AudioStream" uid="uid://bt2kwvlijewrh" path="res://Assets/StaticAssets/SFX/coins.mp3" id="4_htwxq"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qoj20"]
+radius = 13.0384
+
+[sub_resource type="Animation" id="Animation_ub685"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:blend_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_32uok"]
+resource_name = "default"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:material:blend_mode")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [0, 1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_fbu1f"]
+_data = {
+"RESET": SubResource("Animation_ub685"),
+"default": SubResource("Animation_32uok")
+}
+
+[node name="Collectible" type="Node2D"]
+script = ExtResource("1_6jqi5")
+sfx = ExtResource("4_htwxq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("2_x3ttv")
+texture = ExtResource("4_gsrut")
+region_enabled = true
+region_rect = Rect2(352, 352, 32, 32)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(2, 2)
+shape = SubResource("CircleShape2D_qoj20")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_fbu1f")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_htwxq")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

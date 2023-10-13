@@ -1,11 +1,15 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6k71iwsj7j3d"]
+[gd_scene load_steps=12 format=3 uid="uid://b6k71iwsj7j3d"]
 
 [ext_resource type="Script" path="res://Tests/TestScript.gd" id="1_w7d2m"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_wobwl"]
-[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior.tscn" id="3_3jgns"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="3_3jgns"]
 [ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Tests/test_trap.tscn" id="4_6fchf"]
 [ext_resource type="PackedScene" uid="uid://eabeqatvs4ur" path="res://Tests/enemy_test.tscn" id="4_jap6t"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_x6gsd"]
+[ext_resource type="PackedScene" uid="uid://686agt5r134h" path="res://Assets/Prefabs/collectible.tscn" id="7_348hc"]
+[ext_resource type="Texture2D" uid="uid://blr7oun4nctpv" path="res://Assets/StaticAssets/Items/coin_loot.png" id="8_32cud"]
+[ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="9_a6vle"]
+[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="10_j57yt"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vgvqu"]
 vertices = PackedVector2Array(1024, 128, 1024, 512, 912, 360, 912, 272, 640, 128, 792, 272, 640, 512, 792, 360)
@@ -30,24 +34,27 @@ layer_1/tile_data = PackedInt32Array(-65536, 65537, 13, 0, 655361, 1, 65536, 327
 
 [node name="Player" parent="." instance=ExtResource("3_3jgns")]
 position = Vector2(307, 158)
+player_speed = 15
 health = 50
 
 [node name="SpikeTrap" parent="." instance=ExtResource("4_6fchf")]
 position = Vector2(396, 158)
 
-[node name="TestSkeleton" parent="." node_paths=PackedStringArray("patrol_origin") instance=ExtResource("4_jap6t")]
-position = Vector2(848, 192)
-patrol_origin = NodePath("../Node2D/Marker2D")
-patrol_paths = [NodePath("../Node2D/Marker2D"), NodePath("../Node2D/Marker2D2")]
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TestSkeleton" parent="Node2D" node_paths=PackedStringArray("patrol_origin") instance=ExtResource("4_jap6t")]
+position = Vector2(552, 192)
+patrol_origin = NodePath("../../Nav/Marker2D")
+patrol_paths = [NodePath("../../Nav/Marker2D"), NodePath("../../Nav/Marker2D2")]
 patrol_active = true
 patrol_point_margin = 1.5
 
-[node name="Node2D" type="Node2D" parent="."]
+[node name="Nav" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Node2D"]
+[node name="Marker2D" type="Marker2D" parent="Nav"]
 position = Vector2(720, 296)
 
-[node name="Marker2D2" type="Marker2D" parent="Node2D"]
+[node name="Marker2D2" type="Marker2D" parent="Nav"]
 position = Vector2(968, 296)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
@@ -56,3 +63,20 @@ navigation_polygon = SubResource("NavigationPolygon_vgvqu")
 [node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [node name="HUD" parent="." instance=ExtResource("6_x6gsd")]
+
+[node name="Items" type="Node2D" parent="."]
+
+[node name="Coins" parent="Items" instance=ExtResource("7_348hc")]
+position = Vector2(176, 80)
+texture = ExtResource("8_32cud")
+value = 100
+
+[node name="SpawnPoint" parent="." instance=ExtResource("9_a6vle")]
+position = Vector2(280, 368)
+unit_scene = ExtResource("10_j57yt")
+spawn_count = 2
+spawn_interval = 2.0
+allow_patrol = false
+initial_delay = 1.0
+
+[connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]
