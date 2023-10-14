@@ -18,6 +18,7 @@ var motion : Vector2 = Vector2.ZERO
 var is_moving := false
 var is_destroyed := false
 
+
 func _ready():
 	group = GameTypes.get_game_group(group_assignment)
 	add_to_group(group)
@@ -25,9 +26,6 @@ func _ready():
 
 
 func _physics_process(delta):
-	if timer.is_stopped():
-		await destroy()
-		
 	if is_moving:
 		motion = direction.normalized() * speed(delta)
 
@@ -62,8 +60,7 @@ func _on_area_2d_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_inde
 
 func _on_area_2d_body_entered(body):
 	pass
-#	if is_instance_of(body, TileMap):
-#		print_debug('Hit tilemap.')
-#		is_destroyed = true
-#		destroy()
-		
+
+
+func _on_timer_timeout():
+	queue_free()

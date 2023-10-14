@@ -162,6 +162,7 @@ position = Vector2(0, 6)
 shape = SubResource("CircleShape2D_jxk2c")
 
 [node name="Timer" type="Timer" parent="."]
+autostart = true
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_dwog1")
@@ -170,3 +171,4 @@ attenuation = 6.27667
 
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -129,4 +129,3 @@ script = ExtResource("7_kqkld")
 
 [connection signal="update_health" from="World/Player" to="HUD" method="_on_player_update_health"]
 [connection signal="update_kill_score" from="Enemies/Skeleton" to="HUD" method="_on_events_update_score"]
-[connection signal="update_score" from="Events" to="HUD" method="_on_events_update_score"]

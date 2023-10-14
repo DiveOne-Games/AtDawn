@@ -9,7 +9,6 @@ extends Hazard
 @export var auto_fire := false
 @export var is_active := true
 
-@onready var timer : Timer = $LaunchTimer
 @onready var launch_point : Marker2D = $LaunchPoint
 @onready var animation_player : AnimationPlayer = $AnimationPlayer
 
@@ -17,11 +16,7 @@ var attack_zone : Area2D
 var attack_zone_empty = true
 
 func _ready():
-	timer.wait_time = launch_interval
-	timer.start()
 	attack_zone = $AttackZone
-	if auto_fire:
-		timer.autostart = true
 
 
 func _physics_process(delta):
@@ -34,11 +29,12 @@ func _physics_process(delta):
 
 
 func shoot_fireball():
-	var ball := projectile.instantiate() as Projectile
-	ball.position = to_local(position)
-	ball.projectile_speed = launch_speed
-	add_child(ball)
-	ball.travel()
+	var fireball := projectile.instantiate() as Projectile
+	fireball.position = to_local(position)
+	fireball.projectile_speed = launch_speed
+	fireball.air_time = air_time
+	add_child(fireball)
+	fireball.travel()
 
 
 func _on_attack_zone_player_entered(_area_rid:RID, area: Area2D, _area_shape_index:int, _local_shape_index:int):

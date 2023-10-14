@@ -44,3 +44,8 @@ https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduct
 
 https://gdscript.com/solutions/coroutines-and-yield/
 
+
+## Bugs
+
+https://www.reddit.com/r/godot/comments/145i5gw/godot_4_sprite_distorting_when_instantiating/
+

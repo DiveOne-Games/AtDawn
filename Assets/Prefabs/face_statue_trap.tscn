@@ -1,8 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://my1r2se2pdhh"]
+[gd_scene load_steps=11 format=3 uid="uid://my1r2se2pdhh"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/face_statue_trap.gd" id="1_0ggum"]
 [ext_resource type="PackedScene" uid="uid://bek6qtmfykw8j" path="res://Assets/Prefabs/fireball.tscn" id="2_8taki"]
-[ext_resource type="SpriteFrames" uid="uid://dycje8rdr4r8b" path="res://Assets/Resources/face_statue_trap_fire.tres" id="3_q6pof"]
 [ext_resource type="Texture2D" uid="uid://b7vcfp3idb16n" path="res://Assets/StaticAssets/Environments/Crypt/Props/traps/face_statue_trap.png" id="4_dsd86"]
 [ext_resource type="AudioStream" uid="uid://b1e30mybp1rc2" path="res://Assets/StaticAssets/SFX/fireball3-2.mp3" id="5_3wr4d"]
 
@@ -112,6 +111,10 @@ _data = {
 [node name="FireFace" type="StaticBody2D"]
 script = ExtResource("1_0ggum")
 projectile = ExtResource("2_8taki")
+launch_speed = 3.0
+air_time = 2.0
+direction = Vector2(0, 1)
+damage = 5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_050a5")
@@ -131,11 +134,6 @@ modulate = Color(1, 0.713726, 0, 0.52549)
 position = Vector2(0, -26.1741)
 scale = Vector2(1, 1.0819)
 polygon = PackedVector2Array(-179, 17.7227, 169, 17.7227, 299, 249.723, -290, 249.723)
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-visible = false
-sprite_frames = ExtResource("3_q6pof")
-animation = &"fire"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("4_dsd86")
