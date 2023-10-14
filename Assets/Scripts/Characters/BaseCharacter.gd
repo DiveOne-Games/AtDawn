@@ -2,12 +2,14 @@ class_name BaseCharacter
 extends CharacterBody2D
 
 signal update_health(value: int, max: int)
+signal update_kill_score(value: int)
 
 
 # Public Members
 @export var player_speed := 30
 @export var health: int
 @export var max_health := 100
+@export var score_value := 0
 
 var sprite: Sprite2D
 var screen_size: Vector2 

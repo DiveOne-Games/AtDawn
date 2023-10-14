@@ -20,6 +20,10 @@ config/icon="res://icon.svg"
 
 buses/default_bus_layout="res://Assets/Resources/Sound/default_bus_layout.tres"
 
+[autoload]
+
+GameTypes="*res://Assets/Scripts/game_types.gd"
+
 [display]
 
 window/size/always_on_top=true
@@ -88,6 +92,8 @@ attack_combo={
 2d_physics/layer_1="World"
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Hazards"
+2d_physics/layer_4="Projectiles"
+2d_physics/layer_5="Walls"
 
 [rendering]
 

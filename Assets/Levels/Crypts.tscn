@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://6joqjlshw67x"]
+[gd_scene load_steps=10 format=3 uid="uid://01w84goqallr"]
 
-[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_ir327"]
-[ext_resource type="Script" path="res://Assets/Scripts/MainLevel.gd" id="1_satwh"]
-[ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="2_ey7dy"]
-[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_gfeef"]
-[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="5_gx1mc"]
-[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_efmpk"]
-[ext_resource type="Script" path="res://Assets/Scripts/scene_events.gd" id="7_kqkld"]
+[ext_resource type="Script" path="res://Assets/Scripts/MainLevel.gd" id="1_ex7ur"]
+[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_uab7c"]
+[ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="3_5qq66"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="4_kc63l"]
+[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="5_1pnjh"]
+[ext_resource type="PackedScene" uid="uid://iqtsijbbd4jo" path="res://Assets/Prefabs/spike_trap_animated.tscn" id="5_bv8hl"]
+[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_1nhhc"]
+[ext_resource type="Script" path="res://Assets/Scripts/scene_events.gd" id="7_7jjsu"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_sk6fy"]
 vertices = PackedVector2Array(1558, 82, 1563, 174, 1041, 171, 1040, 89)
@@ -14,11 +15,11 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(1040, 89, 1041, 171, 1563, 174, 1558, 82)])
 
 [node name="Crypt" type="Node2D"]
-script = ExtResource("1_satwh")
+script = ExtResource("1_ex7ur")
 
 [node name="World" type="TileMap" parent="."]
 y_sort_enabled = true
-tile_set = ExtResource("1_ir327")
+tile_set = ExtResource("2_uab7c")
 cell_quadrant_size = 32
 format = 2
 layer_0/name = "base"
@@ -63,7 +64,7 @@ layer_5/tile_data = PackedInt32Array(262163, 1703936, 25, 327699, 1703936, 26, 3
 [node name="StaticProps" type="TileMap" parent="World"]
 editor_description = "Static props are painted on. They can have collision, but otherwise no interaction."
 y_sort_enabled = true
-tile_set = ExtResource("2_ey7dy")
+tile_set = ExtResource("3_5qq66")
 cell_quadrant_size = 32
 format = 2
 layer_0/name = "debris"
@@ -74,39 +75,47 @@ layer_1/modulate = Color(1, 1, 1, 1)
 layer_1/y_sort_enabled = true
 layer_1/y_sort_origin = 0
 layer_1/z_index = 0
-layer_1/tile_data = PackedInt32Array(39, 1114112, 4, 65575, 1114112, 5)
+layer_1/tile_data = PackedInt32Array(39, 1114112, 4, 65575, 1114112, 5, -65525, 1835008, 5, 11, 1835008, 6, 65547, 1835008, 7, -65524, 2097152, 17, 12, 2097152, 18, -65523, 2162688, 17, 13, 2162688, 18, 327702, 917504, 1, 327706, 917504, 1, 10, 917504, 1, 7, 917504, 1, 31, 2031616, 16, -65494, 1966080, 17, 42, 1966080, 18, -65493, 2031616, 17, 43, 2031616, 18)
 layer_2/name = "coffins"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
 layer_2/y_sort_enabled = true
 layer_2/y_sort_origin = 0
 layer_2/z_index = 0
-layer_2/tile_data = PackedInt32Array(65569, 589824, 14, 131105, 589824, 15, 65570, 655360, 14, 131106, 655360, 15, 65571, 720896, 14, 131107, 720896, 15, 524325, 262144, 13, 589861, 262144, 14, 655397, 262144, 15, 524326, 327680, 13, 589862, 327680, 14, 655398, 327680, 15, 65575, 589824, 14, 131111, 589824, 15, 65576, 655360, 14, 131112, 655360, 15, 65577, 720896, 14, 131113, 720896, 15)
-layer_3/name = "decor"
+layer_2/tile_data = PackedInt32Array(65569, 589824, 14, 131105, 589824, 15, 65570, 655360, 14, 131106, 655360, 15, 65571, 720896, 14, 131107, 720896, 15, 524325, 262144, 13, 589861, 262144, 14, 655397, 262144, 15, 524326, 327680, 13, 589862, 327680, 14, 655398, 327680, 15, 65575, 589824, 14, 131111, 589824, 15, 65576, 655360, 14, 131112, 655360, 15, 65577, 720896, 14, 131113, 720896, 15, 720908, 0, 10, 786444, 0, 11, 851980, 0, 12, 720909, 65536, 10, 786445, 65536, 11, 851981, 65536, 12, 720914, 0, 10, 786450, 0, 11, 851986, 0, 12, 720915, 65536, 10, 786451, 65536, 11, 851987, 65536, 12, 720920, 0, 10, 786456, 0, 11, 851992, 0, 12, 720921, 65536, 10, 786457, 65536, 11, 851993, 65536, 12)
+layer_3/name = "furniture"
 layer_3/enabled = true
 layer_3/modulate = Color(1, 1, 1, 1)
 layer_3/y_sort_enabled = true
 layer_3/y_sort_origin = 0
 layer_3/z_index = 0
-layer_3/tile_data = PackedInt32Array(131105, 1507328, 15, 65571, 1638400, 14, 131107, 1638400, 15, 65569, 1507328, 14, 65570, 1572864, 14, 131106, 1572864, 15, 38, 1376256, 13, 65574, 1376256, 14, 131110, 1376256, 15, 39, 1441792, 13, 65575, 1441792, 14, 131111, 1441792, 15, 393242, 1703936, 17, 458778, 1703936, 18, 393243, 1769472, 17, 458779, 1769472, 18)
+layer_3/tile_data = PackedInt32Array(131105, 1507328, 15, 65571, 1638400, 14, 131107, 1638400, 15, 65569, 1507328, 14, 65570, 1572864, 14, 131106, 1572864, 15, 38, 1376256, 13, 65574, 1376256, 14, 131110, 1376256, 15, 39, 1441792, 13, 65575, 1441792, 14, 131111, 1441792, 15, 393242, 1703936, 17, 458778, 1703936, 18, 393243, 1769472, 17, 458779, 1769472, 18, 65552, 1703936, 17, 131088, 1703936, 18, 65553, 1769472, 17, 131089, 1769472, 18, 12, 1507328, 19, 65548, 1507328, 20, 13, 1572864, 19, 65549, 1572864, 20, 720908, 1835008, 10, 786444, 1835008, 11, 851980, 1835008, 12, 720909, 1900544, 10, 786445, 1900544, 11, 851981, 1900544, 12, 720914, 1835008, 10, 786450, 1835008, 11, 851986, 1835008, 12, 720915, 1900544, 10, 786451, 1900544, 11, 851987, 1900544, 12, 720920, 1835008, 10, 786456, 1835008, 11, 851992, 1835008, 12, 720921, 1900544, 10, 786457, 1900544, 11, 851993, 1900544, 12, 720910, 524288, 21, 786446, 524288, 22, 851982, 524288, 23, 720911, 589824, 21, 786447, 589824, 22, 851983, 589824, 23, 720916, 655360, 22, 786452, 655360, 23, 851988, 655360, 24, 720917, 720896, 22, 786453, 720896, 23, 851989, 720896, 24, 786448, 851968, 2, 851984, 851968, 3, 786449, 917504, 2, 851985, 917504, 3, 786454, 851968, 2, 851990, 851968, 3, 786455, 917504, 2, 851991, 917504, 3, 31, 131072, 21, 65567, 131072, 22, 131103, 131072, 23, 32, 196608, 21, 65568, 196608, 22, 131104, 196608, 23)
 layer_4/name = "objects"
 layer_4/enabled = true
 layer_4/modulate = Color(1, 1, 1, 1)
 layer_4/y_sort_enabled = true
 layer_4/y_sort_origin = 0
 layer_4/z_index = 0
-layer_4/tile_data = PackedInt32Array()
+layer_4/tile_data = PackedInt32Array(524313, 1048576, 17, 458780, 851968, 17)
 
-[node name="Player" parent="World" instance=ExtResource("2_gfeef")]
+[node name="Player" parent="World" instance=ExtResource("4_kc63l")]
 position = Vector2(932, 375)
 player_speed = 15
 health = 25
 
-[node name="Props" type="Node2D" parent="."]
+[node name="Traps" type="Node2D" parent="World"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="SpikeTrap" parent="World/Traps" instance=ExtResource("5_bv8hl")]
+position = Vector2(418, 335)
+scale = Vector2(1.72, 1.72)
+
+[node name="Props" type="Node2D" parent="World"]
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Skeleton" parent="Enemies" node_paths=PackedStringArray("patrol_origin") groups=["enemies"] instance=ExtResource("5_gx1mc")]
+[node name="Skeleton" parent="Enemies" node_paths=PackedStringArray("patrol_origin") groups=["enemies"] instance=ExtResource("5_1pnjh")]
 position = Vector2(1256, 127)
 collision_layer = 2
 collision_mask = 7
@@ -122,11 +131,10 @@ navigation_polygon = SubResource("NavigationPolygon_sk6fy")
 [node name="Marker2D" type="Marker2D" parent="PatrolMarkers"]
 position = Vector2(1417, 114)
 
-[node name="HUD" parent="." instance=ExtResource("6_efmpk")]
+[node name="HUD" parent="." instance=ExtResource("6_1nhhc")]
 
-[node name="Events" type="Node2D" parent="."]
-script = ExtResource("7_kqkld")
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("7_7jjsu")
 
 [connection signal="update_health" from="World/Player" to="HUD" method="_on_player_update_health"]
 [connection signal="update_kill_score" from="Enemies/Skeleton" to="HUD" method="_on_events_update_score"]
-[connection signal="update_score" from="Events" to="HUD" method="_on_events_update_score"]

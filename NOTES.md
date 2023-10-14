@@ -3,6 +3,12 @@
 Scenes and nodes
 
 - `$Object` refers to the current scene's tree. If you run
+- signals are pretty incredible. of note: sprite signals, timer signals.
+
+Its usually better to control things in the affirmative instead of as exceptions. For example, a projectile
+is fired when the player is in view. But what about when the player is out of view? Code an `on_exit` event 
+for that to separate it from any default state, rather than using `else` statements to swap between 'in zone/out zone'.
+
 
 ## Character Movement
 
@@ -32,8 +38,6 @@ To set up a patrol, use some markers on the map to define where the unit will mo
 
 Checkout this guide instead: 
 https://docs.godotengine.org/en/stable/tutorials/navigation/navigation_introduction_2d.html
-
-
 
 
 ## Coroutines

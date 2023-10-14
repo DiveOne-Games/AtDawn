@@ -1,0 +1,161 @@
+[gd_scene load_steps=12 format=3 uid="uid://my1r2se2pdhh"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/face_statue_trap.gd" id="1_0ggum"]
+[ext_resource type="PackedScene" uid="uid://bek6qtmfykw8j" path="res://Assets/Prefabs/fireball.tscn" id="2_8taki"]
+[ext_resource type="SpriteFrames" uid="uid://dycje8rdr4r8b" path="res://Assets/Resources/face_statue_trap_fire.tres" id="3_q6pof"]
+[ext_resource type="Texture2D" uid="uid://b7vcfp3idb16n" path="res://Assets/StaticAssets/Environments/Crypt/Props/traps/face_statue_trap.png" id="4_dsd86"]
+[ext_resource type="AudioStream" uid="uid://b1e30mybp1rc2" path="res://Assets/StaticAssets/SFX/fireball3-2.mp3" id="5_3wr4d"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_050a5"]
+
+[sub_resource type="Animation" id="Animation_1lpyh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kqos2"]
+resource_name = "glow"
+length = 0.45
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cl3l7"]
+resource_name = "activate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vua6x"]
+resource_name = "fire"
+length = 0.85
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_fireball"
+}]
+}
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.787625,
+"start_offset": 0.0286883,
+"stream": ExtResource("5_3wr4d")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/2/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b01px"]
+_data = {
+"RESET": SubResource("Animation_1lpyh"),
+"activate": SubResource("Animation_cl3l7"),
+"fire": SubResource("Animation_vua6x"),
+"glow": SubResource("Animation_kqos2")
+}
+
+[node name="FireFace" type="StaticBody2D"]
+script = ExtResource("1_0ggum")
+projectile = ExtResource("2_8taki")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_050a5")
+
+[node name="AttackZone" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackZone"]
+self_modulate = Color(1, 0, 0.141176, 0.301961)
+position = Vector2(0.500001, 21)
+scale = Vector2(0.374385, 0.990625)
+polygon = PackedVector2Array(-81.4669, -5.04732, -215.019, 194.826, 207.006, 194.826, 70.7828, -5.04732)
+
+[node name="AggroZone" type="Area2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AggroZone"]
+modulate = Color(1, 0.713726, 0, 0.52549)
+position = Vector2(0, -26.1741)
+scale = Vector2(1, 1.0819)
+polygon = PackedVector2Array(-179, 17.7227, 169, 17.7227, 299, 249.723, -290, 249.723)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+visible = false
+sprite_frames = ExtResource("3_q6pof")
+animation = &"fire"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("4_dsd86")
+hframes = 9
+vframes = 3
+
+[node name="LaunchTimer" type="Timer" parent="."]
+
+[node name="LaunchPoint" type="Marker2D" parent="."]
+position = Vector2(0, 25)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b01px")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+attenuation = 6.06286
+
+[connection signal="area_shape_entered" from="AttackZone" to="." method="_on_attack_zone_player_entered"]
+[connection signal="area_shape_exited" from="AttackZone" to="." method="_on_attack_zone_area_shape_exited"]
+[connection signal="area_shape_entered" from="AggroZone" to="." method="_on_aggro_zone_area_shape_entered"]
+[connection signal="area_shape_exited" from="AggroZone" to="." method="_on_aggro_zone_area_shape_exited"]
