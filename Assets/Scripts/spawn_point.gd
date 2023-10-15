@@ -1,6 +1,10 @@
 extends Node2D
 
+signal register_new_unit(unit: Node2D)  # TODO: Best if BaseCharacter
+
 @export var unit_scene : PackedScene
+@export var unit_group := GameTypes.Group.Enemies
+@export var score_value := 100
 @export var spawn_count : int = 1
 @export var spawn_interval : float = 1
 @export var wave_count : int = 1
@@ -41,8 +45,10 @@ func spawn():
 	if current_spawn > 0:
 		current_spawn -= 1
 		var node = unit_scene.instantiate()
-		node.add_to_group('enemies')
+		node.add_to_group(GameTypes.get_game_group(unit_group))
+		register_new_unit.emit(node)
 		node.patrol_active = allow_patrol
+		node.score_value = score_value
 		node.position = to_local(get_random_position(position))
 		add_child(node)
 

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://b5ujuib0sr2hd"]
+
+[ext_resource type="FontFile" uid="uid://bjoitfv073uw3" path="res://Assets/StaticAssets/Fonts/ARCADEPI.TTF" id="1_h2msi"]
+
+[resource]
+default_font = ExtResource("1_h2msi")
+default_font_size = 16
+Button/fonts/font = ExtResource("1_h2msi")

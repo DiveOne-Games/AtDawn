@@ -2,7 +2,8 @@ extends Node
 
 enum DamageType { Physical, Magic }
 enum ItemType { Gold, Collectible, Equipment }
-
+enum ProjectileType { Elemental, Arrow, Bullet }
+enum UnitType { Monster, Npc, Creature, Boss }
 enum Group { Enemies, Projectiles }
 const Enemies = 'enemies'
 const Projectiles = 'projectiles'
@@ -14,7 +15,7 @@ func get_game_group(key: int):
 			return Enemies
 		Group.Projectiles:
 			return Projectiles
-		var no_group:
+		var _no_group:
 			print_debug('No matching group found.')
 
 

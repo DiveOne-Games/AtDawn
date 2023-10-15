@@ -10,6 +10,7 @@ signal update_kill_score(value: int)
 @export var health: int
 @export var max_health := 100
 @export var score_value := 0
+@export var unit_type : GameTypes.UnitType
 
 var sprite: Sprite2D
 var screen_size: Vector2 

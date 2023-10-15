@@ -10,6 +10,10 @@ is fired when the player is in view. But what about when the player is out of vi
 for that to separate it from any default state, rather than using `else` statements to swap between 'in zone/out zone'.
 
 
+## Rigidbodies
+
+AnimationPlayer seems to have a bug where instantiating a packedscene causes the sprite to distort. I think wrapping the position in `to_local` solved it. I think. 
+
 ## Character Movement
 
 
@@ -18,7 +22,7 @@ Several factors impact motion
 * `physics_process` with delta vs. `process` without using delta
 * Camera smoothing
 
-Fiddling with camera position smoothing, and physics process delta with a speed formula (arbitrary speed * arbitrary speed scale * delta)
+Fiddling with camera position smoothing, and physics process delta with a speed formula (arbitrary speed * arbitrary speed scale * delta).
 
 
 ## Taking Damage

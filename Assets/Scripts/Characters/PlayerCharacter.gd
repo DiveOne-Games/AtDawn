@@ -18,7 +18,7 @@ var camera: Camera2D
 @onready var anim_tree := $AnimationTree
 @onready var state_machine = $AnimationTree.get("parameters/playback")
 
-# Called when the node enters the scene tree for the first time.
+
 func _ready():
 	foot_shape = get_node('CollisionShape2D')
 	hitbox = get_node('HitBox')
@@ -41,6 +41,7 @@ func _physics_process(_delta):
 
 	if is_dead:
 		state_machine.travel(DEATH)
+		disable_character()
 		return
 
 	if is_moving():
@@ -67,10 +68,14 @@ func _physics_process(_delta):
 func _input(event):
 	if event is InputEventKey or event is InputEventJoypadButton:
 		is_idle = false
+		is_attacking = true
+		if event.is_action(ATTACK_BACK_SLASH):
+			current_state = ATTACK_BACK_SLASH
 		if event.is_action(ATTACK_SLASH):
-			is_attacking = true
 			current_state = ATTACK_SLASH
-		elif event.is_action(ATTACK_COMBO):
+		if event.is_action(ATTACK_STAB):
+			current_state = ATTACK_STAB
+		if event.is_action(ATTACK_COMBO):
 			is_combo = true
 			current_state = ATTACK_COMBO
 	
@@ -89,6 +94,7 @@ func speed(delta: float = 1) -> float:
 func update_animations():
 	anim_tree.set('parameters/conditions/is_running', is_moving())
 	anim_tree.set('parameters/conditions/is_attacking', is_attacking)
+	anim_tree.set('parameters/conditions/is_combo', is_combo)
 	anim_tree.set('parameters/conditions/is_idle', is_idle)
 	anim_tree.set('parameters/conditions/is_hurt', is_hurt)
 	anim_tree.set('parameters/conditions/is_dead', is_dead)
@@ -102,6 +108,7 @@ func attack_timer(timeout: float):
 	await get_tree().create_timer(timeout).timeout
 	is_attacking = false 
 	is_combo = false
+	current_state = null
 
 
 func reaction_timer(timeout: float):
@@ -115,6 +122,12 @@ func collect_item(item: CollectibleItem):
 	else:
 		inventory.append(item)
 
+
+func disable_character():
+	super()
+	foot_shape.disabled = true
+	hitbox.disabled = true
+	
 
 func scale_animation(value: float):
 	animation_player.speed_scale = value

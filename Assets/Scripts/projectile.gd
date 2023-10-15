@@ -7,6 +7,7 @@ extends RigidBody2D
 @export var group_assignment : GameTypes.Group = GameTypes.Group.Projectiles
 @export var direction : Vector2
 @export var projectile_speed : int = 10
+@export var projectile_type : GameTypes.ProjectileType = GameTypes.ProjectileType.Arrow
 
 @onready var sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var timer : Timer = $Timer
@@ -18,10 +19,15 @@ var motion : Vector2 = Vector2.ZERO
 var is_moving := false
 var is_destroyed := false
 
+const ANIMATION_FLY := 'fly'
+const ANIMATION_DESTROY := 'destroy'
+const ANIMATION_STICK := 'stick'
+
 
 func _ready():
 	group = GameTypes.get_game_group(group_assignment)
 	add_to_group(group)
+	print_debug('Group set to ', get_groups())
 	timer.wait_time = air_time
 
 
@@ -36,8 +42,11 @@ func _physics_process(delta):
 	move_and_collide(motion)
 
 
-func destroy():
-	sprite.play('destroy')
+func destroy(sticky: bool = false):
+	var anim = ANIMATION_DESTROY
+	if sticky: 
+		anim = ANIMATION_STICK
+	sprite.play(anim)
 	await sprite.animation_finished
 	queue_free()
 
@@ -55,6 +64,11 @@ func _on_area_2d_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_inde
 	if is_instance_of(area, HitBox):
 		is_destroyed = true
 		area.take_damage(damage)
+		# Stick the arrow to the body
+		if projectile_type == GameTypes.ProjectileType.Arrow:
+			position = to_local(area.position)
+			destroy(true)
+			return
 		destroy()
 
 

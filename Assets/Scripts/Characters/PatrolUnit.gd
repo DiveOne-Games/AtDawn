@@ -10,7 +10,8 @@ Don't forget to call `super()` for functions which add to its behavior!
 @export var patrol_origin : Node2D
 @export var patrol_paths: Array 
 @export var patrol_active := true
-@export var patrol_point_margin: float = 1.5 
+@export var patrol_point_margin: float = 1.5
+@export var unit_group : GameTypes.Group = GameTypes.Group.Enemies
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var navigation_agent: NavigationAgent2D = get_node('Navigation/NavigationAgent2D')
@@ -29,13 +30,14 @@ func _ready():
 	hitbox = get_node('HitBox')
 	sprite = get_node('Sprite2D')
 	motion = Vector2()
+	add_to_group(GameTypes.get_game_group(unit_group))
 	anim_tree.active = true
 
 	if not patrol_origin:
-		patrol_origin.position = position
-	current_destination = patrol_origin
+		patrol_active = false
 #	
 	if patrol_active:
+		current_destination = patrol_origin
 		call_deferred('actor_setup')
 
 
@@ -49,7 +51,6 @@ func _physics_process(delta):
 	if is_dead:
 		if character_disabled:
 			return
-		# await reaction_timer(1)
 		disable_character()
 		return
 	if is_moving():

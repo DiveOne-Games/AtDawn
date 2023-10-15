@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://dk4cw2yqd5jnp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Characters/Skeleton.gd" id="1_truh5"]
+[ext_resource type="Script" path="res://Assets/Scripts/Characters/PatrolUnit.gd" id="1_mao2t"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_ua562"]
 [ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_1o2mj"]
 [ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="4_dp75b"]
@@ -506,11 +506,11 @@ states/run/position = Vector2(341, 195)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_28emq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_x75lg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lk2ac"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_xou83"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_3006x"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_limer"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_mjk3f"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnivs"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ybef6")]
 graph_offset = Vector2(-164, -87)
 
-[node name="Skeleton" type="CharacterBody2D" node_paths=PackedStringArray("patrol_origin")]
+[node name="Skeleton" type="CharacterBody2D"]
 motion_mode = 1
-script = ExtResource("1_truh5")
-patrol_origin = NodePath(".")
+script = ExtResource("1_mao2t")
 health = 10
+score_value = 500
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 26)
