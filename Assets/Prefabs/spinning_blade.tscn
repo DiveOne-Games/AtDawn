@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://ekyj0ln8vwx2"]
+
+[ext_resource type="Texture2D" uid="uid://cby5fl6luenvy" path="res://Assets/StaticAssets/Environments/Crypt/Props/saw-trail.png" id="1_al3aj"]
+[ext_resource type="Texture2D" uid="uid://cq64d3di4fncr" path="res://Assets/StaticAssets/Environments/Crypt/Props/saw.png" id="1_sux51"]
+[ext_resource type="Script" path="res://Assets/Scripts/trap_controller.gd" id="1_upny7"]
+[ext_resource type="AudioStream" uid="uid://dtch76xiyttdp" path="res://Assets/StaticAssets/SFX/circular_saw.mp3" id="3_pafrs"]
+
+[sub_resource type="Animation" id="Animation_x00dd"]
+resource_name = "spin"
+length = 0.2
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(2, 0), Vector2i(1, 0), Vector2i(0, 0)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.77219,
+"start_offset": 0.441314,
+"stream": ExtResource("3_pafrs")
+}],
+"times": PackedFloat32Array(0)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_gin4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ve5cr"]
+_data = {
+"RESET": SubResource("Animation_gin4m"),
+"spin": SubResource("Animation_x00dd")
+}
+
+[node name="SpinningBlade" type="Node2D"]
+script = ExtResource("1_upny7")
+
+[node name="Trail" type="Sprite2D" parent="."]
+position = Vector2(4, 2)
+texture = ExtResource("1_al3aj")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_sux51")
+hframes = 4
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "spin"
+libraries = {
+"": SubResource("AnimationLibrary_ve5cr")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 1000.0
+attenuation = 6.72714
+bus = &"SFX"

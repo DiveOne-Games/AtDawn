@@ -23,7 +23,7 @@ size_flags_horizontal = 3
 layout_mode = 0
 offset_left = 16.0
 offset_right = 226.0
-offset_bottom = 27.0
+offset_bottom = 14.0
 theme = ExtResource("1_n3cil")
 theme_override_fonts/font = ExtResource("2_kn341")
 theme_override_styles/fill = ExtResource("3_h7m7y")
@@ -31,6 +31,7 @@ value = 100.0
 show_percentage = false
 
 [node name="TargetHealth" type="Label" parent="MarginContainer/HBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 
@@ -47,5 +48,5 @@ show_percentage = false
 [node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("1_n3cil")
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 20
 text = "000000"

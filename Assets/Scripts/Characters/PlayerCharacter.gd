@@ -10,9 +10,9 @@ const ATTACK_BACK_SLASH = 'attack_back_slash'
 const ATTACK_COMBO = 'attack_combo'
 const ATTACK_STAB = 'attack_stab'
 const ATTACKS = [ATTACK_BACK_SLASH, ATTACK_STAB, ATTACK_COMBO, ATTACK_SLASH]
+const INTERACTION = 'interact'
 
 var current_state = null
-
 var animation_player: AnimationPlayer
 var camera: Camera2D
 @onready var anim_tree := $AnimationTree
@@ -60,7 +60,7 @@ func _physics_process(_delta):
 	if is_hurt:
 		state_machine.travel(HURT)
 		reaction_timer(0.5)
-	
+
 	velocity = motion.normalized() * speed(_delta)
 	move_and_slide()
 
@@ -78,7 +78,9 @@ func _input(event):
 		if event.is_action(ATTACK_COMBO):
 			is_combo = true
 			current_state = ATTACK_COMBO
-	
+		if event.is_action(INTERACTION):
+			print_debug('Pressed interaction.')
+
 
 func change_face():
 	if velocity.x < 0:
@@ -131,4 +133,4 @@ func disable_character():
 
 func scale_animation(value: float):
 	animation_player.speed_scale = value
-
+	

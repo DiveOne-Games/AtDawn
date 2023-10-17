@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://01w84goqallr"]
+[gd_scene load_steps=16 format=3 uid="uid://01w84goqallr"]
 
 [ext_resource type="Script" path="res://Assets/Levels/scene_manager.gd" id="1_1b43i"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_uab7c"]
@@ -7,7 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="5_1pnjh"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_1nhhc"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/face_statue_trap.tscn" id="6_ga3mh"]
+[ext_resource type="PackedScene" uid="uid://cvf2c5d3q8gke" path="res://Assets/Prefabs/boss_door.tscn" id="6_rciev"]
+[ext_resource type="PackedScene" uid="uid://ohcb066typb4" path="res://Assets/Prefabs/magic_gateway.tscn" id="7_2qdw0"]
 [ext_resource type="PackedScene" uid="uid://bwahphtrebol0" path="res://Assets/Prefabs/arrow_gun_trap.tscn" id="7_i1ynn"]
+[ext_resource type="PackedScene" uid="uid://ekyj0ln8vwx2" path="res://Assets/Prefabs/spinning_blade.tscn" id="8_bbrm5"]
 [ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="8_fsn1x"]
 [ext_resource type="PackedScene" uid="uid://defsqdc4icv76" path="res://Assets/Prefabs/candle.tscn" id="8_fux46"]
 [ext_resource type="Script" path="res://Assets/Scripts/game_manager.gd" id="11_tm23m"]
@@ -62,7 +65,7 @@ layer_5/modulate = Color(1, 1, 1, 1)
 layer_5/y_sort_enabled = true
 layer_5/y_sort_origin = 0
 layer_5/z_index = 0
-layer_5/tile_data = PackedInt32Array(327701, 3080192, 28, 393237, 3080192, 29, 458773, 3080192, 30, 327702, 3145728, 28, 393238, 3145728, 29, 458774, 3145728, 30, 327703, 3211264, 28, 393239, 3211264, 29, 458775, 3211264, 30, 327707, 3080192, 28, 393243, 3080192, 29, 458779, 3080192, 30, 327708, 3145728, 28, 393244, 3145728, 29, 458780, 3145728, 30, 327709, 3211264, 28, 393245, 3211264, 29, 458781, 3211264, 30)
+layer_5/tile_data = PackedInt32Array()
 
 [node name="StaticProps" type="TileMap" parent="World"]
 editor_description = "Static props are painted on. They can have collision, but otherwise no interaction."
@@ -102,9 +105,32 @@ layer_4/y_sort_origin = 0
 layer_4/z_index = 0
 layer_4/tile_data = PackedInt32Array()
 
+[node name="Structures" type="TileMap" parent="World"]
+y_sort_enabled = true
+tile_set = ExtResource("2_uab7c")
+cell_quadrant_size = 32
+format = 2
+layer_0/name = "walls"
+layer_0/y_sort_enabled = true
+layer_0/tile_data = PackedInt32Array(1179661, 327683, 12, 1245197, 327683, 13, 1310733, 327683, 14, 1179662, 393219, 12, 1245198, 393219, 13, 1310734, 393219, 14, 1179678, 327683, 12, 1245214, 327683, 13, 1310750, 327683, 14, 1179679, 393219, 12, 1245215, 393219, 13, 1310751, 393219, 14, 1114125, 65539, 9, 1114126, 196611, 9, 1114127, 196611, 9, 1114128, 196611, 9, 1114129, 3, 9, 1114130, 131075, 9, 1114131, 196611, 9, 1114132, 327683, 9, 1114133, 3, 9, 1114134, 65539, 9, 1114135, 262147, 9, 1114136, 65539, 9, 1114137, 196611, 9, 1114138, 262147, 9, 1114139, 262147, 9, 1114140, 131075, 9, 1114141, 196611, 9, 1114142, 65539, 9, 1114143, 65539, 9, 1179663, 327683, 10, 1179664, 131075, 10, 1179665, 262147, 10, 1179666, 262147, 10, 1179667, 65539, 10, 1179668, 3, 10, 1179669, 65539, 10, 1179670, 3, 10, 1179671, 65539, 10, 1179672, 3, 10, 1179673, 3, 10, 1179674, 3, 10, 1179675, 327683, 10, 1179676, 65539, 10, 1179677, 327683, 10, 1245199, 327683, 11, 1245200, 3, 11, 1245201, 327683, 11, 1245202, 65539, 11, 1245203, 3, 11, 1245204, 327683, 11, 1245205, 262147, 11, 1245206, 131075, 11, 1245207, 327683, 11, 1245208, 262147, 11, 1245209, 3, 11, 1245210, 196611, 11, 1245211, 196611, 11, 1245212, 196611, 11, 1245213, 196611, 11, 983053, 3, 7, 1048589, 65539, 7, 983054, 3, 8, 1048590, 3, 8, 983055, 3, 7, 1048591, 3, 8, 983056, 65539, 7, 1048592, 131075, 7, 983057, 131075, 7, 1048593, 131075, 7, 983058, 3, 7, 1048594, 131075, 7, 983059, 3, 8, 1048595, 131075, 7, 983060, 65539, 7, 1048596, 65539, 7, 983061, 65539, 8, 1048597, 131075, 7, 983062, 3, 7, 1048598, 65539, 8, 983063, 3, 7, 1048599, 131075, 7, 983064, 65539, 8, 1048600, 65539, 7, 983065, 3, 7, 1048601, 65539, 7, 983066, 65539, 7, 1048602, 65539, 7, 983067, 131075, 7, 1048603, 65539, 7, 983068, 131075, 7, 1048604, 3, 8, 983069, 65539, 8, 1048605, 3, 8, 983070, 65539, 7, 1048606, 3, 7, 983071, 65539, 8, 1048607, 3, 7, 917517, 262147, 12, 917518, 262147, 12, 917519, 262147, 12, 917520, 262147, 12, 917521, 262147, 12, 917522, 262147, 12, 917523, 262147, 12, 917524, 262147, 12, 917525, 262147, 12, 917526, 262147, 12, 917527, 262147, 12, 917528, 262147, 12, 917529, 262147, 12, 917530, 262147, 12, 917531, 262147, 12, 917532, 262147, 12, 917533, 262147, 12, 917534, 262147, 12, 917535, 262147, 12, 983052, 131075, 12, 1048588, 131075, 12, 983072, 196611, 12, 1048608, 196611, 12, 1114124, 3, 3, 1179660, 3, 4, 1245196, 3, 5, 1114144, 262147, 3, 1179680, 262147, 4, 1245216, 262147, 5, 917516, 65539, 0, 917536, 196611, 0)
+layer_1/name = "doors"
+layer_1/enabled = true
+layer_1/modulate = Color(1, 1, 1, 1)
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = 0
+layer_1/z_index = 0
+layer_1/tile_data = PackedInt32Array(1114128, 1703936, 25, 1179664, 1703936, 26, 1245200, 1703936, 27, 1114129, 1769472, 25, 1179665, 1769472, 26, 1245201, 1769472, 27, 1114132, 1703936, 25, 1179668, 1703936, 26, 1245204, 1703936, 27, 1114133, 1769472, 25, 1179669, 1769472, 26, 1245205, 1769472, 27, 1114136, 1572864, 25, 1179672, 1572864, 26, 1245208, 1572864, 27, 1114137, 1638400, 25, 1179673, 1638400, 26, 1245209, 1638400, 27)
+layer_2/name = "objects"
+layer_2/enabled = true
+layer_2/modulate = Color(1, 1, 1, 1)
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = 0
+layer_2/z_index = 0
+layer_2/tile_data = PackedInt32Array()
+
 [node name="Player" parent="World" instance=ExtResource("4_kc63l")]
 z_index = 3
-position = Vector2(307, 183)
+position = Vector2(1434, 183)
 player_speed = 15
 health = 25
 
@@ -117,18 +143,27 @@ position = Vector2(399, 27)
 [node name="Candle2" parent="World/Props" instance=ExtResource("8_fux46")]
 position = Vector2(238, 27)
 
+[node name="BossDoor" parent="World/Props" instance=ExtResource("6_rciev")]
+position = Vector2(1434, 48)
+
+[node name="MagicGateway" parent="World/Props" instance=ExtResource("7_2qdw0")]
+position = Vector2(1566, 56)
+
 [node name="Traps" type="Node2D" parent="World"]
 z_index = 1
 y_sort_enabled = true
 
 [node name="FireFace" parent="World/Traps" instance=ExtResource("6_ga3mh")]
-position = Vector2(820, 207)
+position = Vector2(693, 207)
 
 [node name="FireFace2" parent="World/Traps" instance=ExtResource("6_ga3mh")]
 position = Vector2(1126, 45)
 
 [node name="ArrowWallTrap" parent="World/Traps" instance=ExtResource("7_i1ynn")]
 position = Vector2(102, 30)
+
+[node name="SpinningBlade" parent="World/Traps" instance=ExtResource("8_bbrm5")]
+position = Vector2(797, 710)
 
 [node name="Enemies" type="Node2D" parent="World"]
 z_index = 1
@@ -157,6 +192,7 @@ position = Vector2(620, 774)
 [node name="HUD" parent="." instance=ExtResource("6_1nhhc")]
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+visible = false
 position = Vector2(345, 624)
 navigation_polygon = SubResource("NavigationPolygon_sk6fy")
 
