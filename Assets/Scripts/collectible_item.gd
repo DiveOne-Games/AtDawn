@@ -1,12 +1,9 @@
 class_name CollectibleItem
 extends Node2D
 
-@export var texture : Texture2D
+@export var item : GameItem
 @export var value : int
 @export var item_type : ItemType
-@export var sfx : AudioStreamMP3
-@export var vfx : String
-
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var audio_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
@@ -15,18 +12,17 @@ enum ItemType { Gold, Collectible, Equipment }
 
 
 func _ready():
-	if not texture or not sfx or not value:
-		push_warning('You have not configured this item. Loading defaults.')
+	if not item.sprite or not item.sfx or not value:
+		push_warning('You have not configured this item. Loading placeholders.')
 		return
-	elif texture:
-		sprite.region_enabled = false
-	sprite.texture = texture
+	sprite.region_enabled = item.use_region
+	sprite.texture = item.sprite
 	await sprite.texture_changed
-	audio_player.stream = sfx
+	audio_player.stream = item.sfx
 	value = randi_range(20, 40)
 
 
-func play_sound(sound: AudioStream = sfx):
+func play_sound(sound: AudioStream = item.sfx):
 	audio_player.stream = sound
 	audio_player.play()
 	await get_tree().create_timer(0.25).timeout

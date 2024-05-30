@@ -46,3 +46,8 @@ func _on_player_present(_area_rid:RID, area:Area2D, _area_shape_index:int, _loca
 func _on_player_exit(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
 	is_present = false
 	
+
+
+func _on_input_event(_viewport: Node, event: InputEvent, _shape_idx: int):
+	if event.is_action_pressed('interact'):
+		get_tree().change_scene_to_file('res://Assets/Levels/.tscn')

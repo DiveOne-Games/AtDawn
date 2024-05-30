@@ -152,6 +152,7 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 attenuation = 6.06286
+bus = &"SFX"
 
 [connection signal="area_shape_entered" from="AttackZone" to="." method="_on_attack_zone_player_entered"]
 [connection signal="area_shape_exited" from="AttackZone" to="." method="_on_attack_zone_area_shape_exited"]

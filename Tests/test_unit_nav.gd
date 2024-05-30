@@ -1,5 +1,8 @@
 extends BaseCharacter
 
+@export var score_value := 0
+@export var unit_type : GameTypes.UnitType
+@export var unit_group : GameTypes.Group = GameTypes.Group.Enemies
 
 @export_category('Patrol')
 @export var patrol_origin : Node2D
@@ -38,7 +41,8 @@ func _ready():
 	patrol_queue = Queue.new(patrol_nodes.duplicate())
 	current_destination = patrol_origin
 	
-	await sync_map()
+#	await sync_map()
+	call_deferred('sync_map')
 	
 
 func _process(_delta):
@@ -74,6 +78,7 @@ func _physics_process(delta):
 	if patrol_active:
 		if current_patrol_path.is_empty():
 			return
+#			is_patrolling = false
 		if patrol_queue.is_empty():
 			reset_patrol_queue()
 		if is_at_destination(current_destination.position):
@@ -134,8 +139,8 @@ func sync_map():
 
 
 func get_next_node():
-#	var rest_period = randi_range(1, 3)
-	await patrol_rest(1)
+	# TODO: Patrols never rest!
+	await patrol_rest(3)
 	if patrol_queue.is_empty():
 		reset_patrol_queue()
 	is_patrolling = false

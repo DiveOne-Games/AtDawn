@@ -513,4 +513,5 @@ parameters/conditions/is_idle = false
 parameters/conditions/is_running = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"Character"
 script = ExtResource("8_fj2lv")

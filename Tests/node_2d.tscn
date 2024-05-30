@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqyedgpbpo47"]
+
+[ext_resource type="Script" path="res://test_res.gd" id="1_qn50k"]
+[ext_resource type="Resource" uid="uid://576bwge5q30l" path="res://Tests/sword.tres" id="2_cbjce"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_qn50k")
+item = ExtResource("2_cbjce")

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://wmvxf6ev266b"]
+
+[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="1_v7k4r"]
+[ext_resource type="Script" path="res://Assets/Scripts/game_manager.gd" id="2_73nx8"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_ng34u"]
+
+[node name="LevelTemplate" type="Node2D"]
+
+[node name="World" type="TileMap" parent="."]
+format = 2
+
+[node name="StaticProps" type="TileMap" parent="World"]
+format = 2
+
+[node name="Structures" type="TileMap" parent="World"]
+format = 2
+
+[node name="Props" type="Node2D" parent="World"]
+
+[node name="Traps" type="Node2D" parent="World"]
+
+[node name="Enemies" type="Node2D" parent="World"]
+
+[node name="Navigation" type="Node2D" parent="World"]
+
+[node name="Items" type="Node2D" parent="World"]
+
+[node name="HUD" parent="." instance=ExtResource("1_v7k4r")]
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_ng34u")
+
+[node name="GameManager" type="Node2D" parent="."]
+script = ExtResource("2_73nx8")

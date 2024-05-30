@@ -11,6 +11,8 @@ func _physics_process(_delta):
 	change_face()
 
 	if is_dead:
+		if is_disabled:
+			return
 		animation_player.play(DEATH)
 		disable_character()
 		return

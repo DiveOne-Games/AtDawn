@@ -5,12 +5,19 @@ extends BaseCharacter
 @export var gold : int = 5
 var inventory : Array = []
 
+@export_category('Camera Settings')
+@export_range(0.5, 2, 0.1) var camera_zoom: float = 1
+var zoom_in := false 
+var zoom_out := false
+
 const ATTACK_SLASH = 'attack_slash'
 const ATTACK_BACK_SLASH = 'attack_back_slash'
 const ATTACK_COMBO = 'attack_combo'
 const ATTACK_STAB = 'attack_stab'
 const ATTACKS = [ATTACK_BACK_SLASH, ATTACK_STAB, ATTACK_COMBO, ATTACK_SLASH]
 const INTERACTION = 'interact'
+const CAMERA_ZOOM = 'camera_in'
+const CAMERA_UNZOOM = 'camera_out'
 
 var current_state = null
 var animation_player: AnimationPlayer
@@ -34,13 +41,23 @@ func _ready():
 func _process(delta):
 	super(delta)
 	motion = Input.get_vector("move_left", "move_right", "move_up", "move_down")
+	camera.zoom = Vector2(camera_zoom, camera_zoom)
+	if zoom_in:
+		camera_zoom += 0.1
+		await reaction_timer(0.25)
+		zoom_in = false
+	if zoom_out:
+		camera_zoom -= 0.1
+		await reaction_timer(0.25)
+		zoom_out = false
 
 
 func _physics_process(_delta):
 	change_face()
 
 	if is_dead:
-		state_machine.travel(DEATH)
+		if is_disabled:
+			return
 		disable_character()
 		return
 
@@ -79,7 +96,11 @@ func _input(event):
 			is_combo = true
 			current_state = ATTACK_COMBO
 		if event.is_action(INTERACTION):
-			print_debug('Pressed interaction.')
+			print_debug('TODO: Interaction isnt implemented.')
+		if event.is_action(CAMERA_ZOOM):
+			zoom_in = true 
+		if event.is_action_pressed(CAMERA_UNZOOM):
+			zoom_out = true
 
 
 func change_face():

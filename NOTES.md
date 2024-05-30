@@ -1,6 +1,19 @@
 # Godot Notes
 
-Scenes and nodes
+## Animated Tilesets
+
+Very awkward, unintuitive and undocumented feature. 
+
+Setup a tileset as you usually would BUT ... DESELECT ALL BUT THE FIRST FRAMES OF EACH ANIMATED SPRITE. For example, if you have a 5x15 sheet of sprites, with each frame aligned vertically, then the first row of frames would be selected and the rest of the the tileset deselected. 
+
+Assuming the frames are aligned vertically, select the first frame on the top left. Go to the 'Select' section of the tileset editor. Under animation, be sure you have 1 column. Count the number of frames BETWEEN the start and end frame. That's your y-axis separation.
+
+Click 'Add Element'. 
+
+Example: https://github.com/godotengine/godot/issues/70860
+
+
+## Scenes and nodes
 
 - `$Object` refers to the current scene's tree. If you run
 - signals are pretty incredible. of note: sprite signals, timer signals.
@@ -8,6 +21,24 @@ Scenes and nodes
 Its usually better to control things in the affirmative instead of as exceptions. For example, a projectile
 is fired when the player is in view. But what about when the player is out of view? Code an `on_exit` event 
 for that to separate it from any default state, rather than using `else` statements to swap between 'in zone/out zone'.
+
+## Screen Size and Resolutions 
+
+https://docs.godotengine.org/en/stable/tutorials/rendering/multiple_resolutions.html
+https://ask.godotengine.org/27004/techniques-for-changing-the-limits-of-camera2d
+
+## Shaders
+
+Beware that adding shader material to a prefab will cause it to animate on all instances of that object. To stop this:
+
+1. Go to the shader material and "Make Unique (recursive)"
+2. Open the "Resources" sub menu below it.
+3. Tick the "Local" box.
+
+https://www.reddit.com/r/godot/comments/f82hv1/animation_is_shared_between_all_instances_of_a/
+
+Example shaders:
+- https://godotshaders.com/shader/pixelate-into-view-texture-resolution/
 
 
 ## Rigidbodies

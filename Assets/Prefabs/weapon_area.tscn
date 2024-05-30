@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://cf2ta7mrj3mae"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="1_3dgqy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yww8"]
+size = Vector2(14, 10)
+
+[node name="WeaponArea" type="Area2D"]
+script = ExtResource("1_3dgqy")
+
+[node name="WeaponShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 13)
+shape = SubResource("RectangleShape2D_2yww8")
+disabled = true

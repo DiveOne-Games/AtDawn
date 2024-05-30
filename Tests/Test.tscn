@@ -1,15 +1,13 @@
-[gd_scene load_steps=14 format=3 uid="uid://b6k71iwsj7j3d"]
+[gd_scene load_steps=12 format=3 uid="uid://b6k71iwsj7j3d"]
 
-[ext_resource type="Script" path="res://Assets/Levels/scene_manager.gd" id="1_dck3a"]
+[ext_resource type="Script" path="res://Assets/Scripts/scene_manager.gd" id="1_5k4h4"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_wobwl"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="3_3jgns"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/face_statue_trap.tscn" id="3_aicfr"]
-[ext_resource type="PackedScene" uid="uid://cvp5a6ge1hoyv" path="res://Assets/Characters/Warrior/WarriorV2.tscn" id="3_mflkb"]
 [ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Tests/test_trap.tscn" id="4_6fchf"]
 [ext_resource type="PackedScene" uid="uid://eabeqatvs4ur" path="res://Tests/enemy_test.tscn" id="4_jap6t"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_x6gsd"]
 [ext_resource type="PackedScene" uid="uid://686agt5r134h" path="res://Assets/Prefabs/collectible.tscn" id="7_348hc"]
-[ext_resource type="Texture2D" uid="uid://blr7oun4nctpv" path="res://Assets/StaticAssets/Items/coin_loot.png" id="8_32cud"]
 [ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="9_a6vle"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="10_j57yt"]
 
@@ -19,7 +17,7 @@ polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Arr
 outlines = Array[PackedVector2Array]([PackedVector2Array(792, 272, 912, 272, 912, 360, 792, 360), PackedVector2Array(1024, 128, 1024, 512, 640, 512, 640, 128)])
 
 [node name="TestLevel" type="Node2D"]
-script = ExtResource("1_dck3a")
+script = ExtResource("1_5k4h4")
 
 [node name="TileMap" type="TileMap" parent="."]
 z_index = -1
@@ -37,21 +35,14 @@ layer_1/y_sort_origin = 0
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array(-65536, 65537, 13, 0, 655361, 1, 65536, 327681, 1, -65535, 327681, 9, 1, 327681, 10, 65537, 327681, 11, -65534, 327681, 9, 2, 327681, 10, 65538, 327681, 11, -65533, 327681, 9, 3, 327681, 10, 65539, 327681, 11, -65532, 327681, 9, 4, 327681, 10, 65540, 327681, 11, -65531, 327681, 9, 5, 327681, 10, 65541, 327681, 11, -65530, 327681, 9, 6, 327681, 10, 65542, 327681, 11, -65529, 327681, 9, 7, 327681, 10, 65543, 327681, 11, -65528, 327681, 9, 8, 327681, 10, 65544, 327681, 11, -65527, 327681, 9, 9, 327681, 10, 65545, 327681, 11, -65526, 327681, 9, 10, 327681, 10, 65546, 327681, 11, -65525, 327681, 9, 11, 327681, 10, 65547, 327681, 11, -65524, 327681, 9, 12, 327681, 10, 65548, 327681, 11, -65523, 327681, 9, 13, 327681, 10, 65549, 327681, 11, -65522, 327681, 9, 14, 327681, 10, 65550, 327681, 11, -65521, 327681, 9, 15, 327681, 10, 65551, 327681, 11, -65520, 327681, 9, 16, 327681, 10, 65552, 327681, 11, -65519, 327681, 9, 17, 327681, 10, 65553, 327681, 11, -65518, 327681, 9, 18, 327681, 10, 65554, 327681, 11, -65517, 327681, 9, 19, 327681, 10, 65555, 327681, 11, -65516, 327681, 9, 20, 327681, 10, 65556, 327681, 11, -65515, 327681, 9, 21, 327681, 10, 65557, 327681, 11, -65514, 327681, 9, 22, 327681, 10, 65558, 327681, 11, -65513, 327681, 9, 23, 327681, 10, 65559, 327681, 11, -65512, 327681, 9, 24, 327681, 10, 65560, 327681, 11, -65511, 327681, 9, 25, 327681, 10, 65561, 327681, 11, -65510, 327681, 9, 26, 327681, 10, 65562, 327681, 11, -65509, 327681, 9, 27, 327681, 10, 65563, 327681, 11, -65508, 327681, 9, 28, 327681, 10, 65564, 327681, 11, -65507, 327681, 9, 29, 327681, 10, 65565, 327681, 11, -65506, 327681, 9, 30, 327681, 10, 65566, 327681, 11, -65505, 327681, 9, 31, 327681, 10, 65567, 327681, 11, -65504, 327681, 9, 32, 327681, 10, 65568, 327681, 11, -65503, 327681, 9, 33, 327681, 10, 65569, 327681, 11, -65502, 327681, 9, 34, 327681, 10, 65570, 327681, 11, -65501, 327681, 9, 35, 327681, 10, 65571, 327681, 11, -65500, 1, 13, 36, 589825, 1, 65572, 589825, 2, 131072, 196609, 12, 196608, 196609, 13, 262144, 196609, 12, 327680, 196609, 13, 393216, 196609, 12, 458752, 196609, 13, 524288, 196609, 12, 589824, 196609, 13, 655360, 196609, 12, 720896, 196609, 13, 786432, 196609, 12, 851968, 196609, 13, 917504, 196609, 12, 983040, 196609, 13, 1048576, 196609, 12, 1114112, 196609, 13, 1179648, 196609, 12, 1245184, 196609, 13, 1310720, 65537, 12, 131108, 131073, 12, 196644, 131073, 13, 262180, 131073, 12, 327716, 131073, 13, 393252, 131073, 12, 458788, 131073, 13, 524324, 131073, 12, 589860, 131073, 13, 655396, 131073, 12, 720932, 131073, 13, 786468, 131073, 12, 852004, 131073, 13, 917540, 131073, 12, 983076, 131073, 13, 1048612, 131073, 12, 1114148, 131073, 13, 1179684, 131073, 12, 1245220, 131073, 13, 1310756, 1, 12, 1310721, 131073, 0, 1310722, 131073, 0, 1310723, 131073, 0, 1310724, 131073, 0, 1310725, 131073, 0, 1310726, 131073, 0, 1310727, 131073, 0, 1310728, 131073, 0, 1310729, 131073, 0, 1310730, 131073, 0, 1310731, 131073, 0, 1310732, 131073, 0, 1310733, 131073, 0, 1310734, 131073, 0, 1310735, 131073, 0, 1310736, 131073, 0, 1310737, 131073, 0, 1310738, 131073, 0, 1310739, 131073, 0, 1310740, 131073, 0, 1310741, 131073, 0, 1310742, 131073, 0, 1310743, 131073, 0, 1310744, 131073, 0, 1310745, 131073, 0, 1310746, 131073, 0, 1310747, 131073, 0, 1310748, 131073, 0, 1310749, 131073, 0, 1310750, 131073, 0, 1310751, 131073, 0, 1310752, 131073, 0, 1310753, 131073, 0, 1310754, 131073, 0, 1310755, 131073, 0, 589825, 1, 9, 655361, 1, 10, 720897, 1, 11, 589826, 65537, 9, 655362, 65537, 10, 720898, 65537, 11, 589827, 131073, 9, 655363, 131073, 10, 720899, 131073, 11, 589828, 196609, 9, 655364, 196609, 10, 720900, 196609, 11, 589829, 262145, 9, 655365, 262145, 10, 720901, 262145, 11, 589830, 327681, 9, 655366, 327681, 10, 720902, 327681, 11)
 
-[node name="WarriorV2" parent="." instance=ExtResource("3_mflkb")]
-position = Vector2(885, 485)
-
-[node name="Player" parent="." instance=ExtResource("3_3jgns")]
-position = Vector2(312, 168)
-player_speed = 15
-health = 50
-
 [node name="SpikeTrap" parent="." instance=ExtResource("4_6fchf")]
 position = Vector2(408, 80)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="TestSkeleton" parent="Enemies" node_paths=PackedStringArray("patrol_origin") instance=ExtResource("4_jap6t")]
+[node name="TestNavSkeleton" parent="Enemies" node_paths=PackedStringArray("patrol_origin") instance=ExtResource("4_jap6t")]
 position = Vector2(552, 192)
+score_value = 1500
 patrol_origin = NodePath("../../Nav/Marker2D")
 patrol_paths = [NodePath("../../Nav/Marker2D"), NodePath("../../Nav/Marker2D2")]
 patrol_active = true
@@ -76,7 +67,6 @@ navigation_polygon = SubResource("NavigationPolygon_vgvqu")
 
 [node name="Coins" parent="Items" instance=ExtResource("7_348hc")]
 position = Vector2(176, 80)
-texture = ExtResource("8_32cud")
 value = 100
 
 [node name="SpawnPoint" parent="." instance=ExtResource("9_a6vle")]
@@ -92,5 +82,11 @@ z_index = 1
 position = Vector2(128, 328)
 air_time = 1.5
 
-[connection signal="update_health" from="WarriorV2" to="HUD" method="_on_player_update_health"]
-[connection signal="update_health" from="Player" to="HUD" method="_on_player_update_health"]
+[node name="Warrior" parent="." instance=ExtResource("3_3jgns")]
+position = Vector2(352, 200)
+player_speed = 20
+health = 50
+
+[connection signal="register_new_unit" from="SpawnPoint" to="." method="_on_spawn_point_register_new_unit"]
+[connection signal="update_health" from="Warrior" to="HUD" method="_on_player_update_health"]
+[connection signal="update_kill_score" from="Warrior" to="HUD" method="_on_events_update_score"]

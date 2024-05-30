@@ -51,3 +51,4 @@ func _on_events_update_score(value):
 	score.text = str(new_score)
 	pad_score()
 
+

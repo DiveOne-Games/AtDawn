@@ -1,8 +1,8 @@
-[gd_scene load_steps=44 format=3 uid="uid://eabeqatvs4ur"]
+[gd_scene load_steps=49 format=3 uid="uid://eabeqatvs4ur"]
 
 [ext_resource type="Script" path="res://Tests/test_unit_nav.gd" id="1_c27y1"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_2a61s"]
-[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/StaticAssets/Characters/Skeleton/skeleton-variation1-all animations.png" id="3_xeegn"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_xeegn"]
 [ext_resource type="Script" path="res://Assets/Scripts/WeaponZone.gd" id="4_p5tfb"]
 [ext_resource type="AudioStream" uid="uid://iewyqhs71o6u" path="res://Assets/StaticAssets/SFX/attack_swing2.wav" id="5_xsm6q"]
 [ext_resource type="AudioStream" uid="uid://dkey2qtevfhaf" path="res://Assets/StaticAssets/SFX/being_hurt2.mp3" id="6_gec7c"]
@@ -489,21 +489,44 @@ advance_mode = 2
 advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybef6"]
+switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6s2a4"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7xbjg"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_11cft"]
+advance_mode = 2
+advance_condition = &"is_hurt"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ddv23"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_running"
+advance_expression = "is_running or is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i4gq1"]
+switch_mode = 2
+advance_mode = 2
+advance_condition = &"is_attacking"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_bv0cy"]
 states/attack/node = SubResource("AnimationNodeAnimation_bbwmr")
 states/attack/position = Vector2(341, -20)
 states/death/node = SubResource("AnimationNodeAnimation_2jlc3")
-states/death/position = Vector2(682, 195)
+states/death/position = Vector2(691, -20)
 states/hurt/node = SubResource("AnimationNodeAnimation_4w17x")
 states/hurt/position = Vector2(509, 100)
 states/idle/node = SubResource("AnimationNodeAnimation_suand")
 states/idle/position = Vector2(341, 100)
 states/run/node = SubResource("AnimationNodeAnimation_cia1s")
 states/run/position = Vector2(341, 195)
-transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_28emq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_x75lg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lk2ac"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_xou83"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_3006x"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_limer"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_mjk3f"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnivs"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ybef6")]
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_28emq"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_x75lg"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_lk2ac"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_xou83"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_3006x"), "hurt", "death", SubResource("AnimationNodeStateMachineTransition_limer"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_mjk3f"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_gnivs"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_ybef6"), "attack", "hurt", SubResource("AnimationNodeStateMachineTransition_6s2a4"), "attack", "death", SubResource("AnimationNodeStateMachineTransition_7xbjg"), "run", "hurt", SubResource("AnimationNodeStateMachineTransition_11cft"), "hurt", "run", SubResource("AnimationNodeStateMachineTransition_ddv23"), "hurt", "attack", SubResource("AnimationNodeStateMachineTransition_i4gq1")]
 graph_offset = Vector2(-164, -87)
 
 [node name="Skeleton" type="CharacterBody2D"]
@@ -539,7 +562,6 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-bus = &"SFX"
 script = ExtResource("7_77g5i")
 attack = ExtResource("8_1sf3r")
 hurt = ExtResource("6_gec7c")
