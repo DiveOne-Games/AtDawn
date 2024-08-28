@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://686agt5r134h"]
+[gd_scene load_steps=10 format=3 uid="uid://686agt5r134h"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/collectible_item.gd" id="1_6jqi5"]
+[ext_resource type="Resource" uid="uid://bla4jn48bmvt0" path="res://Assets/Resources/Items/coins.tres" id="2_51td0"]
 [ext_resource type="Material" uid="uid://naysehsqb2fu" path="res://Assets/Resources/Materials/material_collectible_blend_add.tres" id="2_x3ttv"]
 [ext_resource type="Texture2D" uid="uid://7u3618s13vf7" path="res://Assets/StaticAssets/Items/32_shadows_shikashi.png" id="4_gsrut"]
 [ext_resource type="AudioStream" uid="uid://bt2kwvlijewrh" path="res://Assets/StaticAssets/SFX/coins.mp3" id="4_htwxq"]
@@ -47,6 +48,7 @@ _data = {
 
 [node name="Collectible" type="Node2D"]
 script = ExtResource("1_6jqi5")
+item = ExtResource("2_51td0")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_x3ttv")

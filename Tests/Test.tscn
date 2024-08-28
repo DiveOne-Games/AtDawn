@@ -67,7 +67,7 @@ navigation_polygon = SubResource("NavigationPolygon_vgvqu")
 
 [node name="Coins" parent="Items" instance=ExtResource("7_348hc")]
 position = Vector2(176, 80)
-value = 100
+value = 10
 
 [node name="SpawnPoint" parent="." instance=ExtResource("9_a6vle")]
 position = Vector2(840, 168)

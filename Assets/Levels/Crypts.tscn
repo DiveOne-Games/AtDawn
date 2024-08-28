@@ -130,7 +130,7 @@ layer_2/tile_data = PackedInt32Array()
 
 [node name="Player" parent="World" instance=ExtResource("4_kc63l")]
 z_index = 3
-position = Vector2(1240, 400)
+position = Vector2(307, 157)
 camera_zoom = 1.5
 player_speed = 15
 health = 25
