@@ -42,7 +42,6 @@ func _ready():
 	patrol_queue = Queue.new(patrol_nodes.duplicate())
 	current_destination = patrol_origin
 	
-#	await sync_map()
 	call_deferred('sync_map')
 	
 
@@ -77,14 +76,8 @@ func _physics_process(delta):
 		await reaction_timer(0.55 + delta)
 	
 	if patrol_active:
-		# if current_patrol_path.is_empty():
-			# return
-#			is_patrolling = false
 		if patrol_queue.is_empty():
 			reset_patrol_queue()
-		# if is_at_destination(current_destination.position):
-			# TODO: Unit should stop when reaching destination
-			# get_next_node()
 		patrol()
 
 	velocity = motion.normalized() * speed(delta)
@@ -120,6 +113,9 @@ func patrol():
 		is_walking = true
 		return
 	
+	if is_at_destination(current_destination.position):
+		get_next_node()
+	
 	if is_at_destination(current_path_point):
 		current_path_point = current_destination_path_queue.dequeue()
 		
@@ -133,7 +129,8 @@ func patrol():
 
 
 func sync_map():
-	await get_tree().create_timer(0.5).timeout
+	await get_tree().physics_frame
+	# await get_tree().create_timer(0.5).timeout
 	get_new_nav_path(current_destination.position)
 	navigation_agent.get_path()
 
@@ -144,7 +141,6 @@ func get_next_node():
 	if patrol_queue.is_empty():
 		reset_patrol_queue()
 	is_patrolling = false
-#	is_resting = true
 
 
 func reset_patrol_queue():

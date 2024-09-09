@@ -9,4 +9,3 @@ void fragment() {
   COLOR.y = yellow_u;
   COLOR.z = red;
 }
-
