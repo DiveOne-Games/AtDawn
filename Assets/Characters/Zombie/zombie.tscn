@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://ofroj2m5ier6"]
+[gd_scene load_steps=22 format=3 uid="uid://ofroj2m5ier6"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/Characters/PatrolUnit.gd" id="1_fhe13"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_v03is"]
@@ -74,6 +74,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id="Animation_7h6at"]
 resource_name = "idle"
 length = 0.75
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -131,7 +132,43 @@ _data = {
 "walk": SubResource("Animation_lyc8c")
 }
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhfhb"]
+animation = &"attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a5cdy"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tsihl"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3nsq"]
+advance_mode = 2
+advance_condition = &"is_walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uofvd"]
+advance_mode = 2
+advance_condition = &"is_attacking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bki6a"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7fspd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_h07id"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_un1qb"]
+states/Start/position = Vector2(193, 110)
+states/attack/node = SubResource("AnimationNodeAnimation_fhfhb")
+states/attack/position = Vector2(347, -10)
+states/idle/node = SubResource("AnimationNodeAnimation_a5cdy")
+states/idle/position = Vector2(347, 110)
+states/walk/node = SubResource("AnimationNodeAnimation_tsihl")
+states/walk/position = Vector2(347, 221)
+transitions = ["idle", "walk", SubResource("AnimationNodeStateMachineTransition_n3nsq"), "idle", "attack", SubResource("AnimationNodeStateMachineTransition_uofvd"), "Start", "idle", SubResource("AnimationNodeStateMachineTransition_bki6a"), "attack", "idle", SubResource("AnimationNodeStateMachineTransition_7fspd"), "walk", "idle", SubResource("AnimationNodeStateMachineTransition_h07id")]
+graph_offset = Vector2(4, -54)
 
 [node name="Zombie" type="CharacterBody2D"]
 script = ExtResource("1_fhe13")
@@ -156,5 +193,8 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_un1qb")
 anim_player = NodePath("../AnimationPlayer")
+active = true
+parameters/conditions/is_attacking = false
+parameters/conditions/is_walking = false
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
