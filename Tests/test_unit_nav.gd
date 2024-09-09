@@ -22,6 +22,7 @@ var character_disabled := false
 var current_destination: Node2D
 var current_patrol_path: PackedVector2Array
 var current_path_point: Vector2
+var current_destination_path_queue: Queue
 var patrol_nodes: Array[Node2D]
 var default_2d_map_rid: RID 
 var current_path_index: int = 0
@@ -76,14 +77,14 @@ func _physics_process(delta):
 		await reaction_timer(0.55 + delta)
 	
 	if patrol_active:
-		if current_patrol_path.is_empty():
-			return
+		# if current_patrol_path.is_empty():
+			# return
 #			is_patrolling = false
 		if patrol_queue.is_empty():
 			reset_patrol_queue()
-		if is_at_destination(current_destination.position):
+		# if is_at_destination(current_destination.position):
 			# TODO: Unit should stop when reaching destination
-			get_next_node()
+			# get_next_node()
 		patrol()
 
 	velocity = motion.normalized() * speed(delta)
@@ -95,9 +96,10 @@ func get_new_nav_path(destination: Vector2):
 		position, 
 		destination, 
 		true)
+	
+	current_destination_path_queue = Queue.new(current_patrol_path)
 	if not current_patrol_path.is_empty():
-		current_path_index = 0
-		current_path_point = current_patrol_path[0]
+		current_path_point = current_destination_path_queue.dequeue()
 
 
 func get_patrol_nodes() -> Array[Node2D]:
@@ -119,16 +121,14 @@ func patrol():
 		return
 	
 	if is_at_destination(current_path_point):
-		current_path_index += 1
-		# Make sure the path index doesn't exceed the size of the patrol else reset patrol
-		if current_path_index >= current_patrol_path.size():
-			print_debug('Reset current path.')
-			current_patrol_path = []
-			current_path_index = 0
-			current_path_point = global_transform.origin
+		current_path_point = current_destination_path_queue.dequeue()
+		
+		if current_destination_path_queue.is_empty():
+			print_debug('Destination path queue empty. Returning to origin.')
+			current_destination = patrol_queue.dequeue()
+			get_new_nav_path(current_destination.position)
 			return
 	
-	current_path_point = current_patrol_path[current_path_index]
 	motion = to_local(current_path_point)
 
 
