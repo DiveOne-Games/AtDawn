@@ -9,4 +9,3 @@ extends Node2D
 
 func _process(_delta):
 	audio.volume_db = volume
-

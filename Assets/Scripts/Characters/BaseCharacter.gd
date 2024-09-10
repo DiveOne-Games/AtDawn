@@ -81,4 +81,3 @@ func disable_character():
 	is_disabled = true
 	foot_shape.disabled = true
 	hitbox.disabled = true
-

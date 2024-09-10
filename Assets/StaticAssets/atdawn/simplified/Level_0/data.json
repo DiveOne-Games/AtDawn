@@ -1,0 +1,16 @@
+{
+	"identifier": "Level_0",
+	"uniqueIdentifer": "40a9b910-4ce0-11ef-b19e-19e8ad8988c0",
+	"x": -1,
+	"y": -1,
+	"width": 512,
+	"height": 256,
+	"bgColor": "#3B226B",
+	"neighbourLevels": [],
+	"customFields" : {},
+	"layers": [
+		"Background_Base.png",
+		"Terrain_Grid.png"
+	],
+	"entities" : {}
+}

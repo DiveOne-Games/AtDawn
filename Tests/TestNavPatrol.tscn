@@ -1,20 +1,21 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6k71iwsj7j3d"]
+[gd_scene load_steps=13 format=3 uid="uid://b6k71iwsj7j3d"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/scene_manager.gd" id="1_qopsr"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_8dels"]
 [ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Tests/Fixtures/test_trap.tscn" id="3_vt1ex"]
-[ext_resource type="PackedScene" uid="uid://eabeqatvs4ur" path="res://Tests/Fixtures/enemy_test.tscn" id="4_s1yd7"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="5_3ffsk"]
 [ext_resource type="PackedScene" uid="uid://686agt5r134h" path="res://Assets/Prefabs/collectible.tscn" id="6_083hl"]
+[ext_resource type="Script" path="res://Assets/Scripts/Characters/Enemy.gd" id="6_vipyw"]
 [ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="7_uo0rb"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="8_y1myx"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/face_statue_trap.tscn" id="9_8d0o7"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="10_4uvon"]
+[ext_resource type="Script" path="res://Assets/Characters/Warrior/Warrior.gd" id="11_rg6ny"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vgvqu"]
-vertices = PackedVector2Array(1024, 128, 1024, 512, 912, 360, 912, 272, 640, 128, 792, 272, 640, 512, 792, 360)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7), PackedInt32Array(1, 6, 7, 2)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(792, 272, 912, 272, 912, 360, 792, 360), PackedVector2Array(1024, 128, 1024, 512, 640, 512, 640, 128)])
+vertices = PackedVector2Array(1054, 542, 722, 542, 722, 426, 906, 426, 1054, 90, 906, 246, 714, 90, 714, 246)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(704, 80, 1064, 80, 1064, 552, 712, 552, 712, 416, 896, 416, 896, 256, 704, 256)])
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_qopsr")
@@ -36,27 +37,31 @@ position = Vector2(408, 80)
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="TestNavSkeleton" parent="Enemies" node_paths=PackedStringArray("patrol_origin") instance=ExtResource("4_s1yd7")]
-position = Vector2(552, 192)
-score_value = 1500
-patrol_origin = NodePath("../../Nav/Marker2D")
-patrol_paths = [NodePath("../../Nav/Marker2D"), NodePath("../../Nav/Marker2D2")]
-patrol_active = true
-patrol_point_margin = 1.5
+[node name="SkeletonPratrol_1" parent="Enemies" node_paths=PackedStringArray("patrol_destination", "patrol_paths") instance=ExtResource("8_y1myx")]
+position = Vector2(760, 472)
+script = ExtResource("6_vipyw")
+score_value = 100
+aggro_radius = 0.0
+patrol_destination = NodePath("../../Waypoints/Marker2D3")
+patrol_paths = [NodePath("../../Waypoints/Marker2D3"), NodePath("../../Waypoints/Marker2D2"), NodePath("../../Waypoints/Marker2D")]
+can_patrol = true
+patrol_point_margin = 0.5
+player_speed = 5
+health = 0
 
-[node name="Nav" type="Node2D" parent="."]
+[node name="Waypoints" type="Node2D" parent="."]
 
-[node name="Marker2D" type="Marker2D" parent="Nav"]
-position = Vector2(720, 296)
+[node name="Marker2D" type="Marker2D" parent="Waypoints"]
+position = Vector2(856, 152)
 
-[node name="Marker2D2" type="Marker2D" parent="Nav"]
-position = Vector2(968, 296)
+[node name="Marker2D2" type="Marker2D" parent="Waypoints"]
+position = Vector2(1016, 304)
+
+[node name="Marker2D3" type="Marker2D" parent="Waypoints"]
+position = Vector2(864, 496)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_vgvqu")
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
-position = Vector2(1072, 256)
 
 [node name="HUD" parent="." instance=ExtResource("5_3ffsk")]
 
@@ -67,7 +72,7 @@ position = Vector2(176, 80)
 value = 10
 
 [node name="SpawnPoint" parent="." instance=ExtResource("7_uo0rb")]
-position = Vector2(840, 168)
+position = Vector2(208, 440)
 unit_scene = ExtResource("8_y1myx")
 spawn_count = 2
 spawn_interval = 2.0
@@ -81,6 +86,7 @@ air_time = 1.5
 
 [node name="Warrior" parent="." instance=ExtResource("10_4uvon")]
 position = Vector2(352, 200)
+script = ExtResource("11_rg6ny")
 player_speed = 20
 health = 50
 

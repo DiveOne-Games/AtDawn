@@ -79,4 +79,3 @@ func get_random_position(start: Vector2) -> Vector2:
 
 func _on_timer_timeout():
 	spawn()
-

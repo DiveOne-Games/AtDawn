@@ -677,6 +677,7 @@ hframes = 17
 vframes = 5
 
 [node name="WeaponArea" parent="." instance=ExtResource("4_vjhuv")]
+disable_shape = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -696,13 +697,13 @@ parameters/conditions/is_hurt = false
 parameters/conditions/is_idle = false
 parameters/conditions/is_running = false
 
-[node name="Navigation" type="Node2D" parent="."]
+[node name="Navigator" type="Node2D" parent="."]
 
-[node name="NavTimer" type="Timer" parent="Navigation"]
+[node name="NavTimer" type="Timer" parent="Navigator"]
 wait_time = 0.25
 autostart = true
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigation"]
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigator"]
 path_desired_distance = 10.0
 
 [node name="AttackArea" type="Area2D" parent="."]

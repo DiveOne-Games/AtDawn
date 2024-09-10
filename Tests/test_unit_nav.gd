@@ -130,9 +130,10 @@ func patrol():
 
 func sync_map():
 	await get_tree().physics_frame
-	# await get_tree().create_timer(0.5).timeout
-	get_new_nav_path(current_destination.position)
-	navigation_agent.get_path()
+	print_debug("Sync map...")
+	if NavigationServer2D.map_get_iteration_id(default_2d_map_rid) > 0:
+		get_new_nav_path(current_destination.position)
+		navigation_agent.get_path()
 
 
 func get_next_node():

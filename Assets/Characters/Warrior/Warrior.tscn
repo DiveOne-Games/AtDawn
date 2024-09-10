@@ -501,9 +501,9 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+callback_mode_process = 0
 tree_root = SubResource("AnimationNodeStateMachine_dkigu")
 anim_player = NodePath("../AnimationPlayer")
-process_callback = 0
 parameters/conditions/double_attack = false
 parameters/conditions/is_attacking = false
 parameters/conditions/is_combo = false
