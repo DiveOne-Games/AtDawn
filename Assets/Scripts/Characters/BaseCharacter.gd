@@ -27,7 +27,7 @@ var is_dead := false
 var is_disabled := false
 
 var foot_shape : CollisionShape2D
-var hitbox : HitBox
+var hitbox : Area2D
 
 # Constants
 const RUN = 'run'

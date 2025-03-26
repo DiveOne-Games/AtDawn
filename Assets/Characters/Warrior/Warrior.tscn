@@ -478,6 +478,7 @@ shape = SubResource("RectangleShape2D_nl87m")
 debug_color = Color(0.619608, 0.572549, 0.0235294, 0.419608)
 
 [node name="HitBox" parent="." instance=ExtResource("2_84rxt")]
+script = null
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0

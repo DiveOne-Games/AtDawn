@@ -15,6 +15,7 @@ dest_files=["res://.godot/imported/8-bitanco.ttf-9d5a3eba17580faacc76e8a3eb01ea9
 Rendering=null
 antialiasing=1
 generate_mipmaps=false
+disable_embedded_bitmaps=true
 multichannel_signed_distance_field=false
 msdf_pixel_range=8
 msdf_size=48
