@@ -7,6 +7,7 @@ signal register_new_unit(unit: Node2D)  # TODO: Best if BaseCharacter
 @export var score_value := 100
 @export var spawn_count : int = 1
 @export var spawn_interval : float = 1
+@export var spawn_radius : int = 10
 @export var wave_count : int = 1
 @export var wave_interval : float = 30
 @export var allow_patrol : bool = true
@@ -39,6 +40,7 @@ func _process(_delta):
 
 
 func spawn():
+	# TODO: Figure out if the NavRegion needs to be in scene or on the SpawnPoint.
 	if current_spawn == 0:
 		is_wave_complete = true
 		return
@@ -49,8 +51,8 @@ func spawn():
 		register_new_unit.emit(node)
 		node.patrol_active = allow_patrol
 		node.score_value = score_value
-		node.position = to_local(get_random_position(position))
 		add_child(node)
+		node.position = to_local(get_random_position(position))
 
 
 func get_next_wave():
@@ -72,8 +74,8 @@ func move(unit):
 
 
 func get_random_position(start: Vector2) -> Vector2:
-	var x = randi_range(start.x - 100, start.x + 100)
-	var y = randi_range(start.y - 100, start.y + 100)
+	var x = randi_range(start.x - spawn_radius, start.x + spawn_radius)
+	var y = randi_range(start.y - spawn_radius, start.y + spawn_radius)
 	return Vector2(x, y)
 
 

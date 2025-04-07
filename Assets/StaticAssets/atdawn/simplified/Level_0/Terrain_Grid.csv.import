@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://btgddvmsbhh4e"
+
+[deps]
+
+files=["res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation"]
+
+source_file="res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.csv"
+dest_files=["res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation", "res://Assets/StaticAssets/atdawn/simplified/Level_0/Terrain_Grid.0.translation"]
+
+[params]
+
+compress=true
+delimiter=0

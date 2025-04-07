@@ -1,8 +1,11 @@
 class_name EnemyCharacter
 extends BaseCharacter
+"""
+An NPC unit with patrol options. Patrolling moves around from point to point.
+Don't forget to call `super()` for functions which add to its behavior!
+"""
 
 
-@export_category('Settings')
 @export var score_value := 100
 @export var unit_type : GameTypes.UnitType
 @export var unit_group : GameTypes.Group = GameTypes.Group.Enemies
@@ -11,6 +14,7 @@ extends BaseCharacter
 @export_category('Patrol')
 @export var patrol_origin : Vector2
 @export var patrol_destination : Node2D
+@export var patrol_distance: Vector2
 @export var patrol_paths: Array[Marker2D] 
 @export var can_patrol := false
 @export var patrol_active := false
@@ -24,6 +28,7 @@ extends BaseCharacter
 @onready var aggro_area := $AttackArea/CollisionShape2D
 @onready var navigator := $Navigator
 
+var current_destination: Vector2
 var character_disabled := false
 var is_spawning := true
 var is_chasing := false
@@ -87,7 +92,12 @@ func _physics_process(delta):
 # PATROLS -----
 func nav_sync():
 	await get_tree().physics_frame
-	set_movement_target(patrol_destination.position)
+	var destination = Vector2()
+	if not patrol_destination:
+		current_destination = patrol_origin + patrol_distance
+	else:
+		current_destination = patrol_destination.position
+	set_movement_target(current_destination)
 	
 	
 func set_movement_target(movement_target: Vector2):
@@ -95,7 +105,6 @@ func set_movement_target(movement_target: Vector2):
 
 
 func patrol():
-	print_debug('Patrolling...')
 	# https://docs.godotengine.org/en/stable/classes/class_navigationagent2d.html#methods
 	motion = to_local(navigation_agent.get_next_path_position())
 
@@ -106,16 +115,15 @@ func patrol_to(destination: Vector2):
 
 
 func get_next_position():
-	if navigation_agent.target_position == patrol_origin:
-		navigation_agent.target_position = patrol_destination.position
+	if abs(navigation_agent.target_position - patrol_origin).length() <= patrol_point_margin:
+		navigation_agent.target_position = current_destination
 	else:
 		navigation_agent.target_position = patrol_origin
 
 
 func get_nav_waypoints():
 	# TODO: How to get the markers from the level scene? 
-	var waypoints = []
-	for wp in waypoints:
+	for wp in patrol_paths:
 		print_debug(wp.position)
 
 # ANIMATION and VISUAL -----

@@ -1,11 +1,10 @@
-[gd_scene load_steps=13 format=3 uid="uid://b6k71iwsj7j3d"]
+[gd_scene load_steps=12 format=3 uid="uid://b6k71iwsj7j3d"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/scene_manager.gd" id="1_qopsr"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_8dels"]
 [ext_resource type="PackedScene" uid="uid://dtj2a3yreyy1q" path="res://Tests/Fixtures/test_trap.tscn" id="3_vt1ex"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="5_3ffsk"]
 [ext_resource type="PackedScene" uid="uid://686agt5r134h" path="res://Assets/Prefabs/collectible.tscn" id="6_083hl"]
-[ext_resource type="Script" path="res://Assets/Scripts/Characters/Enemy.gd" id="6_vipyw"]
 [ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="7_uo0rb"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="8_y1myx"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/face_statue_trap.tscn" id="9_8d0o7"]
@@ -16,6 +15,7 @@
 vertices = PackedVector2Array(1054, 542, 722, 542, 722, 426, 906, 426, 1054, 90, 906, 246, 714, 90, 714, 246)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3), PackedInt32Array(4, 0, 3, 5), PackedInt32Array(6, 4, 5, 7)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(704, 80, 1064, 80, 1064, 552, 712, 552, 712, 416, 896, 416, 896, 256, 704, 256)])
+source_geometry_group_name = &"navigation_polygon_source_group"
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_qopsr")
@@ -39,12 +39,11 @@ position = Vector2(408, 80)
 
 [node name="SkeletonPratrol_1" parent="Enemies" node_paths=PackedStringArray("patrol_destination", "patrol_paths") instance=ExtResource("8_y1myx")]
 position = Vector2(760, 472)
-script = ExtResource("6_vipyw")
 score_value = 100
 aggro_radius = 0.0
 patrol_destination = NodePath("../../Waypoints/Marker2D3")
+patrol_distance = Vector2(0, 0)
 patrol_paths = [NodePath("../../Waypoints/Marker2D3"), NodePath("../../Waypoints/Marker2D2"), NodePath("../../Waypoints/Marker2D")]
-can_patrol = true
 patrol_point_margin = 0.5
 player_speed = 5
 health = 0
@@ -58,7 +57,7 @@ position = Vector2(856, 152)
 position = Vector2(1016, 304)
 
 [node name="Marker2D3" type="Marker2D" parent="Waypoints"]
-position = Vector2(864, 496)
+position = Vector2(1029, 488)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_vgvqu")
@@ -72,11 +71,11 @@ position = Vector2(176, 80)
 value = 10
 
 [node name="SpawnPoint" parent="." instance=ExtResource("7_uo0rb")]
-position = Vector2(208, 440)
+position = Vector2(296, 518)
 unit_scene = ExtResource("8_y1myx")
 spawn_count = 2
 spawn_interval = 2.0
-allow_patrol = false
+spawn_radius = 25
 initial_delay = 1.0
 
 [node name="FireFace" parent="." instance=ExtResource("9_8d0o7")]

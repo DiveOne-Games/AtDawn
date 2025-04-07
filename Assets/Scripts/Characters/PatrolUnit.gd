@@ -1,8 +1,7 @@
 class_name PatrolUnit
 extends BaseCharacter
 """
-A patrol unit is for non-player characters who move around from point to point.
-Don't forget to call `super()` for functions which add to its behavior!
+TODO: Deprecate. Enemy has patrol options built in.
 """
 const ANIM_SPAWN = 'skeleton/spawn'
 
@@ -13,7 +12,8 @@ const ANIM_SPAWN = 'skeleton/spawn'
 @export_category('Patrol')
 @export var patrol_origin : Vector2
 @export var patrol_destination: Vector2
-@export var patrol_target: Node2D
+@export var patrol_target: Node2D 
+@export var patrol_distance: Vector2
 @export var patrol_active := true
 @export var patrol_point_margin: float = 1.5
 @export_range(20, 150, 5) var aggro_radius : float
@@ -92,11 +92,12 @@ func set_movement_target(movement_target: Vector2):
 
 func actor_setup():
 	await get_tree().physics_frame
+	if not patrol_destination:
+		patrol_destination += patrol_distance
 	set_movement_target(patrol_destination)
 
 
 func patrol():
-	print_debug('Patrolling...')
 	# https://docs.godotengine.org/en/stable/classes/class_navigationagent2d.html#methods
 	motion = to_local(navigation_agent.get_next_path_position())
 
@@ -107,8 +108,12 @@ func patrol_to(destination: Vector2):
 
 
 func get_next_position():
-	if navigation_agent.target_position == patrol_origin:
-		navigation_agent.target_position = patrol_target.position
+	if patrol_target:
+		var diff = abs(navigation_agent.target_position - patrol_target.position).length()
+		if diff <= patrol_point_margin:
+			navigation_agent.target_position = patrol_target.position
+	elif not patrol_target:
+		navigation_agent.target_position = patrol_origin + patrol_distance
 	else:
 		navigation_agent.target_position = patrol_origin
 
