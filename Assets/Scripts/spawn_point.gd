@@ -50,6 +50,7 @@ func spawn():
 		node.add_to_group(GameTypes.get_game_group(unit_group))
 		register_new_unit.emit(node)
 		node.patrol_active = allow_patrol
+		node.can_patrol = allow_patrol
 		node.score_value = score_value
 		add_child(node)
 		node.position = to_local(get_random_position(position))

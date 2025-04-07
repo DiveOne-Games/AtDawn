@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b6k71iwsj7j3d"]
+[gd_scene load_steps=13 format=3 uid="uid://b6k71iwsj7j3d"]
 
 [ext_resource type="Script" path="res://Assets/Scripts/scene_manager.gd" id="1_qopsr"]
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_8dels"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="8_y1myx"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/face_statue_trap.tscn" id="9_8d0o7"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="10_4uvon"]
+[ext_resource type="AnimationLibrary" uid="uid://cr71nvcgto2er" path="res://Assets/Resources/scene_transitions.res" id="11_oastu"]
 [ext_resource type="Script" path="res://Assets/Characters/Warrior/Warrior.gd" id="11_rg6ny"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_vgvqu"]
@@ -88,6 +89,11 @@ position = Vector2(352, 200)
 script = ExtResource("11_rg6ny")
 player_speed = 20
 health = 50
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"scene_transitions": ExtResource("11_oastu")
+}
 
 [connection signal="register_new_unit" from="SpawnPoint" to="." method="_on_spawn_point_register_new_unit"]
 [connection signal="update_health" from="Warrior" to="HUD" method="_on_player_update_health"]
