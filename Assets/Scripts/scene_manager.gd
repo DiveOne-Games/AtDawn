@@ -3,14 +3,16 @@ extends Node2D
 
 
 @onready var hud : CanvasLayer = $HUD
+@onready var anim_player : AnimationPlayer = $AnimationPlayer
 
 var hostile_units : Array
+var is_faded := false
 
 const ENEMY_NODE := 'Enemies'
 
 func _ready():
 	randomize()
-	
+	anim_player.play("scene_fade")
 	call_deferred('initialize_units')
 
 
@@ -28,3 +30,4 @@ func initialize_units():
 
 func _on_spawn_point_register_new_unit(unit):
 	register_unit(unit)
+
