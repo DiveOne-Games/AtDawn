@@ -6,7 +6,7 @@ extends BaseCharacter
 var inventory : Array = []
 
 @export_category('Camera Settings')
-@export_range(0.5, 2, 0.1) var camera_zoom: float = 1
+@export_range(0.5, 5, 0.25) var camera_zoom: float = 1
 var zoom_in := false 
 var zoom_out := false
 
@@ -95,8 +95,8 @@ func _input(event):
 		if event.is_action(ATTACK_COMBO):
 			is_combo = true
 			current_state = ATTACK_COMBO
-		if event.is_action(INTERACTION):
-			print_debug('TODO: Interaction isnt implemented.')
+		if event.is_action_pressed(INTERACTION):
+			print('TODO: Interaction isnt implemented.')
 		if event.is_action(CAMERA_ZOOM):
 			zoom_in = true 
 		if event.is_action_pressed(CAMERA_UNZOOM):
@@ -142,8 +142,8 @@ func reaction_timer(timeout: float):
 func collect_item(item: CollectibleItem):
 	if item.item_type == item.ItemType.Gold:
 		gold += item.value
-	else:
-		inventory.append(item)
+		return
+	inventory.append(item.item)
 
 
 func disable_character():

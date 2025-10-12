@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://bi8sufviarnbk"]
+
+[ext_resource type="PackedScene" uid="uid://cvp5a6ge1hoyv" path="res://Assets/Characters/Warrior/WarriorV2.tscn" id="1_ukfmf"]
+[ext_resource type="PackedScene" uid="uid://hovsdgqitcu6" path="res://Assets/Levels/crypts/tilemap_floor_base.tscn" id="2_2pe0n"]
+[ext_resource type="PackedScene" uid="uid://d1tg12bmwlq6x" path="res://Assets/Prefabs/loot_box/wooden_chest.tscn" id="3_2pe0n"]
+
+[node name="TestPlayerFeedback" type="Node2D"]
+
+[node name="WarriorV2" parent="." instance=ExtResource("1_ukfmf")]
+position = Vector2(491, 372)
+collision_mask = 21
+
+[node name="TileMapBase" parent="." instance=ExtResource("2_2pe0n")]
+
+[node name="Wooden" parent="." instance=ExtResource("3_2pe0n")]
+position = Vector2(676, 378)

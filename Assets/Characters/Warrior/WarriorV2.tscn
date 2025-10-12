@@ -1,17 +1,17 @@
 [gd_scene load_steps=43 format=3 uid="uid://cvp5a6ge1hoyv"]
 
-[ext_resource type="Script" path="res://Assets/Characters/Warrior/Warrior.gd" id="1_osxv8"]
+[ext_resource type="Script" uid="uid://bp5hof0vpn08j" path="res://Assets/Characters/Warrior/Warrior.gd" id="1_osxv8"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_chj72"]
 [ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/Characters/Warrior/Sprites/warrior-all.png" id="3_ejupd"]
-[ext_resource type="Script" path="res://Assets/Scripts/camera.gd" id="3_vnysh"]
+[ext_resource type="Script" uid="uid://noxpenaiqt7o" path="res://Assets/Scripts/camera.gd" id="3_vnysh"]
 [ext_resource type="PackedScene" uid="uid://cgj08n8up6dxm" path="res://Assets/Prefabs/weapon_zone.tscn" id="4_kvwlx"]
 [ext_resource type="AudioStream" uid="uid://dd5bwb57qwgnk" path="res://Assets/StaticAssets/SFX/sword_swing_1.mp3" id="5_2lhgn"]
 [ext_resource type="AudioStream" uid="uid://bufupr8fova" path="res://Assets/StaticAssets/SFX/grunt1.mp3" id="6_vdntv"]
 [ext_resource type="AudioStream" uid="uid://7bbhrwwrfoo5" path="res://Assets/StaticAssets/SFX/footstep_grass1.mp3" id="7_xj4mc"]
-[ext_resource type="Script" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_qfm3a"]
+[ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_qfm3a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nl87m"]
-size = Vector2(19, 4)
+size = Vector2(19, 11)
 
 [sub_resource type="Animation" id="Animation_i0uw3"]
 length = 0.001
@@ -364,15 +364,15 @@ tracks/1/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0s5yv"]
 _data = {
-"RESET": SubResource("Animation_i0uw3"),
-"attack_back_slash": SubResource("Animation_g2f6u"),
-"attack_combo": SubResource("Animation_t2ks2"),
-"attack_slash": SubResource("Animation_pavdj"),
-"attack_stab": SubResource("Animation_idrpp"),
-"death": SubResource("Animation_e065w"),
-"hurt": SubResource("Animation_edxu3"),
-"idle": SubResource("Animation_5k331"),
-"run": SubResource("Animation_irqvx")
+&"RESET": SubResource("Animation_i0uw3"),
+&"attack_back_slash": SubResource("Animation_g2f6u"),
+&"attack_combo": SubResource("Animation_t2ks2"),
+&"attack_slash": SubResource("Animation_pavdj"),
+&"attack_stab": SubResource("Animation_idrpp"),
+&"death": SubResource("Animation_e065w"),
+&"hurt": SubResource("Animation_edxu3"),
+&"idle": SubResource("Animation_5k331"),
+&"run": SubResource("Animation_irqvx")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s4adx"]
@@ -477,23 +477,25 @@ graph_offset = Vector2(-99, -53)
 
 [node name="WarriorV2" type="CharacterBody2D"]
 z_index = 1
-position = Vector2(573, 317)
 collision_layer = 2
-collision_mask = 7
+collision_mask = 23
 script = ExtResource("1_osxv8")
-score_value = null
-unit_type = null
+camera_zoom = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1.5, 24)
+position = Vector2(-1.5, 20.5)
 shape = SubResource("RectangleShape2D_nl87m")
 debug_color = Color(0.619608, 0.572549, 0.0235294, 0.419608)
 
 [node name="HitBox" parent="." instance=ExtResource("2_chj72")]
+collision_layer = 2
+collision_mask = 12
 
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
 limit_smoothed = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
@@ -509,13 +511,13 @@ frame = 44
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_0s5yv")
+&"": SubResource("AnimationLibrary_0s5yv")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+callback_mode_process = 0
 tree_root = SubResource("AnimationNodeStateMachine_dkigu")
 anim_player = NodePath("../AnimationPlayer")
-process_callback = 0
 parameters/conditions/double_attack = false
 parameters/conditions/is_attacking = false
 parameters/conditions/is_combo = false

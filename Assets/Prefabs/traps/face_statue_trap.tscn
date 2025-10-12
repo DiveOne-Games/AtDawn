@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://my1r2se2pdhh"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/wall_trap_launcher.gd" id="1_7ru8x"]
-[ext_resource type="PackedScene" uid="uid://bek6qtmfykw8j" path="res://Assets/Prefabs/fireball.tscn" id="2_8taki"]
+[ext_resource type="Script" uid="uid://f2vm6k2ndkhs" path="res://Assets/Scripts/wall_trap_launcher.gd" id="1_7ru8x"]
+[ext_resource type="PackedScene" uid="uid://bek6qtmfykw8j" path="res://Assets/Prefabs/traps/fireball.tscn" id="2_8taki"]
 [ext_resource type="Texture2D" uid="uid://b7vcfp3idb16n" path="res://Assets/StaticAssets/Environments/Crypt/Props/traps/face_statue_trap.png" id="4_dsd86"]
 [ext_resource type="AudioStream" uid="uid://b1e30mybp1rc2" path="res://Assets/StaticAssets/SFX/fireball3-2.mp3" id="5_3wr4d"]
 

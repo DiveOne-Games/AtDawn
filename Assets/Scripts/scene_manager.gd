@@ -30,4 +30,3 @@ func initialize_units():
 
 func _on_spawn_point_register_new_unit(unit):
 	register_unit(unit)
-

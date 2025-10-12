@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Hazard" load_steps=4 format=3 uid="uid://dxmft07pc7mp6"]
+
+[ext_resource type="Script" uid="uid://dqfefm38jdtim" path="res://Assets/Scripts/Environment/hazard.gd" id="1_ofgev"]
+[ext_resource type="SpriteFrames" uid="uid://b1re5jonbk1hm" path="res://Assets/Resources/sprite_frames/anim_spikes_blue.tres" id="2_b8xig"]
+[ext_resource type="Texture2D" uid="uid://bc53qso3j34b0" path="res://Assets/StaticAssets/Environments/Crypt/Props/spike trap1.png" id="3_iu0sr"]
+
+[resource]
+script = ExtResource("1_ofgev")
+type = 1
+damage = 5
+is_animated = true
+texture = ExtResource("3_iu0sr")
+sprite_frames = ExtResource("2_b8xig")
+metadata/_custom_type_script = "uid://dqfefm38jdtim"

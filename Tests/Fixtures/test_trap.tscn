@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dtj2a3yreyy1q"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Environment/Hazard.gd" id="1_dfp1v"]
+[ext_resource type="Script" uid="uid://ckg81gsweh3li" path="res://Assets/Scripts/Environment/hazard2d.gd" id="1_dfp1v"]
 [ext_resource type="Texture2D" uid="uid://bh0xnqhx8d286" path="res://Assets/StaticAssets/Environments/Crypt/Props/atlas props - individual sprites/trap - spike - on - 1.png" id="1_vjigb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5rwmh"]

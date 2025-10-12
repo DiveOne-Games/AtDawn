@@ -1,12 +1,12 @@
 [gd_scene load_steps=54 format=3 uid="uid://dk4cw2yqd5jnp"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Characters/Enemy.gd" id="1_ymg2b"]
+[ext_resource type="Script" uid="uid://73twhrg8coli" path="res://Assets/Scripts/Characters/Enemy.gd" id="1_ymg2b"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_ua562"]
 [ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_1o2mj"]
 [ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_area.tscn" id="4_vjhuv"]
 [ext_resource type="AudioStream" uid="uid://iewyqhs71o6u" path="res://Assets/StaticAssets/SFX/attack_swing2.wav" id="5_ym7bb"]
 [ext_resource type="AudioStream" uid="uid://dkey2qtevfhaf" path="res://Assets/StaticAssets/SFX/being_hurt2.mp3" id="6_sgqua"]
-[ext_resource type="Script" path="res://Assets/Scripts/Sound/character_sfx.gd" id="7_5e14b"]
+[ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="7_5e14b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]
 size = Vector2(18, 5)
@@ -309,15 +309,15 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2p2i2"]
 _data = {
-"RESET": SubResource("Animation_gvvq5"),
-"attack": SubResource("Animation_p7m83"),
-"death": SubResource("Animation_rxqif"),
-"hurt": SubResource("Animation_at75d"),
-"idle": SubResource("Animation_c34y2"),
-"idle2": SubResource("Animation_dua83"),
-"run": SubResource("Animation_ih64q"),
-"spawn": SubResource("Animation_mq111"),
-"walk": SubResource("Animation_dlou7")
+&"RESET": SubResource("Animation_gvvq5"),
+&"attack": SubResource("Animation_p7m83"),
+&"death": SubResource("Animation_rxqif"),
+&"hurt": SubResource("Animation_at75d"),
+&"idle": SubResource("Animation_c34y2"),
+&"idle2": SubResource("Animation_dua83"),
+&"run": SubResource("Animation_ih64q"),
+&"spawn": SubResource("Animation_mq111"),
+&"walk": SubResource("Animation_dlou7")
 }
 
 [sub_resource type="Animation" id="Animation_xyvrx"]
@@ -540,14 +540,14 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ps4m2"]
 _data = {
-"attack": SubResource("Animation_xyvrx"),
-"death": SubResource("Animation_t7qxx"),
-"hurt": SubResource("Animation_wnco7"),
-"idle": SubResource("Animation_ve13l"),
-"idle2": SubResource("Animation_5nbcy"),
-"run": SubResource("Animation_70nbn"),
-"spawn": SubResource("Animation_37ne6"),
-"walk": SubResource("Animation_2yy3c")
+&"attack": SubResource("Animation_xyvrx"),
+&"death": SubResource("Animation_t7qxx"),
+&"hurt": SubResource("Animation_wnco7"),
+&"idle": SubResource("Animation_ve13l"),
+&"idle2": SubResource("Animation_5nbcy"),
+&"run": SubResource("Animation_70nbn"),
+&"spawn": SubResource("Animation_37ne6"),
+&"walk": SubResource("Animation_2yy3c")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bbwmr"]
@@ -656,6 +656,7 @@ graph_offset = Vector2(-164, -87)
 radius = 90.0
 
 [node name="Skeleton" type="CharacterBody2D"]
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_ymg2b")
 score_value = 500
@@ -685,8 +686,8 @@ disable_shape = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_2p2i2"),
-"skeleton": SubResource("AnimationLibrary_ps4m2")
+&"": SubResource("AnimationLibrary_2p2i2"),
+&"skeleton": SubResource("AnimationLibrary_ps4m2")
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
@@ -711,6 +712,7 @@ autostart = true
 path_desired_distance = 10.0
 
 [node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(5, 11)

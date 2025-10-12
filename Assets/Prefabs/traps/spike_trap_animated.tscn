@@ -1,0 +1,68 @@
+[gd_scene load_steps=8 format=3 uid="uid://iqtsijbbd4jo"]
+
+[ext_resource type="Script" uid="uid://dwuu5tw2qdmap" path="res://Assets/Scripts/Environment/SpikeTrap.gd" id="1_0xwsv"]
+[ext_resource type="Texture2D" uid="uid://cbc2yajrpunbp" path="res://Assets/StaticAssets/Environments/Crypt/Props/atlas props - individual sprites/trap - spike - off - 1.png" id="2_06srr"]
+[ext_resource type="Texture2D" uid="uid://bh0xnqhx8d286" path="res://Assets/StaticAssets/Environments/Crypt/Props/atlas props - individual sprites/trap - spike - on - 1.png" id="3_bf1xy"]
+[ext_resource type="AnimationLibrary" uid="uid://caua8b8rykean" path="res://Assets/Resources/animations/anim_spikes.res" id="4_drky1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6hps"]
+size = Vector2(30, 30)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_803y8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_06srr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_bf1xy")
+}],
+"loop": true,
+"name": &"active",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_06srr")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dr32"]
+size = Vector2(24, 24)
+
+[node name="SpikeTrap" type="StaticBody2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_0xwsv")
+type = null
+damage = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r6hps")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_803y8")
+animation = &"active"
+autoplay = "active"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8dr32")
+disabled = true
+debug_color = Color(0.890196, 0.0156863, 0.792157, 0.196078)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+attenuation = 6.27667
+bus = &"Soft Sound"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": ExtResource("4_drky1")
+}
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

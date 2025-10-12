@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cs8c3iengqewv"]
 
-[ext_resource type="PackedScene" uid="uid://iqtsijbbd4jo" path="res://Assets/Prefabs/spike_trap_animated.tscn" id="1_iklga"]
+[ext_resource type="PackedScene" uid="uid://iqtsijbbd4jo" path="res://Assets/Prefabs/traps/spike_trap_animated.tscn" id="1_iklga"]
 
 [node name="LargeSpikeTrap" type="Node2D"]
 

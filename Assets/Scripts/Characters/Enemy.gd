@@ -11,14 +11,15 @@ Don't forget to call `super()` for functions which add to its behavior!
 @export var unit_group : GameTypes.Group = GameTypes.Group.Enemies
 @export_range(20, 150, 5) var aggro_radius : float
 
-@export_category('Patrol')
-@export var patrol_origin : Vector2
+@export_category('Patrol Settings')
+@export var patrol_origin : Vector2				## Starting position or spawn point.
 @export var patrol_destination : Node2D
-@export var patrol_distance: Vector2
+@export var patrol_distance: Vector2				## The farthest distance unit can patrol away from origin.
 @export var patrol_paths: Array[Marker2D] 
 @export var can_patrol := false
 @export var patrol_active := false
 @export var patrol_point_margin: float = 0.5 
+@export var rest_duration := 6					## Seconds to wait at destination before resuming patrol.
 
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var navigation_agent: NavigationAgent2D = get_node('Navigator/NavigationAgent2D')
@@ -115,6 +116,8 @@ func patrol_to(destination: Vector2):
 
 
 func get_next_position():
+	# FIXME: Almost there -- stutters when resuming patrol, flipping back and forth in place.
+	await get_tree().create_timer(rest_duration).timeout
 	if abs(navigation_agent.target_position - patrol_origin).length() <= patrol_point_margin:
 		navigation_agent.target_position = current_destination
 	else:
@@ -146,12 +149,12 @@ func disable_character():
 func attack(target: PlayerCharacter):
 	is_attacking = true
 	sprite.flip_h = !target.sprite.flip_h
-	
+
 
 func chase(target: PlayerCharacter):
 	# TODO: use navigation to walk into player attack zone
 	sprite.flip_h = !target.sprite.flip_h
-	
+
 
 func _on_aggro_area_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
 	if is_instance_of(area, HitBox):

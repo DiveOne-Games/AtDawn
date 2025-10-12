@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd2hvlfy4hsws"]
+
+[ext_resource type="PackedScene" uid="uid://cvp5a6ge1hoyv" path="res://Assets/Characters/Warrior/WarriorV2.tscn" id="1_3kt6s"]
+[ext_resource type="PackedScene" uid="uid://wj1nwiei8his" path="res://Assets/Prefabs/traps/hazard_trap.tscn" id="2_6p0hl"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="WarriorV2" parent="." instance=ExtResource("1_3kt6s")]
+position = Vector2(812, 497)
+player_speed = 15
+health = 100
+
+[node name="HazardTrap" parent="." instance=ExtResource("2_6p0hl")]
+position = Vector2(898, 502)
+collision_layer = 5
+damage = 5

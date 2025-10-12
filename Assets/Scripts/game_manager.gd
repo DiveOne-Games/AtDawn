@@ -2,7 +2,7 @@ class_name GameManager
 extends Node2D
 
 
-@onready var tilemap : TileMap = get_parent().get_node('World')
+@onready var tilemap : TileMapLayer = $"../base"
 @onready var camera : Camera2D 
 
 

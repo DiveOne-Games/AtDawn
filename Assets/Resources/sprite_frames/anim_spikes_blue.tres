@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://b1re5jonbk1hm"]
+
+[ext_resource type="Texture2D" uid="uid://cbc2yajrpunbp" path="res://Assets/StaticAssets/Environments/Crypt/Props/atlas props - individual sprites/trap - spike - off - 1.png" id="1_rqtba"]
+[ext_resource type="Texture2D" uid="uid://bh0xnqhx8d286" path="res://Assets/StaticAssets/Environments/Crypt/Props/atlas props - individual sprites/trap - spike - on - 1.png" id="2_717vl"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rqtba")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_717vl")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]

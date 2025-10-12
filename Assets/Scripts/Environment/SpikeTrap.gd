@@ -1,4 +1,4 @@
-extends Hazard
+extends StaticBody2D
 
 var animation_player : AnimationPlayer
 

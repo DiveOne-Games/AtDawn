@@ -50,5 +50,3 @@ func _on_events_update_score(value):
 	var new_score : int = int(score.text) + value
 	score.text = str(new_score)
 	pad_score()
-
-

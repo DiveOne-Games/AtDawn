@@ -1,4 +1,4 @@
-extends Hazard
+extends Hazard2D
 
 
 @export var projectile : PackedScene

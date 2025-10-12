@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameItem" load_steps=4 format=3 uid="uid://bla4jn48bmvt0"]
 
-[ext_resource type="Script" path="res://Tests/Fixtures/game_item.gd" id="1_1ryl3"]
+[ext_resource type="Script" uid="uid://3m0wdbuodhlp" path="res://Tests/Fixtures/game_item.gd" id="1_1ryl3"]
 [ext_resource type="Texture2D" uid="uid://cadeuhts6b1be" path="res://Assets/StaticAssets/Items/coins_gold.png" id="1_f2ljs"]
 [ext_resource type="AudioStream" uid="uid://bt2kwvlijewrh" path="res://Assets/StaticAssets/SFX/coins.mp3" id="3_wxi0r"]
 
@@ -10,6 +10,6 @@ item_name = "Coins"
 item_desc = "A satchel of gold coins."
 item_icon = ExtResource("1_f2ljs")
 sprite = ExtResource("1_f2ljs")
-use_region = false
-item_type = "gold"
+use_region = true
+frame_coords = Vector2i(0, 20)
 sfx = ExtResource("3_wxi0r")

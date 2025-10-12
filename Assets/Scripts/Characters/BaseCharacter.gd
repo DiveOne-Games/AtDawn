@@ -1,5 +1,7 @@
 class_name BaseCharacter
 extends CharacterBody2D
+## Controller for all characters, both player-controlled and NPCs. Updates
+## and manages inputs and motion state.
 
 signal update_health(value: int, max: int)
 signal update_kill_score(value: int)
@@ -48,6 +50,7 @@ func _ready():
 func _process(_delta):
 	update_health.emit(health, max_health)
 
+
 func change_face():
 	if velocity.x < 0:
 		sprite.flip_h = true
@@ -57,6 +60,7 @@ func change_face():
 
 func speed(delta: float = 1) -> float:
 	return player_speed * speed_scale * delta
+
 
 func update_animations():
 	pass

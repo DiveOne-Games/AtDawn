@@ -1,13 +1,13 @@
 [gd_scene load_steps=10 format=3 uid="uid://686agt5r134h"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/collectible_item.gd" id="1_6jqi5"]
+[ext_resource type="Script" uid="uid://bmcnnyh4326sq" path="res://Assets/Scripts/collectible_item.gd" id="1_6jqi5"]
 [ext_resource type="Resource" uid="uid://bla4jn48bmvt0" path="res://Assets/Resources/Items/coins.tres" id="2_51td0"]
 [ext_resource type="Material" uid="uid://naysehsqb2fu" path="res://Assets/Resources/Materials/material_collectible_blend_add.tres" id="2_x3ttv"]
-[ext_resource type="Texture2D" uid="uid://7u3618s13vf7" path="res://Assets/StaticAssets/Items/32_shadows_shikashi.png" id="4_gsrut"]
+[ext_resource type="Texture2D" uid="uid://bry0vbihwwtjf" path="res://Assets/StaticAssets/Items/32_basic_cyangmou.png" id="4_440ka"]
 [ext_resource type="AudioStream" uid="uid://bt2kwvlijewrh" path="res://Assets/StaticAssets/SFX/coins.mp3" id="4_htwxq"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qoj20"]
-radius = 13.0384
+radius = 17.029387
 
 [sub_resource type="Animation" id="Animation_ub685"]
 length = 0.001
@@ -42,21 +42,26 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_fbu1f"]
 _data = {
-"RESET": SubResource("Animation_ub685"),
-"default": SubResource("Animation_32uok")
+&"RESET": SubResource("Animation_ub685"),
+&"default": SubResource("Animation_32uok")
 }
 
 [node name="Collectible" type="Node2D"]
 script = ExtResource("1_6jqi5")
 item = ExtResource("2_51td0")
+value = 25
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = ExtResource("2_x3ttv")
-texture = ExtResource("4_gsrut")
+texture = ExtResource("4_440ka")
+hframes = 18
+vframes = 50
+frame = 360
 region_enabled = true
-region_rect = Rect2(352, 352, 32, 32)
+region_rect = Rect2(0, 0, 576, 1600)
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(2, 2)
@@ -64,7 +69,7 @@ shape = SubResource("CircleShape2D_qoj20")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_fbu1f")
+&"": SubResource("AnimationLibrary_fbu1f")
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
