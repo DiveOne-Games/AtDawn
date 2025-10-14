@@ -1,6 +1,6 @@
 [gd_scene load_steps=22 format=3 uid="uid://ofroj2m5ier6"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/Characters/PatrolUnit.gd" id="1_fhe13"]
+[ext_resource type="Script" uid="uid://d1ktq7krjp6wy" path="res://Assets/Scripts/Characters/PatrolUnit.gd" id="1_fhe13"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_v03is"]
 [ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/Characters/Zombie/undead_sprites_all.png" id="3_q4unq"]
 
@@ -123,13 +123,13 @@ tracks/0/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pklgq"]
 _data = {
-"RESET": SubResource("Animation_wiu0u"),
-"attack": SubResource("Animation_0j2ur"),
-"death": SubResource("Animation_1xyo1"),
-"hurt": SubResource("Animation_tkp2p"),
-"idle": SubResource("Animation_7h6at"),
-"idle2": SubResource("Animation_w4h8n"),
-"walk": SubResource("Animation_lyc8c")
+&"RESET": SubResource("Animation_wiu0u"),
+&"attack": SubResource("Animation_0j2ur"),
+&"death": SubResource("Animation_1xyo1"),
+&"hurt": SubResource("Animation_tkp2p"),
+&"idle": SubResource("Animation_7h6at"),
+&"idle2": SubResource("Animation_w4h8n"),
+&"walk": SubResource("Animation_lyc8c")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhfhb"]
@@ -187,13 +187,12 @@ vframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_pklgq")
+&"": SubResource("AnimationLibrary_pklgq")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_un1qb")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/conditions/is_attacking = false
 parameters/conditions/is_walking = false
 

@@ -14,5 +14,3 @@ extends AudioStreamPlayer2D
 #	hurt.loop = false
 #	death.loop = false
 #	footsteps.loop = false
-
-

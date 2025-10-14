@@ -3,32 +3,33 @@ class_name CollectibleItem
 ## Represents items in the game that the player can pick-up and use. It relies on
 ## the preset spritesheet!
 
-enum ItemType { Gold, Collectible, Equipment }
-
 @export var item : GameItem
-@export var value : int
 @export var item_type : GameItem.ItemType
+@export var value : int
 
 @onready var sprite : Sprite2D = get_node("Sprite2D")
 @onready var audio_player : AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready():
-	if not item.sprite or not item.sfx or not value:
+	if not item:
 		push_warning('You have not configured this item. Loading placeholders.')
 		return
 	sprite.region_enabled = item.use_region
 	sprite.texture = item.sprite
 	await sprite.texture_changed
 	audio_player.stream = item.sfx
-	value = randi_range(20, 40)
+	value = item.value
 
 
 func prepare(new_item: GameItem):
-	if not sprite:
+	if not new_item.sprite or not sprite:
 		sprite = $Sprite2D
+	else:
+		sprite.texture = new_item.sprite
 	item = new_item
 	item_type = new_item.item_type
+	value = new_item.value
 	sprite.frame_coords = new_item.frame_coords
 	sprite.frame = new_item.frame
 

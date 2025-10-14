@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://bt5rpt2qc4lbg"]
+
+[ext_resource type="Script" uid="uid://culkjhwmebamc" path="res://Assets/Characters/undead/undead.gd" id="1_btvnh"]
+[ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/Characters/Zombie/undead_sprites_all.png" id="2_3wt10"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8jff"]
+radius = 12.0
+height = 36.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_btvnh"]
+radius = 62.241467
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+collision_mask = 2
+script = ExtResource("1_btvnh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_x8jff")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_3wt10")
+hframes = 18
+vframes = 6
+
+[node name="AggroArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AggroArea"]
+shape = SubResource("CircleShape2D_btvnh")
+
+[connection signal="area_shape_entered" from="AggroArea" to="." method="_on_aggro_area_area_shape_entered"]

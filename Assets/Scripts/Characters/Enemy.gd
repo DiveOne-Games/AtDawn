@@ -42,7 +42,7 @@ func _ready():
 	aggro_area.shape.radius = aggro_radius
 	
 	add_to_group(GameTypes.get_game_group(unit_group))
-	state_machine.travel('skeleton_spawn')
+	#state_machine.travel('skeleton_blend')
 	anim_tree.active = true
 
 	if not patrol_origin:
@@ -93,7 +93,6 @@ func _physics_process(delta):
 # PATROLS -----
 func nav_sync():
 	await get_tree().physics_frame
-	var destination = Vector2()
 	if not patrol_destination:
 		current_destination = patrol_origin + patrol_distance
 	else:
@@ -117,7 +116,7 @@ func patrol_to(destination: Vector2):
 
 func get_next_position():
 	# FIXME: Almost there -- stutters when resuming patrol, flipping back and forth in place.
-	await get_tree().create_timer(rest_duration).timeout
+	#await get_tree().create_timer(rest_duration).timeouts
 	if abs(navigation_agent.target_position - patrol_origin).length() <= patrol_point_margin:
 		navigation_agent.target_position = current_destination
 	else:

@@ -11,5 +11,6 @@ item_desc = "A satchel of gold coins."
 item_icon = ExtResource("1_f2ljs")
 sprite = ExtResource("1_f2ljs")
 use_region = true
+frame = 360
 frame_coords = Vector2i(0, 20)
 sfx = ExtResource("3_wxi0r")

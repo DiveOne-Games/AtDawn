@@ -6,8 +6,6 @@ extends CharacterBody2D
 signal update_health(value: int, max: int)
 signal update_kill_score(value: int)
 
-
-# Public Members
 @export var player_speed := 30
 @export var health: int
 @export var max_health := 100
@@ -54,7 +52,7 @@ func _process(_delta):
 func change_face():
 	if velocity.x < 0:
 		sprite.flip_h = true
-	elif velocity.x > 0:
+	elif velocity.x >= 0:
 		sprite.flip_h = false
 
 

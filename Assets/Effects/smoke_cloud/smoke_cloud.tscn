@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://k8fmqlpbjhkj"]
+
+[ext_resource type="Texture2D" uid="uid://cbnwgy8s3u270" path="res://Assets/StaticAssets/vfx/02.png" id="1_7m3kb"]
+[ext_resource type="Material" uid="uid://cipc67p7eqqo2" path="res://Assets/Effects/smoke_cloud/mat_smoke_cloud.tres" id="1_n2e3n"]
+[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.gd" id="1_yd6y6"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2e3n"]
+radius = 21.023796
+
+[sub_resource type="Animation" id="Animation_pfx55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfld5"]
+_data = {
+&"RESET": SubResource("Animation_pfx55")
+}
+
+[sub_resource type="Animation" id="Animation_ibsnl"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.39999998, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4hpf"]
+_data = {
+&"smoke_cloud": SubResource("Animation_ibsnl")
+}
+
+[node name="SmokeCloud" type="Node2D"]
+script = ExtResource("1_yd6y6")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = ExtResource("1_n2e3n")
+texture = ExtResource("1_7m3kb")
+hframes = 6
+vframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 64)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_n2e3n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_hfld5"),
+&"vfx": SubResource("AnimationLibrary_u4hpf")
+}

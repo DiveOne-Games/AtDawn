@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://b3stiptc6lxdb"]
+
+[ext_resource type="Shader" uid="uid://dypf66wucmjl4" path="res://test_3d_mesh_shader.tres" id="1_m0jcp"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hy5eq"]
+render_priority = 0
+shader = ExtResource("1_m0jcp")
+shader_parameter/ColorParameter = Color(1.3528494, 1.1215311, 1.0829396, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_oftl4"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = SubResource("ShaderMaterial_hy5eq")
+cast_shadow = 0
+mesh = SubResource("SphereMesh_oftl4")

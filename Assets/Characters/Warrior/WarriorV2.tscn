@@ -508,6 +508,7 @@ vframes = 7
 frame = 44
 
 [node name="WeaponZone" parent="." instance=ExtResource("4_kvwlx")]
+collision_layer = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

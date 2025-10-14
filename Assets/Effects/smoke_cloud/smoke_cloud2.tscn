@@ -1,0 +1,127 @@
+[gd_scene load_steps=12 format=3 uid="uid://c1h30in248dhx"]
+
+[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.gd" id="1_qt458"]
+[ext_resource type="Texture2D" uid="uid://cbnwgy8s3u270" path="res://Assets/StaticAssets/vfx/02.png" id="3_mbwhq"]
+
+[sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_q8fky"]
+output_port_for_preview = 0
+default_input_values = [0, Vector3(0.25, 0.7, 0.25)]
+
+[sub_resource type="VisualShaderNodeUVFunc" id="VisualShaderNodeUVFunc_qt458"]
+
+[sub_resource type="VisualShader" id="VisualShader_ls08l"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+
+
+
+void vertex() {
+// UVFunc:3
+	vec2 n_in3p1 = vec2(1.00000, 1.00000);
+	vec2 n_in3p2 = vec2(0.00000, 0.00000);
+	vec2 n_out3p0 = n_in3p2 * n_in3p1 + UV;
+
+
+// Output:0
+	COLOR.a = n_out3p0.x;
+
+
+}
+
+void fragment() {
+	vec3 n_out2p0;
+// ColorFunc:2
+	vec3 n_in2p0 = vec3(0.25000, 0.70000, 0.25000);
+	{
+		vec3 c = n_in2p0;
+		float max1 = max(c.r, c.g);
+		float max2 = max(max1, c.b);
+		n_out2p0 = vec3(max2, max2, max2);
+	}
+
+
+// Output:0
+	COLOR.rgb = n_out2p0;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(1260, 160)
+nodes/vertex/3/node = SubResource("VisualShaderNodeUVFunc_qt458")
+nodes/vertex/3/position = Vector2(620, 140)
+nodes/vertex/connections = PackedInt32Array(3, 0, 0, 3)
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorFunc_q8fky")
+nodes/fragment/2/position = Vector2(-420, 180)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mbwhq"]
+shader = SubResource("VisualShader_ls08l")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n2e3n"]
+radius = 21.023796
+
+[sub_resource type="Animation" id="Animation_pfx55"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_hfld5"]
+_data = {
+&"RESET": SubResource("Animation_pfx55")
+}
+
+[sub_resource type="Animation" id="Animation_ibsnl"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.099999994, 0.2, 0.3, 0.39999998, 0.5, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_u4hpf"]
+_data = {
+&"smoke_cloud": SubResource("Animation_ibsnl")
+}
+
+[node name="SmokeCloud" type="Node2D"]
+script = ExtResource("1_qt458")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_mbwhq")
+texture = ExtResource("3_mbwhq")
+hframes = 6
+vframes = 2
+region_enabled = true
+region_rect = Rect2(0, 0, 192, 64)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CircleShape2D_n2e3n")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_hfld5"),
+&"vfx": SubResource("AnimationLibrary_u4hpf")
+}

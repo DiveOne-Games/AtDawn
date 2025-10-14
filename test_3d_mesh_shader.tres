@@ -1,0 +1,69 @@
+[gd_resource type="VisualShader" load_steps=8 format=3 uid="uid://dypf66wucmjl4"]
+
+[ext_resource type="Texture2D" uid="uid://ct6yql16hijtv" path="res://Assets/StaticAssets/vfx/masks/5.png" id="1_hqkwj"]
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_bossl"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_5euqs"]
+expanded_output_ports = [0]
+texture = ExtResource("1_hqkwj")
+texture_type = 1
+
+[sub_resource type="VisualShaderNodeFloatOp" id="VisualShaderNodeFloatOp_hqkwj"]
+output_port_for_preview = 0
+operator = 1
+
+[sub_resource type="Gradient" id="Gradient_bossl"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_5euqs"]
+gradient = SubResource("Gradient_bossl")
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_qfyyb"]
+texture = SubResource("GradientTexture2D_5euqs")
+texture_type = 1
+
+[resource]
+code = "shader_type spatial;
+render_mode blend_mix, depth_draw_opaque, depth_test_default, cull_back, diffuse_lambert, specular_schlick_ggx;
+
+uniform vec4 ColorParameter : source_color;
+uniform sampler2D tex_frg_3 : source_color;
+uniform sampler2D tex_frg_5 : source_color;
+
+
+
+void fragment() {
+// ColorParameter:2
+	vec4 n_out2p0 = ColorParameter;
+
+
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_frg_3, UV);
+	float n_out3p4 = n_out3p0.a;
+
+
+// Texture2D:5
+	vec4 n_out5p0 = texture(tex_frg_5, UV);
+
+
+// FloatOp:4
+	float n_out4p0 = n_out3p4 - n_out5p0.x;
+
+
+// Output:0
+	ALBEDO = vec3(n_out2p0.xyz);
+	ALPHA = n_out4p0;
+
+
+}
+"
+nodes/fragment/2/node = SubResource("VisualShaderNodeColorParameter_bossl")
+nodes/fragment/2/position = Vector2(-340, 160)
+nodes/fragment/3/node = SubResource("VisualShaderNodeTexture_5euqs")
+nodes/fragment/3/position = Vector2(-1440, 500)
+nodes/fragment/4/node = SubResource("VisualShaderNodeFloatOp_hqkwj")
+nodes/fragment/4/position = Vector2(-520, 640)
+nodes/fragment/5/node = SubResource("VisualShaderNodeTexture_qfyyb")
+nodes/fragment/5/position = Vector2(-1400, 1220)
+nodes/fragment/connections = PackedInt32Array(2, 0, 0, 0, 3, 4, 4, 0, 5, 0, 4, 1, 4, 0, 0, 1)
