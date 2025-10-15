@@ -1,20 +1,23 @@
-[gd_scene load_steps=15 format=4 uid="uid://dph2f6nnk5clc"]
+[gd_scene load_steps=19 format=4 uid="uid://dph2f6nnk5clc"]
 
+[ext_resource type="Script" uid="uid://gqbrp4qouun7" path="res://Assets/Levels/title_screen.gd" id="1_8tw71"]
 [ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/Resources/tileset_cemetery.tres" id="1_t3if1"]
-[ext_resource type="FontFile" uid="uid://bjoitfv073uw3" path="res://Assets/StaticAssets/Fonts/ARCADEPI.TTF" id="2_dbbsq"]
 [ext_resource type="FontFile" uid="uid://btu4efrnl5mrf" path="res://Assets/StaticAssets/Fonts/8-bitanco.ttf" id="3_4u3xp"]
 [ext_resource type="PackedScene" uid="uid://fxeh0lendbsd" path="res://Assets/Prefabs/glowing_crypt.tscn" id="3_hh22u"]
+[ext_resource type="Shader" uid="uid://dqd4f8f3eb0e7" path="res://Assets/Resources/Shaders/fade.gdshader" id="4_cdkvk"]
 [ext_resource type="Theme" uid="uid://b5ujuib0sr2hd" path="res://Assets/Resources/theme_gui_button.tres" id="4_egjnc"]
-[ext_resource type="Texture2D" uid="uid://c4eur5sc40rt8" path="res://Assets/StaticAssets/at_dawn_title.png" id="4_l33s3"]
 [ext_resource type="StyleBox" uid="uid://d20ay46umpjxk" path="res://Assets/Resources/style_button_normal.tres" id="5_eieti"]
-[ext_resource type="Script" uid="uid://c6fbfgx8vcu44" path="res://Assets/Scripts/start_menu.gd" id="5_w5hfe"]
 [ext_resource type="StyleBox" uid="uid://dd8hajhv41sws" path="res://Assets/Resources/style_button_hover.tres" id="6_vdd86"]
+[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="9_8tw71"]
+[ext_resource type="PackedScene" uid="uid://cl8spp15bvq1p" path="res://Assets/Characters/merchant/npc.tscn" id="9_cdkvk"]
 
-[sub_resource type="Theme" id="Theme_1s6qx"]
-default_font = ExtResource("2_dbbsq")
-default_font_size = 20
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_j6mgt"]
+shader = ExtResource("4_cdkvk")
+shader_parameter/fade = 1.0
+shader_parameter/offset = 1.0
 
 [sub_resource type="LabelSettings" id="LabelSettings_vebfh"]
+font_size = 84
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_231f1"]
 
@@ -34,7 +37,93 @@ shadow_size = 1
 
 [sub_resource type="Shortcut" id="Shortcut_8dl6k"]
 
+[sub_resource type="Animation" id="Animation_7lrhl"]
+resource_name = "title_fade"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.16666669, 1.9666667),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2),
+"transitions": PackedFloat32Array(1, 3.0314333),
+"update": 0,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_4610a"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("CanvasLayer:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CanvasLayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("HUD:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_44nbi"]
+_data = {
+&"RESET": SubResource("Animation_4610a"),
+&"title_fade": SubResource("Animation_7lrhl")
+}
+
 [node name="TitleScreen" type="Node2D"]
+script = ExtResource("1_8tw71")
 
 [node name="base" type="TileMapLayer" parent="."]
 use_parent_material = true
@@ -58,47 +147,61 @@ tile_set = ExtResource("1_t3if1")
 [node name="GlowingCrypt" parent="." instance=ExtResource("3_hh22u")]
 position = Vector2(560, 394)
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="NPC" parent="." instance=ExtResource("9_cdkvk")]
+position = Vector2(653, 512)
 
-[node name="GameTitle" type="Label" parent="CanvasLayer"]
-visible = false
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -93.0
-offset_top = 215.0
-offset_right = -23.0
-offset_bottom = 236.0
-grow_horizontal = 2
-scale = Vector2(2.75228, 2.75228)
-size_flags_horizontal = 4
-theme = SubResource("Theme_1s6qx")
+[node name="PlayerSpawnPoint" type="Marker2D" parent="."]
+position = Vector2(857, 548)
+
+[node name="CanvasLayer" type="Control" parent="."]
+material = SubResource("ShaderMaterial_j6mgt")
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="VBox" type="VBoxContainer" parent="CanvasLayer"]
+layout_mode = 1
+offset_right = 1927.0
+offset_bottom = 1075.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/VBox"]
+layout_mode = 2
+theme_override_constants/margin_top = 200
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBox"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="GameTitle" type="Label" parent="CanvasLayer/VBox/MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_4u3xp")
 text = "At Dawn"
 label_settings = SubResource("LabelSettings_vebfh")
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
-offset_left = 650.0
-offset_top = 185.0
-offset_right = 715.22375
-offset_bottom = 236.07788
-scale = Vector2(12.8239, 8.39894)
-texture = ExtResource("4_l33s3")
-expand_mode = 3
-stretch_mode = 4
+[node name="StartMenu" type="VBoxContainer" parent="CanvasLayer/VBox"]
+layout_mode = 2
 
-[node name="StartMenu" type="VBoxContainer" parent="CanvasLayer"]
-offset_left = 969.0
-offset_top = 532.0
-offset_right = 1044.0
-offset_bottom = 572.0
-script = ExtResource("5_w5hfe")
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/VBox/StartMenu"]
+layout_mode = 2
+theme_override_constants/margin_left = 600
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 600
+theme_override_constants/margin_bottom = 10
 
-[node name="Start" type="Button" parent="CanvasLayer/StartMenu"]
+[node name="Start" type="Button" parent="CanvasLayer/VBox/StartMenu/MarginContainer"]
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
+size_flags_horizontal = 4
 theme = ExtResource("4_egjnc")
 theme_override_styles/normal = ExtResource("5_eieti")
 theme_override_styles/pressed = ExtResource("6_vdd86")
@@ -108,4 +211,13 @@ theme_override_styles/focus = SubResource("StyleBoxFlat_de2fe")
 shortcut = SubResource("Shortcut_8dl6k")
 text = "Start"
 
-[connection signal="pressed" from="CanvasLayer/StartMenu/Start" to="CanvasLayer/StartMenu" method="_on_start_pressed"]
+[node name="HUD" parent="." instance=ExtResource("9_8tw71")]
+visible = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_44nbi")
+}
+
+[connection signal="pressed" from="CanvasLayer/VBox/StartMenu/MarginContainer/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="CanvasLayer/VBox/StartMenu/MarginContainer/Start" to="CanvasLayer/VBox/StartMenu" method="_on_start_pressed"]

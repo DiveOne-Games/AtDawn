@@ -1,6 +1,10 @@
-[gd_scene load_steps=19 format=3 uid="uid://fxeh0lendbsd"]
+[gd_scene load_steps=22 format=3 uid="uid://fxeh0lendbsd"]
 
+[ext_resource type="Script" uid="uid://sndn68dvm12e" path="res://Assets/Scripts/door.gd" id="1_au8wm"]
 [ext_resource type="Texture2D" uid="uid://b2si7els4ggou" path="res://Assets/StaticAssets/Environments/Cemetery/Props/cypt8 entrance glow animation 160x280.png" id="1_sq1yy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_au8wm"]
+size = Vector2(139, 162)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e7g3o"]
 atlas = ExtResource("1_sq1yy")
@@ -122,10 +126,36 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="GlowingCrypt" type="Node2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_3vtic"]
+radius = 52.153618
+
+[node name="GlowingCrypt" type="StaticBody2D"]
+collision_mask = 2
+script = ExtResource("1_au8wm")
+next_level = "res://Assets/Levels/crypts-hall-1.tscn"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(2.5, 15)
+shape = SubResource("RectangleShape2D_au8wm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_6ksk2")
 animation = &"glow"
 autoplay = "glow"
 frame_progress = 0.83822
+metadata/_edit_lock_ = true
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 33)
+shape = SubResource("CircleShape2D_3vtic")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_player_present"]
+[connection signal="area_shape_exited" from="Area2D" to="." method="_on_player_exit"]
