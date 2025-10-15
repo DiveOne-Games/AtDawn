@@ -1,0 +1,180 @@
+[gd_scene load_steps=26 format=3 uid="uid://b65hlhk6rs4at"]
+
+[ext_resource type="Script" uid="uid://c0cn2w2y50dwh" path="res://Assets/Characters/player/melee_unit.gd" id="1_xbhcw"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_oey77"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_ahjs8"]
+[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_area.tscn" id="4_x53tj"]
+[ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="5_2846x"]
+[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/Resources/animations/anim_skeleton.res" id="6_ii12g"]
+[ext_resource type="Script" uid="uid://drj6b2dbkj0bd" path="res://Assets/Characters/player/patrol_nav2d.gd" id="7_wrc2c"]
+[ext_resource type="PackedScene" uid="uid://5tk7ooyurrrr" path="res://Assets/Characters/shared/react_zone.tscn" id="8_edq83"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]
+size = Vector2(18, 9.5)
+
+[sub_resource type="Shader" id="Shader_6absk"]
+code = "shader_type canvas_item;
+
+uniform float fade : hint_range(0.0, 1.0);
+uniform float offset : hint_range(0.0, 1.0);
+
+
+void fragment() {
+	// vec4 color = texture(TEXTURE, UV);
+	// color.a *= clamp(1.0 - offset/fade, 0.0, 1.0);
+	COLOR = texture(TEXTURE, UV);
+	COLOR.a *= clamp(1.0 - offset/fade, 0.0, 1.0);
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ug2o0"]
+resource_local_to_scene = true
+shader = SubResource("Shader_6absk")
+shader_parameter/fade = 1.0
+shader_parameter/offset = 0.0
+
+[sub_resource type="Animation" id="Animation_qkqlj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("WeaponArea/WeaponShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:material:shader_parameter/offset")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.03333336),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1nw0n"]
+_data = {
+&"RESET": SubResource("Animation_qkqlj")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xjbps"]
+animation = &"anim_skeleton/walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qkqlj"]
+animation = &"anim_skeleton/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1nw0n"]
+animation = &"anim_skeleton/run"
+
+[sub_resource type="AnimationNodeAdd2" id="AnimationNodeAdd2_xjbps"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pcb5u"]
+animation = &"anim_skeleton/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8pua4"]
+animation = &"anim_skeleton/spawn"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_gc6vf"]
+nodes/output/position = Vector2(800, 90)
+nodes/Animation/node = SubResource("AnimationNodeAnimation_8pua4")
+nodes/Animation/position = Vector2(140, 60)
+"nodes/Animation 2/node" = SubResource("AnimationNodeAnimation_pcb5u")
+"nodes/Animation 2/position" = Vector2(350, 160)
+nodes/Add2/node = SubResource("AnimationNodeAdd2_xjbps")
+nodes/Add2/position = Vector2(610, 50)
+node_connections = [&"output", 0, &"Add2", &"Add2", 0, &"Animation", &"Add2", 1, &"Animation 2"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2wjqp"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5k80c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pcb5u"]
+advance_mode = 2
+advance_expression = "velocity"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qkqlj"]
+advance_mode = 2
+advance_expression = "!velocity"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_gc6vf"]
+states/Start/position = Vector2(140.5, 99.43359)
+states/anim_skeleton_walk/node = SubResource("AnimationNodeAnimation_xjbps")
+states/anim_skeleton_walk/position = Vector2(481.15625, 217.5)
+states/idle/node = SubResource("AnimationNodeAnimation_qkqlj")
+states/idle/position = Vector2(534.375, 100.322266)
+states/run/node = SubResource("AnimationNodeAnimation_1nw0n")
+states/run/position = Vector2(729.5, 100.859375)
+states/skeleton_spawn/node = SubResource("AnimationNodeBlendTree_gc6vf")
+states/skeleton_spawn/position = Vector2(311, 100.64453)
+transitions = ["Start", "skeleton_spawn", SubResource("AnimationNodeStateMachineTransition_2wjqp"), "skeleton_spawn", "idle", SubResource("AnimationNodeStateMachineTransition_5k80c"), "idle", "anim_skeleton_walk", SubResource("AnimationNodeStateMachineTransition_pcb5u"), "anim_skeleton_walk", "idle", SubResource("AnimationNodeStateMachineTransition_qkqlj")]
+
+[node name="MeleeCharacter" type="CharacterBody2D"]
+collision_mask = 2
+motion_mode = 1
+script = ExtResource("1_xbhcw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 23.75)
+shape = SubResource("RectangleShape2D_ahoiv")
+
+[node name="HitBox" parent="." instance=ExtResource("2_oey77")]
+position = Vector2(2, 6)
+scale = Vector2(1.06707, 0.836565)
+
+[node name="WeaponArea" parent="." instance=ExtResource("4_x53tj")]
+collision_mask = 2
+disable_shape = false
+
+[node name="ReactZone" parent="." instance=ExtResource("8_edq83")]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_ug2o0")
+texture = ExtResource("3_ahjs8")
+hframes = 17
+vframes = 5
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("5_2846x")
+
+[node name="Animator" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+&"": SubResource("AnimationLibrary_1nw0n"),
+&"anim_skeleton": ExtResource("6_ii12g")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeStateMachine_gc6vf")
+anim_player = NodePath("../Animator")
+parameters/skeleton_spawn/Add2/add_amount = 0.9
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 10.0
+script = ExtResource("7_wrc2c")
+
+[connection signal="target_updated" from="ReactZone" to="NavigationAgent2D" method="_on_react_zone_target_updated"]
