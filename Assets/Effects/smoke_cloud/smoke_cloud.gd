@@ -11,3 +11,7 @@ func _ready():
 
 func _on_event(_points: int):
 	anim_player.play("vfx/smoke_cloud")
+
+
+func _on_destructible_object_destroyed(points_scored):
+	anim_player.play("vfx/smoke_cloud")

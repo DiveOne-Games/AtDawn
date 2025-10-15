@@ -1,11 +1,14 @@
-[gd_scene load_steps=9 format=4 uid="uid://cckn53yr6x0rt"]
+[gd_scene load_steps=12 format=4 uid="uid://cckn53yr6x0rt"]
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_83oeu"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_pexl1"]
 [ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="3_m8oub"]
 [ext_resource type="PackedScene" uid="uid://d1tg12bmwlq6x" path="res://Assets/Prefabs/loot_box/wooden_chest.tscn" id="4_121io"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="5_f81ya"]
+[ext_resource type="PackedScene" uid="uid://dfwtd66t2il4j" path="res://Assets/Prefabs/destructibles/destructible.tscn" id="5_pexl1"]
 [ext_resource type="PackedScene" uid="uid://wj1nwiei8his" path="res://Assets/Prefabs/traps/hazard_trap.tscn" id="6_v4uxw"]
+[ext_resource type="PackedScene" uid="uid://ccw2h22w7a8w6" path="res://Assets/UI/floating_text.tscn" id="6_ximrc"]
+[ext_resource type="PackedScene" uid="uid://k8fmqlpbjhkj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.tscn" id="7_1ps7i"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="7_7e0he"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_7e0he"]
@@ -70,6 +73,39 @@ tile_set = ExtResource("3_m8oub")
 position = Vector2(371, 136)
 scale = Vector2(1.5, 1.5)
 
+[node name="Crate" parent="Items" instance=ExtResource("5_pexl1")]
+position = Vector2(83, 556)
+scale = Vector2(1.5, 1.5)
+object_name = "Crate"
+points = 5
+type = 1
+
+[node name="FloatingText" parent="Items/Crate" instance=ExtResource("6_ximrc")]
+
+[node name="SmokeCloud" parent="Items/Crate" instance=ExtResource("7_1ps7i")]
+
+[node name="Crate2" parent="Items" instance=ExtResource("5_pexl1")]
+position = Vector2(94.00001, 568)
+scale = Vector2(1.5, 1.5)
+object_name = "Crate"
+points = 5
+type = 1
+
+[node name="FloatingText" parent="Items/Crate2" instance=ExtResource("6_ximrc")]
+
+[node name="SmokeCloud" parent="Items/Crate2" instance=ExtResource("7_1ps7i")]
+
+[node name="Crate3" parent="Items" instance=ExtResource("5_pexl1")]
+position = Vector2(66, 569)
+scale = Vector2(1.5, 1.5)
+object_name = "Crate"
+points = 5
+type = 1
+
+[node name="FloatingText" parent="Items/Crate3" instance=ExtResource("6_ximrc")]
+
+[node name="SmokeCloud" parent="Items/Crate3" instance=ExtResource("7_1ps7i")]
+
 [node name="Hazards" type="Node2D" parent="."]
 
 [node name="HazardTrap" parent="Hazards" instance=ExtResource("6_v4uxw")]
@@ -90,3 +126,10 @@ position = Vector2(117, 827)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_7e0he")
+
+[connection signal="object_destroyed" from="Items/Crate" to="Items/Crate/FloatingText" method="_on_destructible_object_destroyed"]
+[connection signal="object_destroyed" from="Items/Crate" to="Items/Crate/SmokeCloud" method="_on_destructible_object_destroyed"]
+[connection signal="object_destroyed" from="Items/Crate2" to="Items/Crate2/FloatingText" method="_on_destructible_object_destroyed"]
+[connection signal="object_destroyed" from="Items/Crate2" to="Items/Crate2/SmokeCloud" method="_on_destructible_object_destroyed"]
+[connection signal="object_destroyed" from="Items/Crate3" to="Items/Crate3/FloatingText" method="_on_destructible_object_destroyed"]
+[connection signal="object_destroyed" from="Items/Crate3" to="Items/Crate3/SmokeCloud" method="_on_destructible_object_destroyed"]

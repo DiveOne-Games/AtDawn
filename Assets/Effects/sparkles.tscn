@@ -2,13 +2,10 @@
 
 [ext_resource type="Texture2D" uid="uid://dv4gqu2l4mcnx" path="res://Assets/StaticAssets/Items/sparkles.png" id="1_bvfo3"]
 [ext_resource type="Script" uid="uid://c2kapyuc304r6" path="res://Assets/Effects/vfx.gd" id="1_vvheo"]
-[ext_resource type="Shader" uid="uid://kjtn0nc3x576" path="res://Assets/Resources/Shaders/sparkles.gdshader" id="2_sueyj"]
+[ext_resource type="Shader" uid="uid://dasdb2hb4nhli" path="res://Assets/Effects/sparkles.tres" id="2_tr3yg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1smqc"]
-shader = ExtResource("2_sueyj")
-
-[sub_resource type="Animation" id="Animation_x03mp"]
-resource_name = "sparkle"
+shader = ExtResource("2_tr3yg")
 
 [sub_resource type="Animation" id="Animation_whcps"]
 length = 0.001
@@ -37,10 +34,13 @@ tracks/1/keys = {
 "values": [1]
 }
 
+[sub_resource type="Animation" id="Animation_x03mp"]
+resource_name = "sparkle"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o688c"]
 _data = {
-"RESET": SubResource("Animation_whcps"),
-"sparkle": SubResource("Animation_x03mp")
+&"RESET": SubResource("Animation_whcps"),
+&"sparkle": SubResource("Animation_x03mp")
 }
 
 [sub_resource type="Animation" id="Animation_mlps4"]
@@ -71,7 +71,7 @@ tracks/1/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_xy5ex"]
 _data = {
-"sparkles": SubResource("Animation_mlps4")
+&"sparkles": SubResource("Animation_mlps4")
 }
 
 [node name="Node2D" type="Node2D"]
@@ -83,6 +83,6 @@ texture = ExtResource("1_bvfo3")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_o688c"),
-"vfx": SubResource("AnimationLibrary_xy5ex")
+&"": SubResource("AnimationLibrary_o688c"),
+&"vfx": SubResource("AnimationLibrary_xy5ex")
 }

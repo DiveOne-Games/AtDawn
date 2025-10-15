@@ -8,9 +8,9 @@ enum DestructibleState { IDLE, DESTROYED, DISABLED }
 
 @export var object_name : String
 @export var points: int = 25
+@export var type : DestructibleType = DestructibleType.BARREL
 
 var state: DestructibleState = DestructibleState.IDLE
-var type : DestructibleType = DestructibleType.BARREL
 ## The frame coords for each destructible object on the spritesheet.
 var sprite_frame_map = {0: Vector2i(0,1), 1: Vector2i(0,3), 2: Vector2i(0,5)}
 var anim_map = {0: 'Destructibles/barrel', 1: 'Destructibles/crate', 2: 'Destructibles/jar'}
