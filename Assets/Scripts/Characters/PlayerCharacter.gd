@@ -140,7 +140,7 @@ func reaction_timer(timeout: float):
 
 
 func collect_item(item: CollectibleItem):
-	if item.item_type == item.ItemType.Gold:
+	if item.item_type == item.item.ItemType.Gold:
 		gold += item.value
 		return
 	inventory.append(item.item)

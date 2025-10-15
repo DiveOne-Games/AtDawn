@@ -473,6 +473,8 @@ collision_layer = 2
 [node name="Camera2D" type="Camera2D" parent="."]
 limit_left = 0
 limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
 limit_smoothed = true
 editor_draw_limits = true
 editor_draw_drag_margin = true

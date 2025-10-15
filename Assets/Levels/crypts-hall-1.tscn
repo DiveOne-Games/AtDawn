@@ -35,7 +35,7 @@ tile_map_data = PackedByteArray("AAAQABQAAwALAA0AAAAQABUAAwALAA4AAAAAABMAAQAKAAA
 tile_set = ExtResource("1_83oeu")
 
 [node name="Warrior" parent="." instance=ExtResource("2_pexl1")]
-position = Vector2(123, 736)
+position = Vector2(203, 724)
 collision_mask = 17
 
 [node name="TileMapsTop" type="Node2D" parent="."]

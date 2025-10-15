@@ -59,7 +59,7 @@ func _process(_delta):
 
 
 func _physics_process(delta):
-	change_face()
+	#change_face()
 	update_animations()
 
 	if is_dead:
@@ -77,6 +77,9 @@ func _physics_process(delta):
 
 	if is_hurt:
 		await reaction_timer(0.55 + delta)
+	if is_attacking:
+		velocity = Vector2.ZERO
+		return
 	
 	if patrol_active:
 		if navigation_agent.is_navigation_finished():
@@ -87,6 +90,7 @@ func _physics_process(delta):
 			patrol()
 
 	velocity = motion.normalized() * speed(delta)
+	change_face()
 	move_and_slide()
 
 
