@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://djud1xymikahf"]
+
+[ext_resource type="Script" uid="uid://dk80j38fn586n" path="res://Assets/Scripts/weapon.gd" id="1_oamfj"]
+
+[resource]
+script = ExtResource("1_oamfj")
+name = "Heavy Blade"
+max_damage = 16
+hit_chance = 0.75
+crit_chance = 0.01
+metadata/_custom_type_script = "uid://dk80j38fn586n"

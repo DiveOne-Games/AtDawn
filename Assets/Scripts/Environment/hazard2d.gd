@@ -11,11 +11,15 @@ const ANIMATION_SHOOT := 'shoot'
 @export var trap: Hazard
 @export var type: Hazard.HazardType = Hazard.HazardType.TRAP
 @export var damage: int
+@export_range(-2,2, 0.2) var sfx_volume: float :
+	set(val): change_sfx_volume
+
 var state: HazardState = HazardState.ON
 
 @onready var anim_sprite : AnimatedSprite2D = $AnimatedSprite2D
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
+@onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready():
@@ -36,6 +40,12 @@ func prepare(new_trap: Resource = null):
 		anim_sprite.sprite_frames = trap.sprite_frames
 	else:
 		sprite.texture = trap.texture
+
+
+func change_sfx_volume(val: float = 0.2):
+	print_debug("SFX harzard change volume: ", val)
+	audio.volume_db += val
+	notify_property_list_changed()
 
 
 func _on_area_2d_area_shape_entered(_area_rid:RID, area, _area_shape_index:int, _local_shape_index:int):

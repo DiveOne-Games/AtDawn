@@ -22,8 +22,13 @@ var anim_map = {0: 'Destructibles/barrel', 1: 'Destructibles/crate', 2: 'Destruc
 
 func _ready():
 	sprite2d.frame_coords = sprite_frame_map[type]
-	
-	
+
+
+func _process(delta):
+	if Engine.is_editor_hint():
+		notify_property_list_changed()
+
+
 func _physics_process(_delta: float):
 	match state:
 		DestructibleState.DESTROYED:

@@ -1,11 +1,14 @@
 class_name WeaponZone
 extends Area2D
 
+@export var weapon: Weapon
 @export var damage := 5
 @export var disable_shape := true
 
 var character_sprite : Sprite2D
 var shape: CollisionShape2D
+@onready var vfx : AnimatedSprite2D = %AnimatedSprite2D
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -28,4 +31,5 @@ func _physics_process(_delta):
 
 func _on_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
 	if is_instance_of(area, HitBox):
+		vfx.play("smack")
 		area.take_damage(damage)

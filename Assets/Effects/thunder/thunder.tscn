@@ -1,0 +1,81 @@
+[gd_scene load_steps=20 format=3 uid="uid://xsd6e5gc6vdl"]
+
+[ext_resource type="Texture2D" uid="uid://dmwmv52k7hu6q" path="res://Assets/StaticAssets/vfx/thunder/thunde2.png" id="1_1shad"]
+[ext_resource type="Texture2D" uid="uid://idtdo8otqlyp" path="res://Assets/StaticAssets/vfx/thunder/thunde1.png" id="2_chqhw"]
+[ext_resource type="Texture2D" uid="uid://bea66xta1fdda" path="res://Assets/StaticAssets/vfx/thunder/thunde3.png" id="3_0s3n2"]
+[ext_resource type="Texture2D" uid="uid://djjnctvh7umlv" path="res://Assets/StaticAssets/vfx/thunder/thunde4.png" id="4_2k4u7"]
+[ext_resource type="Texture2D" uid="uid://cn2eybbqt5ln4" path="res://Assets/StaticAssets/vfx/thunder/thunde5.png" id="5_ony62"]
+[ext_resource type="Texture2D" uid="uid://busbp5r426co4" path="res://Assets/StaticAssets/vfx/thunder/thunde6.png" id="6_6wjiq"]
+[ext_resource type="Texture2D" uid="uid://ctcjcdehig0j8" path="res://Assets/StaticAssets/vfx/thunder/thunde7.png" id="7_fo7io"]
+[ext_resource type="Texture2D" uid="uid://01gb7f126r2l" path="res://Assets/StaticAssets/vfx/thunder/thunde8.png" id="8_5qofw"]
+[ext_resource type="Texture2D" uid="uid://0ynfg6e5pxry" path="res://Assets/StaticAssets/vfx/thunder/thunde9.png" id="9_awnua"]
+[ext_resource type="Texture2D" uid="uid://53xjgb2puv6o" path="res://Assets/StaticAssets/vfx/thunder/thunde10.png" id="10_7tb6g"]
+[ext_resource type="Texture2D" uid="uid://4c3sjv0gv7ye" path="res://Assets/StaticAssets/vfx/thunder/thunde11.png" id="11_djlb7"]
+[ext_resource type="Texture2D" uid="uid://80xkx7c4guru" path="res://Assets/StaticAssets/vfx/thunder/thunde12.png" id="12_56cm4"]
+[ext_resource type="Texture2D" uid="uid://dlumtlpafxlsl" path="res://Assets/StaticAssets/vfx/thunder/thunde13.png" id="13_668f3"]
+[ext_resource type="Texture2D" uid="uid://bow7j6o0fdspt" path="res://Assets/StaticAssets/vfx/thunder/thunde14.png" id="14_vvq0v"]
+[ext_resource type="Texture2D" uid="uid://cxivrnftyp32d" path="res://Assets/StaticAssets/vfx/thunder/thunde15.png" id="15_olq6u"]
+[ext_resource type="AudioStream" uid="uid://dpjidyrgj8cr2" path="res://Assets/StaticAssets/SFX/lightning_strike.wav" id="16_chqhw"]
+
+[sub_resource type="Animation" id="Animation_4ys4h"]
+resource_name = "strike"
+length = 1.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666668, 0.13333334, 0.20000002, 0.26666668, 0.33333337, 0.40000004, 0.4666667, 0.53333336, 0.6, 0.6666667, 0.73333335, 0.8, 0.8666667, 0.93333334, 1, 1.0666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [null, ExtResource("2_chqhw"), ExtResource("1_1shad"), ExtResource("3_0s3n2"), ExtResource("4_2k4u7"), ExtResource("5_ony62"), ExtResource("6_6wjiq"), ExtResource("7_fo7io"), ExtResource("8_5qofw"), ExtResource("9_awnua"), ExtResource("10_7tb6g"), ExtResource("11_djlb7"), ExtResource("12_56cm4"), ExtResource("13_668f3"), ExtResource("14_vvq0v"), ExtResource("15_olq6u"), null]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 13.39481,
+"start_offset": 0.7143614,
+"stream": ExtResource("16_chqhw")
+}],
+"times": PackedFloat32Array(0.06666666)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_n2kf2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [null]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_d3gty"]
+_data = {
+&"RESET": SubResource("Animation_n2kf2"),
+&"strike": SubResource("Animation_4ys4h")
+}
+
+[node name="Thunder" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_d3gty")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]

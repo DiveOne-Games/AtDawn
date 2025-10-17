@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://br2ksuobaey7g"]
+
+[ext_resource type="Script" uid="uid://bxa0y5r5jdbk0" path="res://Assets/items/weapons/blade/blade.gd" id="1_xnesh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru7xb"]
+size = Vector2(32, 11)
+
+[node name="Blade" type="Area2D"]
+script = ExtResource("1_xnesh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_ru7xb")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

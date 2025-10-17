@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl55apxl5wo4v"]
+
+[ext_resource type="Script" uid="uid://dx5jlclvpod4f" path="res://Assets/Prefabs/audio_listener/audio_listener_area.gd" id="1_6on8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktylg"]
+size = Vector2(1022.5, 502)
+
+[node name="AudioListenerArea" type="Area2D"]
+modulate = Color(1, 1, 1, 0.2784314)
+collision_mask = 2
+script = ExtResource("1_6on8h")
+active = null
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("RectangleShape2D_ktylg")
+
+[node name="AudioListener2D" type="AudioListener2D" parent="."]
+unique_name_in_owner = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

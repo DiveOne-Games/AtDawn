@@ -1,0 +1,70 @@
+[gd_resource type="VisualShader" load_steps=6 format=3 uid="uid://dqq6dllvpco8"]
+
+[ext_resource type="Texture2D" uid="uid://cedgp7ytiwju8" path="res://Assets/StaticAssets/vfx/masks/17.png" id="1_f4p0v"]
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_25fi0"]
+expanded_output_ports = [0]
+texture = ExtResource("1_f4p0v")
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_ltdgv"]
+parameter_name = "ColorParameter"
+
+[sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_smdxr"]
+expanded_output_ports = [0]
+parameter_name = "VertexColor"
+
+[sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_yrdim"]
+expanded_output_ports = [0]
+texture = ExtResource("1_f4p0v")
+
+[resource]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+uniform sampler2D tex_vtx_3;
+uniform vec4 ColorParameter : source_color;
+uniform sampler2D tex_frg_2;
+
+
+
+void vertex() {
+// Texture2D:3
+	vec4 n_out3p0 = texture(tex_vtx_3, UV);
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out3p0.xyz);
+
+
+}
+
+void fragment() {
+// ColorParameter:3
+	vec4 n_out3p0 = ColorParameter;
+
+
+// Texture2D:2
+	vec4 n_out2p0 = texture(tex_frg_2, UV);
+	float n_out2p4 = n_out2p0.a;
+
+
+// Output:0
+	COLOR.rgb = vec3(n_out3p0.xyz);
+	COLOR.a = n_out2p4;
+
+
+}
+"
+mode = 1
+flags/light_only = false
+nodes/vertex/0/position = Vector2(1860, 120)
+nodes/vertex/2/node = SubResource("VisualShaderNodeColorParameter_smdxr")
+nodes/vertex/2/position = Vector2(120, 60)
+nodes/vertex/3/node = SubResource("VisualShaderNodeTexture_yrdim")
+nodes/vertex/3/position = Vector2(1080, 120)
+nodes/vertex/connections = PackedInt32Array(3, 0, 0, 2)
+nodes/fragment/2/node = SubResource("VisualShaderNodeTexture_25fi0")
+nodes/fragment/2/position = Vector2(-460, 400)
+nodes/fragment/3/node = SubResource("VisualShaderNodeColorParameter_ltdgv")
+nodes/fragment/3/position = Vector2(-520, -60)
+nodes/fragment/connections = PackedInt32Array(2, 4, 0, 1, 3, 0, 0, 0)

@@ -1,11 +1,13 @@
-[gd_scene load_steps=43 format=3 uid="uid://biapgn312ufql"]
+[gd_scene load_steps=45 format=3 uid="uid://biapgn312ufql"]
 
 [ext_resource type="Script" uid="uid://cng6jt8h6d1v0" path="res://Assets/Scripts/Characters/PlayerCharacter.gd" id="1_b5ybs"]
 [ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_84rxt"]
 [ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/Characters/Warrior/Sprites/warrior-all.png" id="3_8fh04"]
 [ext_resource type="AudioStream" uid="uid://dd5bwb57qwgnk" path="res://Assets/StaticAssets/SFX/sword_swing_1.mp3" id="4_h1a3v"]
 [ext_resource type="PackedScene" uid="uid://cgj08n8up6dxm" path="res://Assets/Prefabs/weapon_zone.tscn" id="4_so2w1"]
+[ext_resource type="Resource" uid="uid://djud1xymikahf" path="res://Assets/Resources/Items/weapons/heavy_blade.tres" id="5_20h0f"]
 [ext_resource type="AudioStream" uid="uid://bufupr8fova" path="res://Assets/StaticAssets/SFX/grunt1.mp3" id="5_q0ilv"]
+[ext_resource type="PackedScene" uid="uid://bbmdxcm2dxp4r" path="res://Assets/Effects/impact/impact.tscn" id="6_7qtlm"]
 [ext_resource type="AudioStream" uid="uid://7bbhrwwrfoo5" path="res://Assets/StaticAssets/SFX/footstep_grass1.mp3" id="7_ccjik"]
 [ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_fj2lv"]
 
@@ -37,6 +39,18 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("WeaponZone/Impact/AnimatedSprite2D:animation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"smack"]
 }
 
 [sub_resource type="Animation" id="Animation_g2f6u"]
@@ -176,6 +190,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("WeaponZone/Impact/AnimatedSprite2D:animation")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [&"smack"]
 }
 
 [sub_resource type="Animation" id="Animation_idrpp"]
@@ -452,7 +478,7 @@ states/idle/position = Vector2(388, 128)
 states/run/node = SubResource("AnimationNodeAnimation_wdxjh")
 states/run/position = Vector2(388, 256)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_ts13m"), "idle", "run", SubResource("AnimationNodeStateMachineTransition_mpbk0"), "run", "idle", SubResource("AnimationNodeStateMachineTransition_sa7m1"), "idle", "attack_slash", SubResource("AnimationNodeStateMachineTransition_1uo4e"), "attack_slash", "idle", SubResource("AnimationNodeStateMachineTransition_q68t7"), "idle", "attack_combo", SubResource("AnimationNodeStateMachineTransition_vjbbc"), "attack_combo", "idle", SubResource("AnimationNodeStateMachineTransition_uni00"), "idle", "hurt", SubResource("AnimationNodeStateMachineTransition_y8uio"), "idle", "death", SubResource("AnimationNodeStateMachineTransition_jsgky"), "hurt", "idle", SubResource("AnimationNodeStateMachineTransition_t1ssa"), "run", "death", SubResource("AnimationNodeStateMachineTransition_sunmt"), "attack_slash", "attack_back_slash", SubResource("AnimationNodeStateMachineTransition_dgsc2"), "attack_back_slash", "idle", SubResource("AnimationNodeStateMachineTransition_ruu62"), "idle", "attack_back_slash", SubResource("AnimationNodeStateMachineTransition_4er0o")]
-graph_offset = Vector2(-99, -53)
+graph_offset = Vector2(-92, -101)
 
 [node name="Warrior" type="CharacterBody2D"]
 z_index = 1
@@ -488,6 +514,9 @@ metadata/_edit_lock_ = true
 
 [node name="WeaponZone" parent="." instance=ExtResource("4_so2w1")]
 collision_layer = 2
+weapon = ExtResource("5_20h0f")
+
+[node name="Impact" parent="WeaponZone" instance=ExtResource("6_7qtlm")]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -511,3 +540,5 @@ bus = &"Character"
 script = ExtResource("8_fj2lv")
 
 [connection signal="area_shape_entered" from="WeaponZone" to="WeaponZone" method="_on_area_shape_entered"]
+
+[editable path="WeaponZone/Impact"]

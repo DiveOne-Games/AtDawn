@@ -36,6 +36,7 @@ scale = Vector2(1.5, 1.5)
 [node name="Destructible2" parent="." instance=ExtResource("4_m3agv")]
 position = Vector2(577, 495.00003)
 scale = Vector2(1.5, 1.5)
+type = 1
 
 [node name="SmokeCloud" parent="Destructible2" instance=ExtResource("6_pjc6b")]
 
