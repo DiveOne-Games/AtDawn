@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="Weapon" load_steps=2 format=3 uid="uid://b8w8gfudxatnf"]
+
+[ext_resource type="Script" uid="uid://dk80j38fn586n" path="res://Assets/Scripts/weapon.gd" id="1_8n2cy"]
+
+[resource]
+script = ExtResource("1_8n2cy")
+name = "Punch"
+min_damage = 1
+max_damage = 5
+hit_chance = 0.7
+crit_chance = 0.01
+metadata/_custom_type_script = "uid://dk80j38fn586n"

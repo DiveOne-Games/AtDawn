@@ -1,13 +1,11 @@
-[gd_scene load_steps=26 format=3 uid="uid://b65hlhk6rs4at"]
+[gd_scene load_steps=25 format=3 uid="uid://6ya3lsb1wm00"]
 
-[ext_resource type="Script" uid="uid://c0cn2w2y50dwh" path="res://Assets/Characters/player/melee_unit.gd" id="1_xbhcw"]
-[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_oey77"]
-[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_ahjs8"]
-[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_area.tscn" id="4_x53tj"]
-[ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="5_2846x"]
-[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/Resources/animations/anim_skeleton.res" id="6_ii12g"]
-[ext_resource type="Script" uid="uid://drj6b2dbkj0bd" path="res://Assets/Characters/player/patrol_nav2d.gd" id="7_wrc2c"]
-[ext_resource type="PackedScene" uid="uid://5tk7ooyurrrr" path="res://Assets/Characters/shared/react_zone.tscn" id="8_edq83"]
+[ext_resource type="Script" uid="uid://ct1lpxhexker7" path="res://Assets/Characters/controllers/player_controller_2d.gd" id="1_qkqlj"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_ae5d1"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_pvwe4"]
+[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_2d.tscn" id="4_qnowl"]
+[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/Resources/animations/anim_skeleton.res" id="6_pcb5u"]
+[ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_u1e6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]
 size = Vector2(18, 9.5)
@@ -131,50 +129,66 @@ states/skeleton_spawn/node = SubResource("AnimationNodeBlendTree_gc6vf")
 states/skeleton_spawn/position = Vector2(311, 100.64453)
 transitions = ["Start", "skeleton_spawn", SubResource("AnimationNodeStateMachineTransition_2wjqp"), "skeleton_spawn", "idle", SubResource("AnimationNodeStateMachineTransition_5k80c"), "idle", "anim_skeleton_walk", SubResource("AnimationNodeStateMachineTransition_pcb5u"), "anim_skeleton_walk", "idle", SubResource("AnimationNodeStateMachineTransition_qkqlj")]
 
-[node name="MeleeCharacter" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_us5hp"]
+radius = 90.0
+
+[node name="PlayerUnit" type="CharacterBody2D"]
 collision_mask = 2
 motion_mode = 1
-script = ExtResource("1_xbhcw")
+script = ExtResource("1_qkqlj")
+aggro_radius = 90.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 23.75)
 shape = SubResource("RectangleShape2D_ahoiv")
 
-[node name="HitBox" parent="." instance=ExtResource("2_oey77")]
+[node name="HitBox" parent="." instance=ExtResource("2_ae5d1")]
 position = Vector2(2, 6)
 scale = Vector2(1.06707, 0.836565)
 
-[node name="WeaponArea" parent="." instance=ExtResource("4_x53tj")]
-collision_mask = 2
-disable_shape = false
-
-[node name="ReactZone" parent="." instance=ExtResource("8_edq83")]
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_ug2o0")
-texture = ExtResource("3_ahjs8")
+texture = ExtResource("3_pvwe4")
 hframes = 17
 vframes = 5
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
-script = ExtResource("5_2846x")
+[node name="WeaponArea" parent="." instance=ExtResource("4_qnowl")]
+collision_mask = 2
+disable_shape = false
 
-[node name="Animator" type="AnimationPlayer" parent="."]
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+script = ExtResource("8_u1e6u")
+
+[node name="UnitAnimator" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
 libraries = {
 &"": SubResource("AnimationLibrary_1nw0n"),
-&"anim_skeleton": ExtResource("6_ii12g")
+&"anim_skeleton": ExtResource("6_pcb5u")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 unique_name_in_owner = true
 root_node = NodePath("%AnimationTree/..")
 tree_root = SubResource("AnimationNodeStateMachine_gc6vf")
-anim_player = NodePath("../Animator")
+anim_player = NodePath("../UnitAnimator")
 parameters/skeleton_spawn/Add2/add_amount = 0.9
 
-[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 10.0
-script = ExtResource("7_wrc2c")
+[node name="Navigator" type="Node2D" parent="."]
 
-[connection signal="target_updated" from="ReactZone" to="NavigationAgent2D" method="_on_react_zone_target_updated"]
+[node name="NavTimer" type="Timer" parent="Navigator"]
+wait_time = 0.25
+autostart = true
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Navigator"]
+path_desired_distance = 10.0
+
+[node name="AttackArea" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
+position = Vector2(5, 11)
+shape = SubResource("CircleShape2D_us5hp")
+debug_color = Color(0.84705883, 0.9764706, 0, 0.24313726)
+
+[connection signal="area_shape_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
+[connection signal="area_shape_exited" from="AttackArea" to="." method="_on_attack_area_body_exited"]
