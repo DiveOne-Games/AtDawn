@@ -2,6 +2,7 @@ class_name Player2D extends CharacterBody2D
 
 signal health_changed
 
+@export var stats: PlayerStats
 @export var health: int = 100 :
 	set(val):
 		health = val
@@ -16,7 +17,7 @@ var equipment : Array
 var facing_left := false
 var is_dead := false
 
-@onready var state_machine : BehaviorMachine = %BehaviorMachine
+@onready var state_machine : BehaviorMachine = $BehaviorMachine
 @onready var animator: AnimationPlayer = %AnimationPlayer
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var equipment_node : Node2D = %Equipment
@@ -53,6 +54,7 @@ func equip(item):
 
 func update_health(amount):
 	health += amount
+	# FIXME: Animation gets clipped by next state. timers have no effect. wtf?
 	state_machine.update_state(state_machine.hurt)
 	health_changed.emit()
 

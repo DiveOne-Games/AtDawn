@@ -9,12 +9,16 @@ var previous_state: Behavior
 var machine : BehaviorMachine
 
 
-func start():
+func start(old_state: Behavior = null):
 	character.animator.play(animation)
+	if old_state:
+		if not old_state.behavior_name == behavior_name \
+		and not old_state == machine.hurt:
+			previous_state = old_state
 
 
 func end():
-	pass
+	await character.animator.animation_finished
 
 
 func update(_delta: float) -> Behavior:
@@ -22,8 +26,8 @@ func update(_delta: float) -> Behavior:
 
 
 func physics_update(_delta: float) -> Behavior:
-	if character.health <= 0 and not character.is_dead:
-		return machine.death
+	#if character.health <= 0 and not character.is_dead:
+		#return machine.death
 	return null
 
 

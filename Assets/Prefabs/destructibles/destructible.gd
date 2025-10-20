@@ -24,7 +24,7 @@ func _ready():
 	sprite2d.frame_coords = sprite_frame_map[type]
 
 
-func _process(delta):
+func _process(_delta):
 	if Engine.is_editor_hint():
 		notify_property_list_changed()
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://cckn53yr6x0rt"]
+[gd_scene load_steps=15 format=4 uid="uid://cckn53yr6x0rt"]
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_83oeu"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_pexl1"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://wj1nwiei8his" path="res://Assets/Prefabs/traps/hazard_trap.tscn" id="6_v4uxw"]
 [ext_resource type="PackedScene" uid="uid://ccw2h22w7a8w6" path="res://Assets/UI/floating_text.tscn" id="6_ximrc"]
 [ext_resource type="PackedScene" uid="uid://k8fmqlpbjhkj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.tscn" id="7_1ps7i"]
-[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="7_7e0he"]
+[ext_resource type="PackedScene" uid="uid://p5r27gn3d6hn" path="res://Assets/Characters/Skeleton/skeleton.tscn" id="7_7e0he"]
 [ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/Characters/undead/undead.tscn" id="12_f3jnf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3jnf"]
@@ -18,11 +18,6 @@ size = Vector2(960, 1080)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1ps7i"]
 size = Vector2(970, 1080)
-
-[sub_resource type="NavigationPolygon" id="NavigationPolygon_7e0he"]
-vertices = PackedVector2Array(433.07813, 882.02344, 31.078125, 882.96875, 31.90625, 782.9531, 433.90625, 781.03906)
-polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(22, 773, 21, 893, 443, 892, 444, 771)])
 
 [node name="CryptsHall" type="Node2D"]
 y_sort_enabled = true
@@ -171,19 +166,16 @@ sfx_volume = -1.6
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="Skeleton" parent="Enemies" node_paths=PackedStringArray("patrol_destination") instance=ExtResource("7_7e0he")]
-position = Vector2(373, 798)
-patrol_destination = NodePath("../Marker2D")
-health = 100
-
-[node name="Marker2D" type="Marker2D" parent="Enemies"]
-position = Vector2(117, 827)
-
 [node name="Undead" parent="Enemies" instance=ExtResource("12_f3jnf")]
 position = Vector2(349, 941)
+collision_layer = 32
+collision_mask = 19
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
-navigation_polygon = SubResource("NavigationPolygon_7e0he")
+[node name="Skeleton" parent="Enemies" instance=ExtResource("7_7e0he")]
+position = Vector2(81, 800)
+collision_layer = 32
+collision_mask = 19
+speed = 100.0
 
 [connection signal="object_destroyed" from="Items/Crate" to="Items/Crate/FloatingText" method="_on_destructible_object_destroyed"]
 [connection signal="object_destroyed" from="Items/Crate" to="Items/Crate/SmokeCloud" method="_on_destructible_object_destroyed"]

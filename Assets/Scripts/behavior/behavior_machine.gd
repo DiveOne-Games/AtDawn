@@ -59,7 +59,9 @@ func initialize_behaviors(b_init = 0):
 
 
 func update_state(next_state: Behavior):
+	var prior: Behavior = null
 	if current_state:
 		current_state.end()
+		prior = current_state
 	current_state = next_state
-	current_state.start()
+	current_state.start(prior)

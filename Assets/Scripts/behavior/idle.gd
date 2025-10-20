@@ -6,8 +6,8 @@ class_name IdleBehavior extends Behavior
 @export var patrol: Behavior
 
 
-func start():
-	super()
+func start(old_state: Behavior = null):
+	super(old_state)
 
 
 func end():

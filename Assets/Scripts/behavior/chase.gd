@@ -9,8 +9,8 @@ var max_distance: float = 10 	## Max distance from [member origin] unit will fol
 @export var idle: Behavior
 
 
-func start():
-	super()
+func start(old_state: Behavior = null):
+	super(old_state)
 
 
 func end():

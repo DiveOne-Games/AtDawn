@@ -4,7 +4,7 @@ class_name AudioListenerArea extends Area2D
 signal shape_changed
 
 @export var shape_size: Vector2 :
-	set(val): update_shape
+	set(val): update_shape(val)
 @export var active: bool = false
 
 @onready var shape2d: CollisionShape2D = %CollisionShape2D

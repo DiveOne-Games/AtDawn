@@ -18,8 +18,8 @@ func update(delta: float) -> Behavior:
 	return null
 
 
-func start():
-	super()
+func start(old_state: Behavior = null):
+	super(old_state)
 	random_patrol()
 
 

@@ -1,26 +1,39 @@
-[gd_scene load_steps=28 format=3 uid="uid://bt5rpt2qc4lbg"]
+[gd_scene load_steps=31 format=3 uid="uid://bt5rpt2qc4lbg"]
 
 [ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/Characters/player2d.gd" id="1_3wt10"]
 [ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/Characters/Zombie/undead_sprites_all.png" id="2_3wt10"]
-[ext_resource type="Script" uid="uid://d0eke6awpxrng" path="res://Assets/Scripts/behavior/behavior_machine.gd" id="3_3wt10"]
+[ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="2_wkx1d"]
 [ext_resource type="Script" uid="uid://psdyf3ckvdta" path="res://Assets/Scripts/behavior/character_ctrl.gd" id="3_7cv5a"]
+[ext_resource type="Texture2D" uid="uid://b8akpe7tyclgt" path="res://Assets/StaticAssets/Environments/Cemetery/Characters/bat/Undead-all-animations-96x96-each row is a different animation-from top to bottom-Idle-Idle2-walk-atk-hurt-death.png" id="3_cvawd"]
 [ext_resource type="Script" uid="uid://bnqmcdui30ia6" path="res://Assets/Scripts/Characters/face.gd" id="3_grklj"]
-[ext_resource type="Script" uid="uid://d0mjoprxtttsn" path="res://Assets/Scripts/behavior/patrol.gd" id="4_l1spx"]
 [ext_resource type="Resource" uid="uid://b8w8gfudxatnf" path="res://Assets/Resources/Items/weapons/punch.tres" id="5_jevvi"]
 [ext_resource type="Animation" uid="uid://d2boox1aa8pri" path="res://Assets/Resources/animations/anim_undead_RESET.res" id="5_wlej6"]
 [ext_resource type="Animation" uid="uid://cdg6gs6qt3val" path="res://Assets/Resources/animations/anim_undead_walk.res" id="6_7cv5a"]
 [ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_2d.tscn" id="6_mlify"]
 [ext_resource type="Script" uid="uid://ryg4ifudumer" path="res://Assets/Scripts/velocity.gd" id="6_w4kb6"]
-[ext_resource type="Script" uid="uid://dd06154u11qg5" path="res://Assets/Scripts/behavior/idle.gd" id="10_2ka5t"]
-[ext_resource type="Script" uid="uid://5qutdxbt7pfk" path="res://Assets/Scripts/behavior/chase.gd" id="10_iuu1t"]
 [ext_resource type="PackedScene" uid="uid://5tk7ooyurrrr" path="res://Assets/Characters/shared/react_zone.tscn" id="12_5da4c"]
-[ext_resource type="Script" uid="uid://fqrjgxorcsk1" path="res://Assets/Scripts/behavior/attack.gd" id="12_ducu6"]
-[ext_resource type="Script" uid="uid://va8iotd07541" path="res://Assets/Scripts/behavior/death.gd" id="16_6ixtw"]
-[ext_resource type="Script" uid="uid://dpcd62xplvmdc" path="res://Assets/Scripts/behavior/hurt.gd" id="16_614bx"]
+[ext_resource type="PackedScene" uid="uid://beeoekig70q4o" path="res://Assets/Prefabs/behavior/behavior_machine.tscn" id="12_6ixtw"]
+[ext_resource type="PackedScene" uid="uid://c361obudontxu" path="res://Assets/Prefabs/behavior/chase.tscn" id="13_e0lwe"]
+[ext_resource type="PackedScene" uid="uid://cay4ak2gn22pu" path="res://Assets/Prefabs/behavior/attack.tscn" id="14_wkx1d"]
+[ext_resource type="PackedScene" uid="uid://ckbbg7l31od8a" path="res://Assets/Prefabs/behavior/idle.tscn" id="15_cvawd"]
+[ext_resource type="PackedScene" uid="uid://dk4wlgy0qgxsy" path="res://Assets/Prefabs/behavior/hurt.tscn" id="16_wtnpn"]
 [ext_resource type="Script" uid="uid://ciutknmu4ljw1" path="res://Assets/Characters/hit_box.gd" id="17_614bx"]
+[ext_resource type="PackedScene" uid="uid://ctnihc2a51ncc" path="res://Assets/Prefabs/behavior/patrol.tscn" id="17_kuwtn"]
+[ext_resource type="PackedScene" uid="uid://dlf6faof3gai6" path="res://Assets/Prefabs/behavior/death.tscn" id="18_or24n"]
+
+[sub_resource type="Resource" id="Resource_wtnpn"]
+script = ExtResource("2_wkx1d")
+name = "Undead"
+health = 15
+speed = 15.0
+texture = ExtResource("3_cvawd")
+metadata/_custom_type_script = "uid://sdivydjiascd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxu3u"]
 size = Vector2(20, 14)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_614bx"]
+height = 44.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3wt10"]
 _data = {
@@ -55,9 +68,10 @@ tracks/1/keys = {
 "values": [true, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_l1spx"]
+[sub_resource type="Animation" id="Animation_6ixtw"]
+resource_name = "dead"
 length = 0.8
-loop_mode = 1
+step = 0.033
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -65,10 +79,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4, 0.46666667, 0.5333333, 0.6, 0.6666666, 0.73333335),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 3)]
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_614bx"]
@@ -87,10 +101,9 @@ tracks/0/keys = {
 "values": [Vector2i(0, 2), Vector2i(1, 2), Vector2i(2, 2), Vector2i(3, 2), Vector2i(4, 2), Vector2i(5, 2), Vector2i(6, 2), Vector2i(7, 2), Vector2i(8, 2)]
 }
 
-[sub_resource type="Animation" id="Animation_6ixtw"]
-resource_name = "dead"
+[sub_resource type="Animation" id="Animation_l1spx"]
 length = 0.8
-step = 0.033
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -98,10 +111,10 @@ tracks/0/path = NodePath("Sprite2D:frame_coords")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4, 0.46666667, 0.5333333, 0.6, 0.6666666, 0.73333335),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1), Vector2i(7, 1), Vector2i(8, 1), Vector2i(9, 1), Vector2i(10, 1), Vector2i(11, 1)]
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3), Vector2i(7, 3)]
 }
 
 [sub_resource type="Animation" id="Animation_e0lwe"]
@@ -131,12 +144,10 @@ _data = {
 &"walk": ExtResource("6_7cv5a")
 }
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_614bx"]
-height = 44.0
-
 [node name="MeleeUnit" type="CharacterBody2D" groups=["enemies", "undead"]]
 collision_mask = 18
 script = ExtResource("1_3wt10")
+stats = SubResource("Resource_wtnpn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 18)
@@ -150,6 +161,18 @@ character = NodePath("..")
 script = ExtResource("3_7cv5a")
 character = NodePath("..")
 
+[node name="HitBox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+collision_layer = 33
+collision_mask = 2
+script = ExtResource("17_614bx")
+character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+shape = SubResource("CapsuleShape2D_614bx")
+
+[node name="ReactZone" parent="." node_paths=PackedStringArray("character") instance=ExtResource("12_5da4c")]
+character = NodePath("..")
+
 [node name="Equipment" type="Node2D" parent="."]
 unique_name_in_owner = true
 
@@ -159,8 +182,31 @@ collision_layer = 33
 collision_mask = 2
 item = ExtResource("5_jevvi")
 
-[node name="ReactZone" parent="." node_paths=PackedStringArray("character") instance=ExtResource("12_5da4c")]
-character = NodePath("..")
+[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death") instance=ExtResource("12_6ixtw")]
+initial_state = NodePath("Idle")
+hurt = NodePath("Hurt")
+death = NodePath("Death")
+
+[node name="Chase" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("13_e0lwe")]
+idle = NodePath("../Idle")
+
+[node name="Attack" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("14_wkx1d")]
+idle = NodePath("../Idle")
+
+[node name="Idle" parent="BehaviorMachine" node_paths=PackedStringArray("attack", "patrol") instance=ExtResource("15_cvawd")]
+attack = NodePath("../Attack")
+patrol = NodePath("../Patrol")
+
+[node name="Hurt" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "death", "attack") instance=ExtResource("16_wtnpn")]
+idle = NodePath("../Idle")
+death = NodePath("../Death")
+attack = NodePath("../Attack")
+
+[node name="Patrol" parent="BehaviorMachine" node_paths=PackedStringArray("chase", "idle") instance=ExtResource("17_kuwtn")]
+chase = NodePath("../Chase")
+idle = NodePath("../Idle")
+
+[node name="Death" parent="BehaviorMachine" instance=ExtResource("18_or24n")]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
@@ -176,70 +222,10 @@ libraries = {
 &"undead": SubResource("AnimationLibrary_grklj")
 }
 
-[node name="BehaviorMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death")]
-unique_name_in_owner = true
-script = ExtResource("3_3wt10")
-initial_state = NodePath("Idle")
-hurt = NodePath("Hurt")
-death = NodePath("Death")
-
-[node name="Patrol" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("chase", "idle")]
-script = ExtResource("4_l1spx")
-max_duration = 3.0
-chase = NodePath("../Chase")
-idle = NodePath("../Idle")
-behavior_name = "Patrol"
-animation = "undead/walk"
-
-[node name="Chase" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("idle")]
-script = ExtResource("10_iuu1t")
-idle = NodePath("../Idle")
-behavior_name = "Chase"
-animation = "undead/walk"
-
-[node name="Idle" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("attack", "patrol")]
-script = ExtResource("10_2ka5t")
-is_patrol = true
-attack = NodePath("../Attack")
-patrol = NodePath("../Patrol")
-behavior_name = "Idle"
-animation = "undead/idle"
-
-[node name="Hurt" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "death")]
-script = ExtResource("16_614bx")
-idle = NodePath("../Idle")
-death = NodePath("../Death")
-behavior_name = "Hurt"
-animation = "undead/hurt"
-resume = true
-
-[node name="Death" type="Node" parent="BehaviorMachine"]
-script = ExtResource("16_6ixtw")
-behavior_name = "Death"
-animation = "undead/dead"
-
-[node name="Attack" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "hurt", "death")]
-script = ExtResource("12_ducu6")
-idle = NodePath("../Idle")
-hurt = NodePath("../Hurt")
-death = NodePath("../Death")
-behavior_name = "Attack"
-animation = "undead/attack"
-resume = true
-
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="HitBox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
-collision_layer = 33
-collision_mask = 2
-script = ExtResource("17_614bx")
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CapsuleShape2D_614bx")
-
 [connection signal="velocity_changed" from="Velocity" to="Sprite2D" method="_on_velocity_changed"]
-[connection signal="target_updated" from="ReactZone" to="." method="_on_react_zone_target_updated"]
 [connection signal="area_shape_entered" from="HitBox" to="HitBox" method="_on_area_shape_entered"]
+[connection signal="target_updated" from="ReactZone" to="." method="_on_react_zone_target_updated"]
 
 [editable path="ReactZone"]

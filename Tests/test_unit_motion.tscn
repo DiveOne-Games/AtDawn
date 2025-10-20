@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=4 uid="uid://cbrb13etfmoil"]
+[gd_scene load_steps=6 format=4 uid="uid://cbrb13etfmoil"]
 
 [ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/Resources/tileset_cemetery.tres" id="1_4qj3p"]
 [ext_resource type="TileSet" uid="uid://dv7ouw4syfwei" path="res://Assets/Resources/tilesets/props_cemetery.tres" id="2_af68o"]
 [ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/Characters/undead/undead.tscn" id="2_pkfeb"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="4_q2k7l"]
+[ext_resource type="PackedScene" uid="uid://p5r27gn3d6hn" path="res://Assets/Characters/Skeleton/skeleton.tscn" id="5_14na6"]
 
 [node name="TestUnitMotion" type="Node2D"]
 
@@ -17,10 +18,14 @@ tile_set = ExtResource("2_af68o")
 
 [node name="Undead" parent="." instance=ExtResource("2_pkfeb")]
 position = Vector2(731, 397)
-health = 10
+health = 25
 speed = 60.0
 initial_state = 1
 
 [node name="Warrior" parent="." instance=ExtResource("4_q2k7l")]
 position = Vector2(970, 441)
 collision_mask = 17
+
+[node name="Skeleton" parent="." instance=ExtResource("5_14na6")]
+position = Vector2(1125, 556)
+health = 20

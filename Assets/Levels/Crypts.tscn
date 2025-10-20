@@ -4,7 +4,7 @@
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="2_uab7c"]
 [ext_resource type="TileSet" uid="uid://dl4n23hwgtbra" path="res://Assets/Resources/tileset_crypt_props.tres" id="3_5qq66"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="4_kc63l"]
-[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="5_1pnjh"]
+[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/auto_skeleton.tscn" id="5_1pnjh"]
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="6_1nhhc"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/traps/face_statue_trap.tscn" id="6_ga3mh"]
 [ext_resource type="PackedScene" uid="uid://cvf2c5d3q8gke" path="res://Assets/Prefabs/boss_door.tscn" id="6_rciev"]

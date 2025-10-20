@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="5_3ffsk"]
 [ext_resource type="PackedScene" uid="uid://686agt5r134h" path="res://Assets/Prefabs/collectible.tscn" id="6_083hl"]
 [ext_resource type="PackedScene" uid="uid://bcggc4gr4euh0" path="res://Assets/Prefabs/spawn_point.tscn" id="7_uo0rb"]
-[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="8_y1myx"]
+[ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/auto_skeleton.tscn" id="8_y1myx"]
 [ext_resource type="PackedScene" uid="uid://my1r2se2pdhh" path="res://Assets/Prefabs/traps/face_statue_trap.tscn" id="9_8d0o7"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="10_4uvon"]
 [ext_resource type="AnimationLibrary" uid="uid://cr71nvcgto2er" path="res://Assets/Resources/scene_transitions.res" id="11_oastu"]
