@@ -1,0 +1,12 @@
+[gd_scene load_steps=2 format=3 uid="uid://ctnihc2a51ncc"]
+
+[ext_resource type="Script" uid="uid://d0mjoprxtttsn" path="res://Assets/Scripts/behavior/patrol.gd" id="1_10vey"]
+
+[node name="Patrol" type="Node" node_paths=PackedStringArray("chase", "idle")]
+script = ExtResource("1_10vey")
+max_duration = 3.0
+chase = NodePath("")
+idle = NodePath("")
+behavior_name = "Patrol"
+animation = "undead/walk"
+resume = true
