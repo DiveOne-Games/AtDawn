@@ -216,7 +216,7 @@ resume = true
 [node name="Death" type="Node" parent="BehaviorMachine"]
 script = ExtResource("16_6ixtw")
 behavior_name = "Death"
-animation = "undead/death"
+animation = "undead/dead"
 
 [node name="Attack" type="Node" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "hurt", "death")]
 script = ExtResource("12_ducu6")

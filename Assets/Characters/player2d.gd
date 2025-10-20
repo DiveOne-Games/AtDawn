@@ -12,13 +12,16 @@ signal health_changed
 var direction: Vector2
 var origin : Vector2
 var target : CharacterBody2D
-var facing_left := false
 var equipment : Array
+var facing_left := false
+var is_dead := false
 
 @onready var state_machine : BehaviorMachine = %BehaviorMachine
 @onready var animator: AnimationPlayer = %AnimationPlayer
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var equipment_node : Node2D = %Equipment
+@onready var hitbox : Area2D = $HitBox
+@onready var shape2d: CollisionShape2D = $CollisionShape2D
 
 
 func _ready():
@@ -30,10 +33,12 @@ func _ready():
 
 
 func _physics_process(_delta: float) -> void:
+	if is_dead: return
 	direction = get_last_motion()
 	if target:
 		sprite.flip_h = target.global_position.x < global_position.x
 	facing_left = sprite.flip_h
+
 	move_and_slide()
 
 
@@ -48,4 +53,16 @@ func equip(item):
 
 func update_health(amount):
 	health += amount
+	state_machine.update_state(state_machine.hurt)
 	health_changed.emit()
+
+
+func die():
+	is_dead = true
+	target = null
+	velocity = Vector2.ZERO
+	hitbox.monitorable = false
+	hitbox.monitoring = false
+	shape2d.disabled = true
+	for item in equipment:
+		item.disable()

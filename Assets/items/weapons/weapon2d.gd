@@ -21,6 +21,10 @@ func equip(_owner: CharacterBody2D):
 	user = _owner
 
 
+func disable():
+	monitoring = false
+
+
 func _on_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
 	if is_instance_of(area, HitBox):
 		print_debug("Weapon2D has hit ", area)

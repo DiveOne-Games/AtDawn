@@ -14,5 +14,7 @@ func _ready():
 
 
 func _process(_delta: float) -> void:
+	if character.is_dead:
+		return
 	if not velocity == character.velocity:
 		velocity = character.velocity

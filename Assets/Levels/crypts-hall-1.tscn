@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://cckn53yr6x0rt"]
+[gd_scene load_steps=16 format=4 uid="uid://cckn53yr6x0rt"]
 
 [ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_83oeu"]
 [ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_pexl1"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://ccw2h22w7a8w6" path="res://Assets/UI/floating_text.tscn" id="6_ximrc"]
 [ext_resource type="PackedScene" uid="uid://k8fmqlpbjhkj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.tscn" id="7_1ps7i"]
 [ext_resource type="PackedScene" uid="uid://dk4cw2yqd5jnp" path="res://Assets/Characters/Skeleton/Skeleton.tscn" id="7_7e0he"]
+[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/Characters/undead/undead.tscn" id="12_f3jnf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_f3jnf"]
 size = Vector2(960, 1080)
@@ -177,6 +178,9 @@ health = 100
 
 [node name="Marker2D" type="Marker2D" parent="Enemies"]
 position = Vector2(117, 827)
+
+[node name="Undead" parent="Enemies" instance=ExtResource("12_f3jnf")]
+position = Vector2(349, 941)
 
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
 navigation_polygon = SubResource("NavigationPolygon_7e0he")
