@@ -3,11 +3,11 @@ class_name Player2D extends CharacterBody2D
 signal health_changed
 
 @export var stats: PlayerStats
-@export var health: int = 100 :
+@export var health: int = 25 :
 	set(val):
 		health = val
 		health_changed.emit()
-@export var speed: float = 15
+@export var speed: float = 60
 @export_enum('Idle', 'Patrol') var initial_state: int
 
 var direction: Vector2

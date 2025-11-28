@@ -26,8 +26,6 @@ func update(_delta: float) -> Behavior:
 
 
 func physics_update(_delta: float) -> Behavior:
-	#if character.health <= 0 and not character.is_dead:
-		#return machine.death
 	return null
 
 

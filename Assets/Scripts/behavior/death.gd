@@ -1,4 +1,4 @@
-extends Behavior
+class_name DeathBehavior extends Behavior
 
 
 func start(old_state: Behavior = null):

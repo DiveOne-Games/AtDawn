@@ -26,7 +26,7 @@ func disable():
 
 
 func _on_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if area is HitBox:
 		print_debug("Weapon2D has hit ", area)
 		vfx.play("smack")
 		var dmg = randi_range(item.min_damage, item.max_damage)

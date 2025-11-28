@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://defsqdc4icv76"]
+[gd_scene load_steps=16 format=3 uid="uid://defsqdc4icv76"]
 
 [ext_resource type="Texture2D" uid="uid://ct8m3voiacagx" path="res://Assets/StaticAssets/Environments/Crypt/Props/candle_burning(slower).png" id="1_8cxfn"]
+[ext_resource type="Texture2D" uid="uid://qldhx3aa7scu" path="res://Assets/StaticAssets/Environments/Cemetery/Props/props by individual sprites/candle 1 - 4.png" id="2_q4qfa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_he2ta"]
 atlas = ExtResource("1_8cxfn")
@@ -104,4 +105,7 @@ hframes = 12
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_f1fjf")
 autoplay = "default"
-frame_progress = 0.675341
+frame_progress = 0.38664967
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+texture = ExtResource("2_q4qfa")

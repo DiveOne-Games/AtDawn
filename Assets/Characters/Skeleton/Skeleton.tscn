@@ -373,10 +373,11 @@ shape = SubResource("CapsuleShape2D_614bx")
 [node name="ReactZone" parent="." node_paths=PackedStringArray("character") instance=ExtResource("6_dryux")]
 character = NodePath("..")
 
-[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death") instance=ExtResource("12_n850w")]
+[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death", "idle") instance=ExtResource("12_n850w")]
 initial_state = NodePath("Idle")
 hurt = NodePath("Hurt")
 death = NodePath("Death")
+idle = NodePath("Idle")
 
 [node name="Chase" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("13_tm1n0")]
 idle = NodePath("../Idle")

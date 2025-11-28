@@ -8,6 +8,7 @@ signal target_acquired(unit: CharacterBody2D)
 @export_category("Special Transitions")
 @export var hurt : Behavior
 @export var death : Behavior
+@export var idle : Behavior
 
 var character : CharacterBody2D
 var target : CharacterBody2D :
@@ -49,7 +50,6 @@ func _unhandled_input(event):
 func initialize_behaviors(b_init = 0):
 	behaviors = find_children("*", "Behavior", false) as Array[Behavior]
 	var selected = behavior_map.get(b_init)
-	print_debug("Found behaviors: ", behaviors)
 	for b in behaviors:
 		b.character = character
 		b.machine = self

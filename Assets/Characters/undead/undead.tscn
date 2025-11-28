@@ -24,8 +24,8 @@
 [sub_resource type="Resource" id="Resource_wtnpn"]
 script = ExtResource("2_wkx1d")
 name = "Undead"
-health = 15
-speed = 15.0
+health = 25
+speed = 60.0
 texture = ExtResource("3_cvawd")
 metadata/_custom_type_script = "uid://sdivydjiascd"
 
@@ -177,25 +177,28 @@ character = NodePath("..")
 unique_name_in_owner = true
 
 [node name="Weapon2D" parent="Equipment" instance=ExtResource("6_mlify")]
-position = Vector2(-5, -3)
+position = Vector2(14, 8)
 collision_layer = 33
 collision_mask = 2
 item = ExtResource("5_jevvi")
 
-[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death") instance=ExtResource("12_6ixtw")]
+[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death", "idle") instance=ExtResource("12_6ixtw")]
 initial_state = NodePath("Idle")
 hurt = NodePath("Hurt")
 death = NodePath("Death")
+idle = NodePath("Idle")
 
-[node name="Chase" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("13_e0lwe")]
+[node name="Chase" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "attack") instance=ExtResource("13_e0lwe")]
 idle = NodePath("../Idle")
+attack = NodePath("../Attack")
 
 [node name="Attack" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("14_wkx1d")]
 idle = NodePath("../Idle")
 
-[node name="Idle" parent="BehaviorMachine" node_paths=PackedStringArray("attack", "patrol") instance=ExtResource("15_cvawd")]
+[node name="Idle" parent="BehaviorMachine" node_paths=PackedStringArray("attack", "patrol", "chase") instance=ExtResource("15_cvawd")]
 attack = NodePath("../Attack")
 patrol = NodePath("../Patrol")
+chase = NodePath("../Chase")
 
 [node name="Hurt" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "death", "attack") instance=ExtResource("16_wtnpn")]
 idle = NodePath("../Idle")

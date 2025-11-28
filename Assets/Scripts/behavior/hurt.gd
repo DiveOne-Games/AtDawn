@@ -4,6 +4,8 @@ class_name HurtBehavior extends Behavior
 @export var idle: Behavior
 @export var death: Behavior
 @export var attack: Behavior
+var stagger_delay : float = 1
+var counter = 0
 
 func start(old_state: Behavior = null):
 	super(old_state)
@@ -11,11 +13,13 @@ func start(old_state: Behavior = null):
 
 func end():
 	super()
+	counter = 0
 
 
 func physics_update(_delta: float) -> Behavior:
-	if character.target:
-		return attack
 	if character.health <= 0:
 		return death
+	if counter >= stagger_delay:
+		return idle
+	counter += _delta
 	return null
