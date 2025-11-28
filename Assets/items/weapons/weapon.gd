@@ -4,6 +4,7 @@ enum WeaponType { Melee, Projectile }
 enum DamageType { Physical, Magic }
 
 @export var name: String
+@export var texture: Texture2D
 @export var min_damage: int
 @export var max_damage: int
 @export_range(0,1,0.01) var hit_chance: float

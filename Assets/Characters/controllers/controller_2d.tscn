@@ -1,0 +1,42 @@
+[gd_scene load_steps=9 format=3 uid="uid://4xtmmjmm8v2h"]
+
+[ext_resource type="Script" uid="uid://yb5x8uku68vj" path="res://Assets/Characters/controllers/controller_2d.gd" id="1_0f78q"]
+[ext_resource type="PackedScene" uid="uid://beeoekig70q4o" path="res://Assets/Prefabs/behavior/behavior_machine.tscn" id="2_lrla1"]
+[ext_resource type="PackedScene" uid="uid://ckbbg7l31od8a" path="res://Assets/Prefabs/behavior/idle.tscn" id="3_mbx8x"]
+[ext_resource type="PackedScene" uid="uid://cay4ak2gn22pu" path="res://Assets/Prefabs/behavior/attack.tscn" id="4_dcc71"]
+[ext_resource type="PackedScene" uid="uid://dlf6faof3gai6" path="res://Assets/Prefabs/behavior/death.tscn" id="5_t7mun"]
+[ext_resource type="PackedScene" uid="uid://dk4wlgy0qgxsy" path="res://Assets/Prefabs/behavior/hurt.tscn" id="6_1ecaf"]
+[ext_resource type="Script" uid="uid://d07sqmd5w1ojf" path="res://Assets/Scripts/behavior/move.gd" id="7_lrla1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivauu"]
+radius = 12.0
+height = 46.0
+
+[node name="Controller2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+script = ExtResource("1_0f78q")
+state_machine = NodePath("BehaviorMachine")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ivauu")
+
+[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death", "idle") instance=ExtResource("2_lrla1")]
+initial_state = NodePath("Idle")
+hurt = NodePath("Hurt")
+death = NodePath("Death")
+idle = NodePath("Idle")
+
+[node name="Idle" parent="BehaviorMachine" node_paths=PackedStringArray("attack") instance=ExtResource("3_mbx8x")]
+attack = NodePath("../Attack")
+animation = "idle"
+
+[node name="Attack" parent="BehaviorMachine" instance=ExtResource("4_dcc71")]
+animation = "attack"
+
+[node name="Death" parent="BehaviorMachine" instance=ExtResource("5_t7mun")]
+animation = "dead"
+
+[node name="Hurt" parent="BehaviorMachine" instance=ExtResource("6_1ecaf")]
+animation = "hurt"
+
+[node name="Move" type="Node" parent="BehaviorMachine"]
+script = ExtResource("7_lrla1")
