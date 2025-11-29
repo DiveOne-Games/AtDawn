@@ -1,0 +1,1 @@
+class_name HurtState extends PlayState

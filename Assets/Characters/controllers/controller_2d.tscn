@@ -1,18 +1,31 @@
-[gd_scene load_steps=17 format=3 uid="uid://4xtmmjmm8v2h"]
+[gd_scene load_steps=22 format=3 uid="uid://4xtmmjmm8v2h"]
 
 [ext_resource type="Script" uid="uid://yb5x8uku68vj" path="res://Assets/characters/controllers/controller_2d.gd" id="1_0f78q"]
 [ext_resource type="Script" uid="uid://noxpenaiqt7o" path="res://Assets/Scripts/camera.gd" id="2_8gq7q"]
 [ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/characters/Warrior/Sprites/warrior-all.png" id="2_kc6vb"]
 [ext_resource type="PackedScene" uid="uid://br2ksuobaey7g" path="res://Assets/weapons/blade/blade.tscn" id="3_8gq7q"]
+[ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="3_ehj3a"]
 [ext_resource type="Script" uid="uid://c010qahwsyktf" path="res://Assets/characters/player/state_machine/states/run.gd" id="4_rj4bc"]
 [ext_resource type="AnimationLibrary" uid="uid://bmb7oo8dmb3w8" path="res://Assets/resources/animations/player/full.res" id="4_s3ihi"]
 [ext_resource type="Script" uid="uid://dxvugctpwibq8" path="res://Assets/characters/player/state_machine/states/idle.gd" id="4_ye7au"]
+[ext_resource type="PackedScene" uid="uid://c6g1kwrkllsks" path="res://Assets/characters/shared/hitboxes/hitbox_2d.tscn" id="5_7usag"]
 [ext_resource type="Script" uid="uid://c02nlt0qik5th" path="res://Assets/characters/player/state_machine/state_machine.gd" id="8_kc6vb"]
-[ext_resource type="Script" uid="uid://geq4u5r3w4mx" path="res://Assets/characters/player/state_machine/light_attack.gd" id="10_s3ihi"]
-[ext_resource type="Script" uid="uid://c573dpgc0qx6v" path="res://Assets/characters/player/state_machine/combat_state.gd" id="11_b3xas"]
-[ext_resource type="Script" uid="uid://ek28k0iwfgv1" path="res://Assets/characters/player/state_machine/medium_attack_state.gd" id="11_y3s1m"]
-[ext_resource type="Script" uid="uid://cq7qgltv7i1qu" path="res://Assets/characters/player/state_machine/heavy_attack_state.gd" id="12_ehj3a"]
-[ext_resource type="Script" uid="uid://deltr1w1hvslt" path="res://Assets/characters/player/state_machine/combo_attack_state.gd" id="13_7usag"]
+[ext_resource type="Script" uid="uid://geq4u5r3w4mx" path="res://Assets/characters/player/state_machine/states/light_attack.gd" id="10_s3ihi"]
+[ext_resource type="Script" uid="uid://c573dpgc0qx6v" path="res://Assets/characters/player/state_machine/states/combat_state.gd" id="11_b3xas"]
+[ext_resource type="Script" uid="uid://ek28k0iwfgv1" path="res://Assets/characters/player/state_machine/states/medium_attack_state.gd" id="11_y3s1m"]
+[ext_resource type="Script" uid="uid://cq7qgltv7i1qu" path="res://Assets/characters/player/state_machine/states/heavy_attack_state.gd" id="12_ehj3a"]
+[ext_resource type="Script" uid="uid://deltr1w1hvslt" path="res://Assets/characters/player/state_machine/states/combo_attack_state.gd" id="13_7usag"]
+[ext_resource type="Script" uid="uid://b50y4bly515d6" path="res://Assets/characters/player/state_machine/states/death_state.gd" id="16_m8byq"]
+[ext_resource type="Script" uid="uid://cysdfdvf22uuh" path="res://Assets/characters/player/state_machine/states/hurt_state.gd" id="17_shno7"]
+
+[sub_resource type="Resource" id="Resource_7usag"]
+script = ExtResource("3_ehj3a")
+name = "Galin"
+energy = 100
+health = 300
+speed = 400.0
+avatar = ExtResource("2_kc6vb")
+metadata/_custom_type_script = "uid://sdivydjiascd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivauu"]
 radius = 12.0
@@ -42,6 +55,7 @@ _data = {
 collision_layer = 2
 collision_mask = 17
 script = ExtResource("1_0f78q")
+stats = SubResource("Resource_7usag")
 animator = NodePath("AnimationPlayer")
 audio = NodePath("AudioStreamPlayer2D")
 state_machine = NodePath("StateMachine")
@@ -64,7 +78,9 @@ position = Vector2(2, -2)
 texture = ExtResource("2_kc6vb")
 hframes = 22
 vframes = 7
-frame = 88
+frame = 132
+
+[node name="Hitbox2D" parent="." instance=ExtResource("5_7usag")]
 
 [node name="Equipment" type="Node2D" parent="."]
 
@@ -79,9 +95,11 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "hurt_state", "death_state")]
 script = ExtResource("8_kc6vb")
 initial_state = NodePath("Idle")
+hurt_state = NodePath("Hurt")
+death_state = NodePath("Death")
 
 [node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "combat_state")]
 script = ExtResource("4_ye7au")
@@ -89,12 +107,12 @@ animation = "full/idle"
 move_state = NodePath("../Run")
 combat_state = NodePath("../CombatState")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "combat_state", "character")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("character", "move_state", "combat_state")]
 script = ExtResource("4_rj4bc")
 animation = "full/run"
+character = NodePath("../..")
 move_state = NodePath("../Idle")
 combat_state = NodePath("../CombatState")
-character = NodePath("../..")
 
 [node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
 script = ExtResource("11_b3xas")
@@ -139,3 +157,14 @@ heavy_attack = NodePath("../HeavyAttack")
 combo = NodePath(".")
 animation = "full/attack_combo"
 move_state = NodePath("../Idle")
+
+[node name="Death" type="Node" parent="StateMachine"]
+script = ExtResource("16_m8byq")
+animation = "full/death"
+
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("combat_state")]
+script = ExtResource("17_shno7")
+animation = "full/hurt"
+combat_state = NodePath("../CombatState")
+
+[connection signal="wounded" from="Hitbox2D" to="." method="_on_hitbox_active"]

@@ -2,8 +2,14 @@ class_name StateMachine extends Node
 
 @export var character : CharacterBody2D
 @export var initial_state : PlayState
+
+@export_category("Universal States")
+@export var hurt_state: PlayState
+@export var death_state: PlayState
+
 var current_state: PlayState
 var states: Dictionary
+var is_active: bool = true
 
 
 func init(current_player: CharacterBody2D, animation_player: AnimationPlayer):
@@ -24,6 +30,12 @@ func process(delta: float) -> void:
 
 
 func physics_process(delta: float) -> void:
+	if character.is_hurt:
+		transition(hurt_state)
+	elif is_active and character.is_dead:
+		transition(death_state)
+		is_active = false
+	
 	var next_state = current_state.physics_process(delta)
 	if next_state:
 		transition(next_state)
@@ -42,3 +54,7 @@ func transition(new_state: PlayState):
 		current_state.end()
 	current_state = new_state
 	current_state.start()
+
+
+func _on_character_hurt():
+	current_state.transition(hurt_state)
