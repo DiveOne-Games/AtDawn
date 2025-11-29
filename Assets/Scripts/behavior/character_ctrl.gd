@@ -1,6 +1,5 @@
 class_name CharacterController extends IMovable
 
-@export var character: CharacterBody2D
 var direction : Vector2
 
 

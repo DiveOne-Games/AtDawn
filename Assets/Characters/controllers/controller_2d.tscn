@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://4xtmmjmm8v2h"]
+[gd_scene load_steps=13 format=3 uid="uid://4xtmmjmm8v2h"]
 
 [ext_resource type="Script" uid="uid://yb5x8uku68vj" path="res://Assets/characters/controllers/controller_2d.gd" id="1_0f78q"]
+[ext_resource type="Script" uid="uid://noxpenaiqt7o" path="res://Assets/Scripts/camera.gd" id="2_8gq7q"]
+[ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/characters/Warrior/Sprites/warrior-all.png" id="2_kc6vb"]
+[ext_resource type="PackedScene" uid="uid://br2ksuobaey7g" path="res://Assets/weapons/blade/blade.tscn" id="3_8gq7q"]
 [ext_resource type="Script" uid="uid://c010qahwsyktf" path="res://Assets/characters/player/state_machine/states/run.gd" id="4_rj4bc"]
+[ext_resource type="AnimationLibrary" uid="uid://bmb7oo8dmb3w8" path="res://Assets/resources/animations/player/full.res" id="4_s3ihi"]
 [ext_resource type="Script" uid="uid://dxvugctpwibq8" path="res://Assets/characters/player/state_machine/states/idle.gd" id="4_ye7au"]
 [ext_resource type="Script" uid="uid://d07sqmd5w1ojf" path="res://Assets/characters/player/state_machine/states/move.gd" id="7_lrla1"]
 [ext_resource type="Script" uid="uid://c02nlt0qik5th" path="res://Assets/characters/player/state_machine/state_machine.gd" id="8_kc6vb"]
@@ -10,12 +14,65 @@
 radius = 12.0
 height = 46.0
 
-[node name="Controller2D" type="CharacterBody2D" node_paths=PackedStringArray("state_machine")]
+[sub_resource type="Animation" id="Animation_hx6yc"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Controller2D/Equipment/Blade:monitoring")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4v7o3"]
+_data = {
+&"RESET": SubResource("Animation_hx6yc")
+}
+
+[node name="Controller2D" type="CharacterBody2D" node_paths=PackedStringArray("animator", "audio", "state_machine")]
+collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_0f78q")
+animator = NodePath("AnimationPlayer")
+audio = NodePath("AudioStreamPlayer2D")
 state_machine = NodePath("StateMachine")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_top = 0
+limit_right = 1920
+limit_bottom = 1080
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("2_8gq7q")
+camera_zoom = 2.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ivauu")
+
+[node name="Avatar2D" type="Sprite2D" parent="."]
+position = Vector2(2, -2)
+texture = ExtResource("2_kc6vb")
+hframes = 22
+vframes = 7
+
+[node name="Equipment" type="Node2D" parent="."]
+
+[node name="Blade" parent="Equipment" instance=ExtResource("3_8gq7q")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_4v7o3"),
+&"full": ExtResource("4_s3ihi")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_kc6vb")
@@ -38,3 +95,5 @@ script = ExtResource("4_rj4bc")
 animation = "full/run"
 next_state = NodePath("../Idle")
 character = NodePath("../..")
+
+[node name="Attack" type="Node" parent="StateMachine"]

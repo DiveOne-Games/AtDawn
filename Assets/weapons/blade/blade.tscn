@@ -19,3 +19,4 @@ debug_color = Color(0.6485472, 0.5191958, 0.11454224, 0.41960785)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 unique_name_in_owner = true
+visible = false
