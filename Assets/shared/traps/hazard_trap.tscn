@@ -1,0 +1,45 @@
+[gd_scene load_steps=7 format=3 uid="uid://wj1nwiei8his"]
+
+[ext_resource type="Script" uid="uid://ckg81gsweh3li" path="res://Assets/Scripts/Environment/hazard2d.gd" id="1_y5e6p"]
+[ext_resource type="SpriteFrames" uid="uid://b1re5jonbk1hm" path="res://Assets/resources/sprite_frames/anim_spikes_blue.tres" id="2_b4a63"]
+[ext_resource type="Resource" uid="uid://dxmft07pc7mp6" path="res://Assets/resources/hazards/floor_spikes.tres" id="2_ncfwf"]
+[ext_resource type="AnimationLibrary" uid="uid://caua8b8rykean" path="res://Assets/resources/animations/anim_spikes.res" id="4_ncfwf"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8dr32"]
+size = Vector2(28, 28)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_r6hps"]
+size = Vector2(10, 10)
+
+[node name="HazardTrap" type="StaticBody2D"]
+collision_mask = 2
+script = ExtResource("1_y5e6p")
+trap = ExtResource("2_ncfwf")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_8dr32")
+disabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_r6hps")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = ExtResource("2_b4a63")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"anim_spikes": ExtResource("4_ncfwf")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+bus = &"Env_SFX"
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

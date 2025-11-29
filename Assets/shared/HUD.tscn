@@ -1,0 +1,55 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvq2wiud330d4"]
+
+[ext_resource type="Script" uid="uid://kx0mqc1svlav" path="res://Assets/Scripts/hud.gd" id="1_ceeg1"]
+[ext_resource type="Theme" uid="uid://cx6m2vjasxte3" path="res://Assets/resources/theme_healthbar.tres" id="1_n3cil"]
+[ext_resource type="FontFile" uid="uid://buitt43dvs8e" path="res://Assets/StaticAssets/Fonts/Kenney Future Narrow.ttf" id="2_kn341"]
+[ext_resource type="StyleBox" uid="uid://ddinh76flr431" path="res://Assets/resources/style_box_flat_healthbar.tres" id="3_h7m7y"]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_ceeg1")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+offset_right = 1921.0
+offset_bottom = 60.0
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/Health"]
+layout_mode = 0
+offset_left = 16.0
+offset_right = 226.0
+offset_bottom = 14.0
+theme = ExtResource("1_n3cil")
+theme_override_fonts/font = ExtResource("2_kn341")
+theme_override_styles/fill = ExtResource("3_h7m7y")
+value = 100.0
+show_percentage = false
+
+[node name="TargetHealth" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HealthBar" type="ProgressBar" parent="MarginContainer/HBoxContainer/TargetHealth"]
+visible = false
+layout_mode = 0
+offset_left = 16.0
+offset_right = 226.0
+offset_bottom = 27.0
+theme = ExtResource("1_n3cil")
+theme_override_styles/fill = ExtResource("3_h7m7y")
+value = 100.0
+show_percentage = false
+
+[node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_n3cil")
+theme_override_font_sizes/font_size = 20
+text = "000000"
+horizontal_alignment = 2

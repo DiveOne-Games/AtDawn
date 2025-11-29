@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dsacqbqnwn2g0"]
+
+[ext_resource type="Script" uid="uid://cukmvewqf3xq" path="res://Assets/Scripts/WeaponZone.gd" id="1_3dgqy"]
+[ext_resource type="SpriteFrames" uid="uid://bcdybvbaetokv" path="res://Assets/resources/animations/anim_vfx.tres" id="2_58guy"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2yww8"]
+size = Vector2(14, 10)
+
+[node name="WeaponArea" type="Area2D"]
+script = ExtResource("1_3dgqy")
+
+[node name="WeaponShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(20, 13)
+shape = SubResource("RectangleShape2D_2yww8")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="WeaponShape2D"]
+unique_name_in_owner = true
+sprite_frames = ExtResource("2_58guy")
+animation = &"smack"

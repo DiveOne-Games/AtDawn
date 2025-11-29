@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dk4wlgy0qgxsy"]
+
+[ext_resource type="Script" uid="uid://dpcd62xplvmdc" path="res://Assets/Scripts/behavior/hurt.gd" id="1_r03yn"]
+
+[node name="Hurt" type="Node" node_paths=PackedStringArray("idle", "death")]
+script = ExtResource("1_r03yn")
+idle = NodePath("")
+death = NodePath("")
+behavior_name = "Hurt"
+animation = "undead/hurt"
+resume = true

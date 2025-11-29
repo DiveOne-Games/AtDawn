@@ -1,0 +1,160 @@
+[gd_scene load_steps=13 format=3 uid="uid://dfwtd66t2il4j"]
+
+[ext_resource type="Texture2D" uid="uid://1hlrm8btba6" path="res://Assets/StaticAssets/Items/Destructible Objects Sprite Sheet.png" id="1_88wku"]
+[ext_resource type="Script" uid="uid://bd741xttk1ji" path="res://Assets/shared/destructibles/destructible.gd" id="1_pasqx"]
+[ext_resource type="AudioStream" uid="uid://c0ai3p1tvoky6" path="res://Assets/StaticAssets/SFX/exp_wood_1a.wav" id="2_n7wh8"]
+[ext_resource type="AudioStream" uid="uid://dhfequdoh51vu" path="res://Assets/StaticAssets/SFX/exp_wood_2a.wav" id="3_mh13v"]
+[ext_resource type="AudioStream" uid="uid://db6y4mu4ye2yv" path="res://Assets/StaticAssets/SFX/SFX_LightSlash02.wav" id="4_foamd"]
+
+[sub_resource type="Animation" id="Animation_n7wh8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mh13v"]
+_data = {
+&"RESET": SubResource("Animation_n7wh8")
+}
+
+[sub_resource type="Animation" id="Animation_foamd"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 1), Vector2i(1, 1), Vector2i(2, 1), Vector2i(3, 1), Vector2i(4, 1), Vector2i(5, 1), Vector2i(6, 1)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.2717252,
+"start_offset": 0.0,
+"stream": ExtResource("2_n7wh8")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_88wku"]
+resource_name = "crate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 3), Vector2i(1, 3), Vector2i(2, 3), Vector2i(3, 3), Vector2i(4, 3), Vector2i(5, 3), Vector2i(6, 3)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 1.147631,
+"start_offset": 0.0,
+"stream": ExtResource("3_mh13v")
+}],
+"times": PackedFloat32Array(0.06666667)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="Animation" id="Animation_pasqx"]
+resource_name = "jar"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06666667, 0.13333334, 0.2, 0.26666668, 0.33333334, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 5), Vector2i(1, 5), Vector2i(2, 5), Vector2i(3, 5), Vector2i(4, 5), Vector2i(5, 5), Vector2i(6, 5)]
+}
+tracks/1/type = "audio"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../AudioStreamPlayer2D")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"clips": [{
+"end_offset": 0.74360335,
+"start_offset": 0.0,
+"stream": ExtResource("4_foamd")
+}],
+"times": PackedFloat32Array(0.033333335)
+}
+tracks/1/use_blend = true
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pasqx"]
+_data = {
+&"barrel": SubResource("Animation_foamd"),
+&"crate": SubResource("Animation_88wku"),
+&"jar": SubResource("Animation_pasqx")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_foamd"]
+height = 24.0
+
+[node name="Destructible" type="Node2D"]
+script = ExtResource("1_pasqx")
+object_name = "Barrel"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_88wku")
+hframes = 7
+vframes = 12
+region_enabled = true
+region_rect = Rect2(0, 0, 448, 768)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../Sprite2D")
+libraries = {
+&"": SubResource("AnimationLibrary_mh13v"),
+&"Destructibles": SubResource("AnimationLibrary_pasqx")
+}
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+max_distance = 400.0
+bus = &"Env_SFX"
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(1, 4)
+shape = SubResource("CapsuleShape2D_foamd")
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://tgt6hjeh32fx"]
+
+[ext_resource type="Script" path="res://Assets/Scripts/projectile.gd" id="1_jvbfj"]
+[ext_resource type="AudioStream" uid="uid://bohiassoul836" path="res://Assets/StaticAssets/SFX/fireball4-2.mp3" id="4_dt3gl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r74xs"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_gjltm"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jxk2c"]
+
+[node name="Projectile" type="RigidBody2D"]
+z_index = 1
+y_sort_enabled = true
+collision_layer = 8
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_jvbfj")
+damage = 5
+direction = Vector2(0, 1)
+projectile_type = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_r74xs")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_gjltm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, 6)
+shape = SubResource("CircleShape2D_jxk2c")
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_dt3gl")
+autoplay = true
+attenuation = 6.27667
+
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://cibgcuqqgv36e"]
+
+[ext_resource type="Texture2D" uid="uid://bmdj2xsxmio7c" path="res://Assets/StaticAssets/Environments/Cemetery/Props/props by individual sprites/tombstone - dirt - 4.png" id="1_jwqp2"]
+[ext_resource type="Script" uid="uid://bb2u2cgjxwxic" path="res://Assets/Scripts/grave_spawn.gd" id="2_12lcm"]
+[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/characters/undead/undead.tscn" id="3_v8pa0"]
+
+[node name="Sprite2D" type="Sprite2D"]
+texture = ExtResource("1_jwqp2")
+script = ExtResource("2_12lcm")
+unit = ExtResource("3_v8pa0")
+
+[node name="Timer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 5.0
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://br2ksuobaey7g"]
+
+[ext_resource type="Script" uid="uid://bxa0y5r5jdbk0" path="res://Assets/weapons/blade/blade.gd" id="1_xnesh"]
+[ext_resource type="Resource" uid="uid://djud1xymikahf" path="res://Assets/resources/weapons/heavy_blade.tres" id="2_ru7xb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ru7xb"]
+size = Vector2(32, 11)
+
+[node name="Blade" type="Area2D"]
+collision_mask = 40
+monitoring = false
+script = ExtResource("1_xnesh")
+stats = ExtResource("2_ru7xb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(24, 0)
+shape = SubResource("RectangleShape2D_ru7xb")
+debug_color = Color(0.6485472, 0.5191958, 0.11454224, 0.41960785)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+unique_name_in_owner = true

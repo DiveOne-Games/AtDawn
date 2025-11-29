@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dlf6faof3gai6"]
+
+[ext_resource type="Script" uid="uid://va8iotd07541" path="res://Assets/Scripts/behavior/death.gd" id="1_s2r2m"]
+
+[node name="Death" type="Node"]
+script = ExtResource("1_s2r2m")
+behavior_name = "Death"
+animation = "undead/dead"

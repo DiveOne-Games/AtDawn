@@ -1,0 +1,20 @@
+class_name RunState extends MoveState
+
+@export var speed_scale : float = 1.5	## Increase movement speed by scaling current speed.
+
+
+func start():
+	super()
+
+
+func end():
+	super()
+
+
+func physics_process(_delta: float):
+	character.velocity = direction.normalized() * (character.speed *speed_scale)
+	#return null
+
+
+func input(_event):
+	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
