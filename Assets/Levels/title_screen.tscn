@@ -1,20 +1,21 @@
-[gd_scene load_steps=24 format=4 uid="uid://dph2f6nnk5clc"]
+[gd_scene load_steps=25 format=4 uid="uid://dph2f6nnk5clc"]
 
-[ext_resource type="Script" uid="uid://gqbrp4qouun7" path="res://Assets/Levels/title_screen.gd" id="1_8tw71"]
-[ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/Resources/tileset_cemetery.tres" id="1_t3if1"]
+[ext_resource type="Script" uid="uid://gqbrp4qouun7" path="res://Assets/levels/title_screen.gd" id="1_8tw71"]
+[ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/resources/tileset_cemetery.tres" id="1_t3if1"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/characters/Warrior/Warrior.tscn" id="2_rr8iu"]
 [ext_resource type="FontFile" uid="uid://btu4efrnl5mrf" path="res://Assets/StaticAssets/Fonts/8-bitanco.ttf" id="3_4u3xp"]
-[ext_resource type="PackedScene" uid="uid://fxeh0lendbsd" path="res://Assets/Prefabs/glowing_crypt.tscn" id="3_hh22u"]
-[ext_resource type="TileSet" uid="uid://dv7ouw4syfwei" path="res://Assets/Resources/tilesets/props_cemetery.tres" id="3_j6mgt"]
-[ext_resource type="Shader" uid="uid://dqd4f8f3eb0e7" path="res://Assets/Resources/Shaders/fade.gdshader" id="4_cdkvk"]
-[ext_resource type="Theme" uid="uid://b5ujuib0sr2hd" path="res://Assets/Resources/theme_gui_button.tres" id="4_egjnc"]
-[ext_resource type="PackedScene" uid="uid://cckn53yr6x0rt" path="res://Assets/Levels/crypts-hall-1.tscn" id="5_44nbi"]
-[ext_resource type="StyleBox" uid="uid://d20ay46umpjxk" path="res://Assets/Resources/style_button_normal.tres" id="5_eieti"]
-[ext_resource type="StyleBox" uid="uid://dd8hajhv41sws" path="res://Assets/Resources/style_button_hover.tres" id="6_vdd86"]
-[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="9_8tw71"]
-[ext_resource type="PackedScene" uid="uid://cl8spp15bvq1p" path="res://Assets/Characters/merchant/npc.tscn" id="9_cdkvk"]
+[ext_resource type="PackedScene" uid="uid://fxeh0lendbsd" path="res://Assets/shared/glowing_crypt.tscn" id="3_hh22u"]
+[ext_resource type="TileSet" uid="uid://dv7ouw4syfwei" path="res://Assets/resources/tilesets/props_cemetery.tres" id="3_j6mgt"]
+[ext_resource type="Shader" uid="uid://dqd4f8f3eb0e7" path="res://Assets/resources/Shaders/fade.gdshader" id="4_cdkvk"]
+[ext_resource type="Theme" uid="uid://b5ujuib0sr2hd" path="res://Assets/resources/theme_gui_button.tres" id="4_egjnc"]
+[ext_resource type="PackedScene" uid="uid://cckn53yr6x0rt" path="res://Assets/levels/crypts-hall-1.tscn" id="5_44nbi"]
+[ext_resource type="StyleBox" uid="uid://d20ay46umpjxk" path="res://Assets/resources/style_button_normal.tres" id="5_eieti"]
+[ext_resource type="StyleBox" uid="uid://dd8hajhv41sws" path="res://Assets/resources/style_button_hover.tres" id="6_vdd86"]
+[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/shared/HUD.tscn" id="9_8tw71"]
+[ext_resource type="PackedScene" uid="uid://cl8spp15bvq1p" path="res://Assets/characters/merchant/npc.tscn" id="9_cdkvk"]
 [ext_resource type="AudioStream" uid="uid://isblol3anbww" path="res://Assets/StaticAssets/music/Of Far Different Nature - 0 to 100 (CC-BY).ogg" id="13_4610a"]
 [ext_resource type="Script" uid="uid://vufciy7vj5hw" path="res://Assets/Scripts/scene_manager.gd" id="15_3gwc8"]
-[ext_resource type="PackedScene" uid="uid://xsd6e5gc6vdl" path="res://Assets/Effects/thunder/thunder.tscn" id="21_acajk"]
+[ext_resource type="PackedScene" uid="uid://xsd6e5gc6vdl" path="res://Assets/effects/thunder/thunder.tscn" id="21_acajk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_j6mgt"]
 shader = ExtResource("4_cdkvk")
@@ -134,6 +135,7 @@ _data = {
 
 [node name="TitleScreen" type="Node2D"]
 script = ExtResource("1_8tw71")
+player = ExtResource("2_rr8iu")
 
 [node name="base" type="TileMapLayer" parent="."]
 use_parent_material = true

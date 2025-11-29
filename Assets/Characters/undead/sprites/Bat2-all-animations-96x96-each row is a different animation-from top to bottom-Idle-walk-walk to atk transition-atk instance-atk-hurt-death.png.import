@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dnkkjgdce8bam"
-path="res://.godot/imported/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png-a830071c5fdfcf206e02ee87c19ec19e.ctex"
+path="res://.godot/imported/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png-7cf0e1bbcba051b34052b5800aad6d50.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/undead/sprites/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png"
-dest_files=["res://.godot/imported/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png-a830071c5fdfcf206e02ee87c19ec19e.ctex"]
+source_file="res://Assets/characters/undead/sprites/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png"
+dest_files=["res://.godot/imported/Bat2-all-animations-96x96-each row is a different animation-from top to bottom-Idle-walk-walk to atk transition-atk instance-atk-hurt-death.png-7cf0e1bbcba051b34052b5800aad6d50.ctex"]
 
 [params]
 

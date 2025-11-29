@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://c2gtj6c3byymw"
-path="res://.godot/imported/Undead-idle animation.png-a87a19874e2a230af8cc14845d4ee219.ctex"
+path="res://.godot/imported/Undead-idle animation.png-1851461742fb9f349f2e740f236d86aa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/undead/sprites/Undead-idle animation.png"
-dest_files=["res://.godot/imported/Undead-idle animation.png-a87a19874e2a230af8cc14845d4ee219.ctex"]
+source_file="res://Assets/characters/undead/sprites/Undead-idle animation.png"
+dest_files=["res://.godot/imported/Undead-idle animation.png-1851461742fb9f349f2e740f236d86aa.ctex"]
 
 [params]
 

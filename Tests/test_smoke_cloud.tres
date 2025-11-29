@@ -1,6 +1,6 @@
 [gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://c6o657fok8g4g"]
 
-[ext_resource type="Shader" uid="uid://domakw4ft1st4" path="res://Assets/Effects/smoke_cloud/vshade_smoke_cloud.tres" id="1_y254w"]
+[ext_resource type="Shader" uid="uid://domakw4ft1st4" path="res://Assets/effects/smoke_cloud/vshade_smoke_cloud.tres" id="1_y254w"]
 
 [resource]
 shader = ExtResource("1_y254w")

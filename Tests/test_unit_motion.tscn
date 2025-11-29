@@ -1,11 +1,11 @@
 [gd_scene load_steps=7 format=4 uid="uid://cbrb13etfmoil"]
 
-[ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/Resources/tileset_cemetery.tres" id="1_4qj3p"]
-[ext_resource type="TileSet" uid="uid://dv7ouw4syfwei" path="res://Assets/Resources/tilesets/props_cemetery.tres" id="2_af68o"]
-[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/Characters/undead/undead.tscn" id="2_pkfeb"]
-[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="4_q2k7l"]
-[ext_resource type="PackedScene" uid="uid://p5r27gn3d6hn" path="res://Assets/Characters/Skeleton/skeleton.tscn" id="5_14na6"]
-[ext_resource type="PackedScene" uid="uid://cibgcuqqgv36e" path="res://Assets/Prefabs/grave.tscn" id="6_2gnc6"]
+[ext_resource type="TileSet" uid="uid://c2nsxfom4hqt6" path="res://Assets/resources/tileset_cemetery.tres" id="1_4qj3p"]
+[ext_resource type="TileSet" uid="uid://dv7ouw4syfwei" path="res://Assets/resources/tilesets/props_cemetery.tres" id="2_af68o"]
+[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/characters/undead/undead.tscn" id="2_pkfeb"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/characters/Warrior/Warrior.tscn" id="4_q2k7l"]
+[ext_resource type="PackedScene" uid="uid://p5r27gn3d6hn" path="res://Assets/characters/Skeleton/skeleton.tscn" id="5_14na6"]
+[ext_resource type="PackedScene" uid="uid://cibgcuqqgv36e" path="res://Assets/shared/grave.tscn" id="6_2gnc6"]
 
 [node name="TestUnitMotion" type="Node2D"]
 

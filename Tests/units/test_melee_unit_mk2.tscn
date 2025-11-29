@@ -1,10 +1,10 @@
 [gd_scene load_steps=25 format=3 uid="uid://6ya3lsb1wm00"]
 
-[ext_resource type="Script" uid="uid://ct1lpxhexker7" path="res://Assets/Characters/controllers/player_controller_2d.gd" id="1_qkqlj"]
-[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_ae5d1"]
-[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="3_pvwe4"]
-[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_2d.tscn" id="4_qnowl"]
-[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/Resources/animations/anim_skeleton.res" id="6_pcb5u"]
+[ext_resource type="Script" uid="uid://ct1lpxhexker7" path="res://Assets/characters/controllers/player_controller_2d.gd" id="1_qkqlj"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/shared/hitbox.tscn" id="2_ae5d1"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/characters/Skeleton/Sprites/skeleton1_all.png" id="3_pvwe4"]
+[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/shared/weapon_2d.tscn" id="4_qnowl"]
+[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/resources/animations/anim_skeleton.res" id="6_pcb5u"]
 [ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_u1e6u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]

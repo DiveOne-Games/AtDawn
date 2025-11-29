@@ -21,8 +21,6 @@ func _on_start_pressed():
 
 
 func load_player():
-	if not player:
-		player = load("res://Assets/Characters/Warrior/Warrior.tscn")
 	var character = player.instantiate()
 	zoom_camera(Vector2(4,4))
 	character.global_position = spawn_point.global_position

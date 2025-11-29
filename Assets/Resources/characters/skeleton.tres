@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="PlayerStats" load_steps=3 format=3 uid="uid://002d7glbis54"]
 
 [ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="1_s7fbd"]
-[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="2_612qw"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/characters/Skeleton/Sprites/skeleton1_all.png" id="2_612qw"]
 
 [resource]
 script = ExtResource("1_s7fbd")

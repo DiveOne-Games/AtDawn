@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=4 uid="uid://hovsdgqitcu6"]
 
-[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_sl2pt"]
+[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/resources/tileset_crypt.tres" id="1_sl2pt"]
 
 [node name="TileMaps" type="Node2D"]
 

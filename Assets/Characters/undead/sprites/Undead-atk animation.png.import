@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bqm8fpine1pp1"
-path="res://.godot/imported/Undead-atk animation.png-5c1935a289d9938d65b74f85b7b77a4c.ctex"
+path="res://.godot/imported/Undead-atk animation.png-50ce502a3516e7dd1b94698391ee3c62.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/undead/sprites/Undead-atk animation.png"
-dest_files=["res://.godot/imported/Undead-atk animation.png-5c1935a289d9938d65b74f85b7b77a4c.ctex"]
+source_file="res://Assets/characters/undead/sprites/Undead-atk animation.png"
+dest_files=["res://.godot/imported/Undead-atk animation.png-50ce502a3516e7dd1b94698391ee3c62.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clllrvpk13ki6"
-path="res://.godot/imported/Undead-walk animation.png-07a4cb18f80499f19ef80421f806b817.ctex"
+path="res://.godot/imported/Undead-walk animation.png-3f0ef4b86f1f6af62a4f7980e0d02984.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters/undead/sprites/Undead-walk animation.png"
-dest_files=["res://.godot/imported/Undead-walk animation.png-07a4cb18f80499f19ef80421f806b817.ctex"]
+source_file="res://Assets/characters/undead/sprites/Undead-walk animation.png"
+dest_files=["res://.godot/imported/Undead-walk animation.png-3f0ef4b86f1f6af62a4f7980e0d02984.ctex"]
 
 [params]
 

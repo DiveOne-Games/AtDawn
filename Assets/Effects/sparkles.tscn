@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://detc2dsujm5rb"]
 
 [ext_resource type="Texture2D" uid="uid://dv4gqu2l4mcnx" path="res://Assets/StaticAssets/Items/sparkles.png" id="1_bvfo3"]
-[ext_resource type="Script" uid="uid://c2kapyuc304r6" path="res://Assets/Effects/vfx.gd" id="1_vvheo"]
-[ext_resource type="Shader" uid="uid://dasdb2hb4nhli" path="res://Assets/Effects/sparkles.tres" id="2_tr3yg"]
+[ext_resource type="Script" uid="uid://c2kapyuc304r6" path="res://Assets/effects/vfx.gd" id="1_vvheo"]
+[ext_resource type="Shader" uid="uid://dasdb2hb4nhli" path="res://Assets/effects/sparkles.tres" id="2_tr3yg"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1smqc"]
 shader = ExtResource("2_tr3yg")

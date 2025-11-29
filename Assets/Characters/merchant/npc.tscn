@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://cl8spp15bvq1p"]
 
-[ext_resource type="Script" uid="uid://b5u6l850bdrws" path="res://Assets/Characters/merchant/npc.gd" id="1_grd6m"]
+[ext_resource type="Script" uid="uid://b5u6l850bdrws" path="res://Assets/characters/merchant/npc.gd" id="1_grd6m"]
 [ext_resource type="Texture2D" uid="uid://c0lqrlck546cy" path="res://Assets/StaticAssets/Characters/NPC merchant/NPC Merchant-idle.png" id="1_me1ej"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_grd6m"]

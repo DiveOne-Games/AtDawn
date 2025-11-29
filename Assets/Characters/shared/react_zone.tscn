@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://5tk7ooyurrrr"]
 
-[ext_resource type="Script" uid="uid://4ufapyn3gnip" path="res://Assets/Characters/shared/react_zone.gd" id="1_e141a"]
+[ext_resource type="Script" uid="uid://4ufapyn3gnip" path="res://Assets/characters/shared/react_zone.gd" id="1_e141a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_us5hp"]
 radius = 90.0

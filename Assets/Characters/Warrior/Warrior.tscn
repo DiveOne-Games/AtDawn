@@ -1,13 +1,13 @@
 [gd_scene load_steps=45 format=3 uid="uid://biapgn312ufql"]
 
 [ext_resource type="Script" uid="uid://cng6jt8h6d1v0" path="res://Assets/Scripts/Characters/PlayerCharacter.gd" id="1_b5ybs"]
-[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="2_84rxt"]
-[ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/Characters/Warrior/Sprites/warrior-all.png" id="3_8fh04"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/shared/hitbox.tscn" id="2_84rxt"]
+[ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/characters/Warrior/Sprites/warrior-all.png" id="3_8fh04"]
 [ext_resource type="AudioStream" uid="uid://dd5bwb57qwgnk" path="res://Assets/StaticAssets/SFX/sword_swing_1.mp3" id="4_h1a3v"]
-[ext_resource type="PackedScene" uid="uid://cgj08n8up6dxm" path="res://Assets/Prefabs/weapon_zone.tscn" id="4_so2w1"]
-[ext_resource type="Resource" uid="uid://djud1xymikahf" path="res://Assets/Resources/Items/weapons/heavy_blade.tres" id="5_20h0f"]
+[ext_resource type="PackedScene" uid="uid://cgj08n8up6dxm" path="res://Assets/shared/weapon_zone.tscn" id="4_so2w1"]
+[ext_resource type="Resource" uid="uid://djud1xymikahf" path="res://Assets/resources/weapons/heavy_blade.tres" id="5_20h0f"]
 [ext_resource type="AudioStream" uid="uid://bufupr8fova" path="res://Assets/StaticAssets/SFX/grunt1.mp3" id="5_q0ilv"]
-[ext_resource type="PackedScene" uid="uid://bbmdxcm2dxp4r" path="res://Assets/Effects/impact/impact.tscn" id="6_7qtlm"]
+[ext_resource type="PackedScene" uid="uid://bbmdxcm2dxp4r" path="res://Assets/effects/impact/impact.tscn" id="6_7qtlm"]
 [ext_resource type="AudioStream" uid="uid://7bbhrwwrfoo5" path="res://Assets/StaticAssets/SFX/footstep_grass1.mp3" id="7_ccjik"]
 [ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="8_fj2lv"]
 

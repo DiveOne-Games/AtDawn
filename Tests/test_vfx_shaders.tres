@@ -1,13 +1,13 @@
 [gd_resource type="VisualShader" load_steps=13 format=3 uid="uid://bnt1xvv33wiv4"]
 
-[ext_resource type="Texture2D" uid="uid://ct6yql16hijtv" path="res://Assets/StaticAssets/vfx/masks/5.png" id="1_n7qw0"]
+[ext_resource type="Texture2D" uid="uid://ct6yql16hijtv" path="res://Assets/StaticAssets/vfx/masks/5.png" id="1_x02tr"]
 
 [sub_resource type="VisualShaderNodeVec2Parameter" id="VisualShaderNodeVec2Parameter_n7qw0"]
 parameter_name = "Speed"
 
 [sub_resource type="VisualShaderNodeTexture" id="VisualShaderNodeTexture_uxf07"]
 expanded_output_ports = [0]
-texture = ExtResource("1_n7qw0")
+texture = ExtResource("1_x02tr")
 texture_type = 1
 
 [sub_resource type="VisualShaderNodeColorParameter" id="VisualShaderNodeColorParameter_uxf07"]

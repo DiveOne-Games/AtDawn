@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="GameItem" load_steps=3 format=3 uid="uid://b13te72gilb42"]
 
-[ext_resource type="Script" uid="uid://3m0wdbuodhlp" path="res://Tests/Fixtures/game_item.gd" id="1_aer5e"]
+[ext_resource type="Script" uid="uid://3m0wdbuodhlp" path="res://Assets/items/game_item.gd" id="1_aer5e"]
 [ext_resource type="Texture2D" uid="uid://bry0vbihwwtjf" path="res://Assets/StaticAssets/Items/32_basic_cyangmou.png" id="2_38g0e"]
 
 [resource]

@@ -12,13 +12,13 @@ config_version=5
 
 config/name="AtDawn"
 config/description="A hack and slash, kill the dead action adventure!"
-run/main_scene="res://Assets/Levels/title_screen.tscn"
+run/main_scene="res://Assets/levels/title_screen.tscn"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [audio]
 
-buses/default_bus_layout="res://Assets/Resources/Sound/default_bus_layout.tres"
+buses/default_bus_layout="res://Assets/resources/Sound/default_bus_layout.tres"
 
 [autoload]
 
@@ -38,7 +38,7 @@ project/assembly_name="AtDawn"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/incontroller/plugin.cfg")
+enabled=PackedStringArray()
 
 [global_group]
 

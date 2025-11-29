@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://lvt8u7mfdavi"]
 
-[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/Resources/tileset_crypt.tres" id="1_g3nkn"]
-[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/Prefabs/HUD.tscn" id="1_pbabr"]
-[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/Characters/Warrior/Warrior.tscn" id="2_76mik"]
-[ext_resource type="Script" path="res://Assets/Scripts/game_manager.gd" id="2_a5xoo"]
+[ext_resource type="TileSet" uid="uid://dhu5qepwllfrd" path="res://Assets/resources/tileset_crypt.tres" id="1_g3nkn"]
+[ext_resource type="PackedScene" uid="uid://bvq2wiud330d4" path="res://Assets/shared/HUD.tscn" id="1_pbabr"]
+[ext_resource type="PackedScene" uid="uid://biapgn312ufql" path="res://Assets/characters/Warrior/Warrior.tscn" id="2_76mik"]
+[ext_resource type="Script" uid="uid://cn6qbwo5iixbw" path="res://Assets/Scripts/game_manager.gd" id="2_a5xoo"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_ng34u"]
 

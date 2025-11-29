@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://c1h30in248dhx"]
 
-[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.gd" id="1_qt458"]
+[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/effects/smoke_cloud/smoke_cloud.gd" id="1_qt458"]
 [ext_resource type="Texture2D" uid="uid://cbnwgy8s3u270" path="res://Assets/StaticAssets/vfx/02.png" id="3_mbwhq"]
 
 [sub_resource type="VisualShaderNodeColorFunc" id="VisualShaderNodeColorFunc_q8fky"]

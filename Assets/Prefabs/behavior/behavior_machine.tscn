@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://beeoekig70q4o"]
-
-[ext_resource type="Script" uid="uid://d0eke6awpxrng" path="res://Assets/Scripts/behavior/behavior_machine.gd" id="1_d2l7c"]
-
-[node name="BehaviorMachine" type="Node" node_paths=PackedStringArray("initial_state", "hurt", "death")]
-script = ExtResource("1_d2l7c")
-initial_state = NodePath("")
-hurt = NodePath("")
-death = NodePath("")

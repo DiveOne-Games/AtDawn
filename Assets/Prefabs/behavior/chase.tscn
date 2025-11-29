@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://c361obudontxu"]
-
-[ext_resource type="Script" uid="uid://5qutdxbt7pfk" path="res://Assets/Scripts/behavior/chase.gd" id="1_imbni"]
-
-[node name="Chase" type="Node" node_paths=PackedStringArray("idle")]
-script = ExtResource("1_imbni")
-idle = NodePath("")
-behavior_name = "Chase"
-animation = "undead/walk"

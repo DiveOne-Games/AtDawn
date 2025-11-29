@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://k8fmqlpbjhkj"]
 
 [ext_resource type="Texture2D" uid="uid://cbnwgy8s3u270" path="res://Assets/StaticAssets/vfx/02.png" id="1_7m3kb"]
-[ext_resource type="Material" uid="uid://cipc67p7eqqo2" path="res://Assets/Effects/smoke_cloud/mat_smoke_cloud.tres" id="1_n2e3n"]
-[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/Effects/smoke_cloud/smoke_cloud.gd" id="1_yd6y6"]
+[ext_resource type="Material" uid="uid://cipc67p7eqqo2" path="res://Assets/effects/smoke_cloud/mat_smoke_cloud.tres" id="1_n2e3n"]
+[ext_resource type="Script" uid="uid://nlqx4mas5mmj" path="res://Assets/effects/smoke_cloud/smoke_cloud.gd" id="1_yd6y6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_n2e3n"]
 radius = 21.023796

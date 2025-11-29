@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bbmdxcm2dxp4r"]
 
-[ext_resource type="Script" uid="uid://lrh5b5a0gxwg" path="res://Assets/Effects/impact/impact.gd" id="1_bg7vk"]
-[ext_resource type="SpriteFrames" uid="uid://c1h7yepg7uqn8" path="res://Assets/Effects/impact/anim_impact.tres" id="2_4etw8"]
+[ext_resource type="Script" uid="uid://lrh5b5a0gxwg" path="res://Assets/effects/impact/impact.gd" id="1_bg7vk"]
+[ext_resource type="SpriteFrames" uid="uid://c1h7yepg7uqn8" path="res://Assets/effects/impact/anim_impact.tres" id="2_4etw8"]
 
 [node name="Impact" type="Node2D"]
 script = ExtResource("1_bg7vk")

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dd2hvlfy4hsws"]
 
-[ext_resource type="PackedScene" uid="uid://cvp5a6ge1hoyv" path="res://Assets/Characters/Warrior/WarriorV2.tscn" id="1_3kt6s"]
-[ext_resource type="PackedScene" uid="uid://wj1nwiei8his" path="res://Assets/Prefabs/traps/hazard_trap.tscn" id="2_6p0hl"]
+[ext_resource type="PackedScene" uid="uid://cvp5a6ge1hoyv" path="res://Assets/characters/Warrior/WarriorV2.tscn" id="1_3kt6s"]
+[ext_resource type="PackedScene" uid="uid://wj1nwiei8his" path="res://Assets/shared/traps/hazard_trap.tscn" id="2_6p0hl"]
 
 [node name="Node2D" type="Node2D"]
 

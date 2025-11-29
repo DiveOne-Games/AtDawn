@@ -1,12 +1,12 @@
 [gd_scene load_steps=25 format=3 uid="uid://b65hlhk6rs4at"]
 
-[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/Prefabs/hitbox.tscn" id="1_j88bf"]
-[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/Prefabs/weapon_2d.tscn" id="2_rovnh"]
-[ext_resource type="PackedScene" uid="uid://5tk7ooyurrrr" path="res://Assets/Characters/shared/react_zone.tscn" id="3_5x6rd"]
-[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/Characters/Skeleton/Sprites/skeleton1_all.png" id="4_jxnmd"]
+[ext_resource type="PackedScene" uid="uid://dul63e74iisk6" path="res://Assets/shared/hitbox.tscn" id="1_j88bf"]
+[ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/shared/weapon_2d.tscn" id="2_rovnh"]
+[ext_resource type="PackedScene" uid="uid://5tk7ooyurrrr" path="res://Assets/characters/shared/react_zone.tscn" id="3_5x6rd"]
+[ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/characters/Skeleton/Sprites/skeleton1_all.png" id="4_jxnmd"]
 [ext_resource type="Script" uid="uid://3vnkhtpor78c" path="res://Assets/Scripts/Sound/character_sfx.gd" id="5_udqne"]
-[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/Resources/animations/anim_skeleton.res" id="6_rbhpm"]
-[ext_resource type="Script" uid="uid://drj6b2dbkj0bd" path="res://Tests/units/patrol_nav2d.gd" id="7_qen00"]
+[ext_resource type="AnimationLibrary" uid="uid://dmvf770ukemvp" path="res://Assets/resources/animations/anim_skeleton.res" id="6_rbhpm"]
+[ext_resource type="Script" uid="uid://drj6b2dbkj0bd" path="res://tests/units/patrol_nav2d.gd" id="7_qen00"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ahoiv"]
 size = Vector2(18, 9.5)
