@@ -1,6 +1,3 @@
 extends Node
 
-signal player_interaction
-
-
-
+#signal player_interaction

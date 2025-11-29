@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://ddauus7lflvm7"]
+
+[ext_resource type="PackedScene" uid="uid://ct6yl0bvqgkho" path="res://tests/units/tile_map_sample.tscn" id="1_ryotc"]
+[ext_resource type="PackedScene" uid="uid://4xtmmjmm8v2h" path="res://Assets/characters/controllers/controller_2d.tscn" id="2_ryotc"]
+
+[node name="TestControllers" type="Node2D"]
+
+[node name="TileMapSample" parent="." instance=ExtResource("1_ryotc")]
+
+[node name="Controller2D" parent="." instance=ExtResource("2_ryotc")]
+position = Vector2(966, 504)

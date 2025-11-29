@@ -3,7 +3,7 @@ class_name BladeWeapon extends Area2D
 @export var stats: Weapon
 @export var sfx: AudioStream
 @onready var sprite2d: Sprite2D = %Sprite2D
-@export var is_visible := false
+@export var show_image := false
 
 
 func _ready():
@@ -13,5 +13,5 @@ func _ready():
 
 
 func _process(_delta):
-	if is_visible and not sprite2d.visible:
+	if show_image and not sprite2d.visible:
 		sprite2d.show()

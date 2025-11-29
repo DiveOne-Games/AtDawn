@@ -2,9 +2,13 @@ class_name PlayState extends Node
 
 
 @export var animation: String
-@export var next_state : PlayState
+@export var move_state : PlayState
+@export var combat_state : CombatState
 @export var character: CharacterBody2D
 var animator: AnimationPlayer
+
+var is_combat := false
+var is_moving := false
 
 
 func start():

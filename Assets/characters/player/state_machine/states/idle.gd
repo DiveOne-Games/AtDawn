@@ -1,7 +1,5 @@
 class_name IdleState extends PlayState
 
-@export var move_state : MoveState
-
 
 func start():
 	animator.play(animation)
@@ -13,12 +11,15 @@ func end():
 
 func process(_delta: float) -> PlayState:
 	if not character.velocity == Vector2.ZERO:
-		return next_state
+		return move_state
 	return null
 
 
-func input(event: InputEvent) -> PlayState:
-	if event.is_action_pressed("ui_right") or event.is_action_pressed("ui_left") or \
-	event.is_action_pressed("ui_up") or event.is_action_pressed("ui_down"):
+func input(_event: InputEvent) -> PlayState:
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if direction.length():
 		return move_state
+	if _event.is_pressed():
+		return combat_state
+
 	return null

@@ -12,9 +12,9 @@ func end():
 
 
 func physics_process(_delta: float):
-	character.velocity = direction.normalized() * (character.speed *speed_scale)
+	character.velocity = direction.normalized() * (speed *speed_scale)
 	if character.velocity == Vector2.ZERO:
-		return next_state
+		return move_state
 	return null
 
 

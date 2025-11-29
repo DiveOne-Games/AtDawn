@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://4xtmmjmm8v2h"]
+[gd_scene load_steps=17 format=3 uid="uid://4xtmmjmm8v2h"]
 
 [ext_resource type="Script" uid="uid://yb5x8uku68vj" path="res://Assets/characters/controllers/controller_2d.gd" id="1_0f78q"]
 [ext_resource type="Script" uid="uid://noxpenaiqt7o" path="res://Assets/Scripts/camera.gd" id="2_8gq7q"]
@@ -7,8 +7,12 @@
 [ext_resource type="Script" uid="uid://c010qahwsyktf" path="res://Assets/characters/player/state_machine/states/run.gd" id="4_rj4bc"]
 [ext_resource type="AnimationLibrary" uid="uid://bmb7oo8dmb3w8" path="res://Assets/resources/animations/player/full.res" id="4_s3ihi"]
 [ext_resource type="Script" uid="uid://dxvugctpwibq8" path="res://Assets/characters/player/state_machine/states/idle.gd" id="4_ye7au"]
-[ext_resource type="Script" uid="uid://d07sqmd5w1ojf" path="res://Assets/characters/player/state_machine/states/move.gd" id="7_lrla1"]
 [ext_resource type="Script" uid="uid://c02nlt0qik5th" path="res://Assets/characters/player/state_machine/state_machine.gd" id="8_kc6vb"]
+[ext_resource type="Script" uid="uid://geq4u5r3w4mx" path="res://Assets/characters/player/state_machine/light_attack.gd" id="10_s3ihi"]
+[ext_resource type="Script" uid="uid://c573dpgc0qx6v" path="res://Assets/characters/player/state_machine/combat_state.gd" id="11_b3xas"]
+[ext_resource type="Script" uid="uid://ek28k0iwfgv1" path="res://Assets/characters/player/state_machine/medium_attack_state.gd" id="11_y3s1m"]
+[ext_resource type="Script" uid="uid://cq7qgltv7i1qu" path="res://Assets/characters/player/state_machine/heavy_attack_state.gd" id="12_ehj3a"]
+[ext_resource type="Script" uid="uid://deltr1w1hvslt" path="res://Assets/characters/player/state_machine/combo_attack_state.gd" id="13_7usag"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivauu"]
 radius = 12.0
@@ -60,6 +64,7 @@ position = Vector2(2, -2)
 texture = ExtResource("2_kc6vb")
 hframes = 22
 vframes = 7
+frame = 88
 
 [node name="Equipment" type="Node2D" parent="."]
 
@@ -78,22 +83,59 @@ libraries = {
 script = ExtResource("8_kc6vb")
 initial_state = NodePath("Idle")
 
-[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "next_state")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "combat_state")]
 script = ExtResource("4_ye7au")
-move_state = NodePath("../Walk")
 animation = "full/idle"
-next_state = NodePath("../Run")
+move_state = NodePath("../Run")
+combat_state = NodePath("../CombatState")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state", "character")]
-script = ExtResource("7_lrla1")
-animation = "full/run"
-next_state = NodePath("../Idle")
-character = NodePath("../..")
-
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state", "character")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "combat_state", "character")]
 script = ExtResource("4_rj4bc")
 animation = "full/run"
-next_state = NodePath("../Idle")
+move_state = NodePath("../Idle")
+combat_state = NodePath("../CombatState")
 character = NodePath("../..")
 
-[node name="Attack" type="Node" parent="StateMachine"]
+[node name="CombatState" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
+script = ExtResource("11_b3xas")
+light_attack = NodePath("../LightAttack")
+medium_attack = NodePath("../MedAttack")
+heavy_attack = NodePath("../HeavyAttack")
+combo = NodePath("../ComboAttack")
+move_state = NodePath("../Idle")
+
+[node name="LightAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
+script = ExtResource("10_s3ihi")
+light_attack = NodePath(".")
+medium_attack = NodePath("../MedAttack")
+heavy_attack = NodePath("../HeavyAttack")
+combo = NodePath("../ComboAttack")
+animation = "full/attack_stab"
+move_state = NodePath("../Idle")
+
+[node name="MedAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
+script = ExtResource("11_y3s1m")
+light_attack = NodePath("../LightAttack")
+medium_attack = NodePath(".")
+heavy_attack = NodePath("../HeavyAttack")
+combo = NodePath("../ComboAttack")
+animation = "full/attack_slash"
+move_state = NodePath("../Idle")
+
+[node name="HeavyAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
+script = ExtResource("12_ehj3a")
+light_attack = NodePath("../LightAttack")
+medium_attack = NodePath("../MedAttack")
+heavy_attack = NodePath(".")
+combo = NodePath("../ComboAttack")
+animation = "full/attack_back_slash"
+move_state = NodePath("../Idle")
+
+[node name="ComboAttack" type="Node" parent="StateMachine" node_paths=PackedStringArray("light_attack", "medium_attack", "heavy_attack", "combo", "move_state")]
+script = ExtResource("13_7usag")
+light_attack = NodePath("../LightAttack")
+medium_attack = NodePath("../MedAttack")
+heavy_attack = NodePath("../HeavyAttack")
+combo = NodePath(".")
+animation = "full/attack_combo"
+move_state = NodePath("../Idle")
