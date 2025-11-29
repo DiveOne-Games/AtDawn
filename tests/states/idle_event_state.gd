@@ -1,5 +1,6 @@
-class_name PlayState extends Node
+class_name IdleEventState extends Node
 
+#signal transition(next_state: String)
 
 @export var animation: String
 @export var next_state : PlayState
@@ -16,6 +17,10 @@ func end():
 
 
 func process(_delta: float) -> PlayState:
+	#if character.velocity == Vector2.ZERO:
+		#transition.emit('Idle')
+	#else:
+		#transition.emit('Run')
 	return null
 
 

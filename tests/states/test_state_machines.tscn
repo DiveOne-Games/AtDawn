@@ -1,3 +1,17 @@
-[gd_scene format=3 uid="uid://bjnbhjn68jkug"]
+[gd_scene load_steps=3 format=3 uid="uid://bjnbhjn68jkug"]
+
+[ext_resource type="PackedScene" uid="uid://4xtmmjmm8v2h" path="res://Assets/characters/controllers/controller_2d.tscn" id="1_eouc8"]
+[ext_resource type="Script" uid="uid://dvb5fp7ot3bcu" path="res://tests/states/event_state_machine.gd" id="1_n7p8g"]
 
 [node name="TestStateMachines" type="Node2D"]
+
+[node name="Controller2D" parent="." node_paths=PackedStringArray("state_machine") instance=ExtResource("1_eouc8")]
+position = Vector2(312, 144)
+state_machine = NodePath("EventStateMachine")
+
+[node name="EventStateMachine" type="Node" parent="Controller2D"]
+script = ExtResource("1_n7p8g")
+
+[node name="Idle" type="Node" parent="Controller2D/EventStateMachine"]
+
+[node name="Run" type="Node" parent="Controller2D/EventStateMachine"]

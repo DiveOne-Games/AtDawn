@@ -16,8 +16,10 @@ func end():
 
 func physics_process(_delta: float):
 	character.velocity = direction.normalized() * speed
-	#return null
+	if character.velocity == Vector2.ZERO:
+		return next_state
+	return null
 
 
-func input(_event):
+func _unhandled_input(event):
 	direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")

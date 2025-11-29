@@ -19,18 +19,22 @@ shape = SubResource("CapsuleShape2D_ivauu")
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
 script = ExtResource("8_kc6vb")
-initial_state = NodePath("Walk")
+initial_state = NodePath("Idle")
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "next_state")]
+script = ExtResource("4_ye7au")
+move_state = NodePath("../Walk")
+animation = "full/idle"
+next_state = NodePath("../Run")
+
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state", "character")]
 script = ExtResource("7_lrla1")
 animation = "full/run"
+next_state = NodePath("../Idle")
 character = NodePath("../..")
 
-[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("character")]
+[node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("next_state", "character")]
 script = ExtResource("4_rj4bc")
 animation = "full/run"
+next_state = NodePath("../Idle")
 character = NodePath("../..")
-
-[node name="Idle" type="Node" parent="StateMachine"]
-script = ExtResource("4_ye7au")
-animation = "full/idle"
