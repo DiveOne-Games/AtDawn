@@ -9,5 +9,9 @@ enum DamageType { Physical, Magic }
 @export var max_damage: int
 @export_range(0,1,0.01) var hit_chance: float
 @export_range(0,1,0.01) var crit_chance: float
-@export var crit_modifier: float
+@export var crit_modifier: float = 1.5
 @export var type: WeaponType
+
+
+func damage():
+	return randi_range(min_damage, max_damage)

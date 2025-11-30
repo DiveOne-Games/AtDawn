@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/characters/Zombie/undead_sprites_all.png" id="2_3wt10"]
 [ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="2_wkx1d"]
 [ext_resource type="Script" uid="uid://psdyf3ckvdta" path="res://Assets/Scripts/behavior/character_ctrl.gd" id="3_7cv5a"]
-[ext_resource type="Texture2D" uid="uid://b8akpe7tyclgt" path="res://Assets/StaticAssets/Environments/Cemetery/Characters/bat/Undead-all-animations-96x96-each row is a different animation-from top to bottom-Idle-Idle2-walk-atk-hurt-death.png" id="3_cvawd"]
 [ext_resource type="Script" uid="uid://bnqmcdui30ia6" path="res://Assets/Scripts/Characters/face.gd" id="3_grklj"]
 [ext_resource type="Resource" uid="uid://b8w8gfudxatnf" path="res://Assets/resources/weapons/punch.tres" id="5_jevvi"]
 [ext_resource type="Animation" uid="uid://d2boox1aa8pri" path="res://Assets/resources/animations/anim_undead_RESET.res" id="5_wlej6"]
@@ -20,13 +19,13 @@
 [ext_resource type="Script" uid="uid://ciutknmu4ljw1" path="res://Assets/characters/hit_box.gd" id="17_614bx"]
 [ext_resource type="PackedScene" uid="uid://ctnihc2a51ncc" path="res://Assets/shared/behavior/patrol.tscn" id="17_kuwtn"]
 [ext_resource type="PackedScene" uid="uid://dlf6faof3gai6" path="res://Assets/shared/behavior/death.tscn" id="18_or24n"]
+[ext_resource type="PackedScene" uid="uid://c6g1kwrkllsks" path="res://Assets/characters/shared/hitboxes/hitbox_2d.tscn" id="20_bvc3r"]
 
 [sub_resource type="Resource" id="Resource_wtnpn"]
 script = ExtResource("2_wkx1d")
 name = "Undead"
 health = 25
 speed = 60.0
-texture = ExtResource("3_cvawd")
 metadata/_custom_type_script = "uid://sdivydjiascd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxu3u"]
@@ -227,8 +226,14 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
+[node name="Hitbox2D" parent="." instance=ExtResource("20_bvc3r")]
+visible = false
+collision_layer = 33
+collision_mask = 2
+
 [connection signal="velocity_changed" from="Velocity" to="Sprite2D" method="_on_velocity_changed"]
 [connection signal="area_shape_entered" from="HitBox" to="HitBox" method="_on_area_shape_entered"]
 [connection signal="target_updated" from="ReactZone" to="." method="_on_react_zone_target_updated"]
+[connection signal="area_shape_entered" from="Hitbox2D" to="Hitbox2D" method="_on_weapon_entered"]
 
 [editable path="ReactZone"]
