@@ -10,3 +10,7 @@ func get_direction() -> Vector2:
 
 func get_velocity() -> Vector2:
 	return Vector2.ZERO
+
+
+func get_input(_event: InputEvent):
+	pass

@@ -9,9 +9,8 @@
 [node name="TileMapSample" parent="." instance=ExtResource("1_ryotc")]
 
 [node name="Controller2D" parent="." instance=ExtResource("2_ryotc")]
-position = Vector2(966, 504)
+position = Vector2(941, 588)
 
 [node name="MeleeUnit" parent="." instance=ExtResource("3_jha6y")]
 position = Vector2(1211, 513)
 collision_layer = 32
-health = 10000

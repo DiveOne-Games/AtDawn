@@ -11,7 +11,3 @@ state_machine = NodePath("EventStateMachine")
 
 [node name="EventStateMachine" type="Node" parent="Controller2D"]
 script = ExtResource("1_n7p8g")
-
-[node name="Idle" type="Node" parent="Controller2D/EventStateMachine"]
-
-[node name="Run" type="Node" parent="Controller2D/EventStateMachine"]

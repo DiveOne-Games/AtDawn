@@ -1,6 +1,9 @@
-class_name EventState extends PlayState
+class_name EventState extends Resource
 
 signal transition(next_state: String)
+var animation: StringName
+var character : CharacterBody2D
+var animator : AnimationPlayer
 
 
 func start():

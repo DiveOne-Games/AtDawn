@@ -1,11 +1,6 @@
-class_name IdleEventState extends Node
+class_name IdleEventState extends EventState
 
-#signal transition(next_state: String)
-
-@export var animation: String
-@export var next_state : PlayState
-@export var character: CharacterBody2D
-var animator: AnimationPlayer
+@export var next_state : EventState
 
 
 func start():

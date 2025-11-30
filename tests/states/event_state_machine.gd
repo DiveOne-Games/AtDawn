@@ -1,13 +1,13 @@
 class_name EventStateMachine extends StateMachine
 
+@export var event_states : Dictionary[String, EventState]
+
 
 func init(current_player: CharacterBody2D, animation_player: AnimationPlayer):
 	character = current_player
-	var available_states = find_children("*", "PlayState", false) as Array[PlayState]
-	for state in available_states:
+	for state in event_states.values():
 		state.character = character
 		state.animator = animation_player
-		states[state.name] = state
 		state.transition.connect(_on_state_transition)
 	transition(initial_state)
 
