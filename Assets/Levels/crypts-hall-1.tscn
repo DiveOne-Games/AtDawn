@@ -49,7 +49,7 @@ tile_map_data = PackedByteArray("AAAAABMAAQAKAAAAAAAAABQAAQAKAAEAAAABABMAAwAHAAk
 tile_set = ExtResource("1_83oeu")
 
 [node name="Exits" type="TileMapLayer" parent="TileMaps"]
-tile_map_data = PackedByteArray("AAAFAAAAAAAHAB0AAAAFAAEAAAAHAB4AAAAFAAIAAAAHAB8AAAAFAAMAAAAHACAAAAAGAAAAAAAIAB0AAAAGAAEAAAAIAB4AAAAGAAIAAAAIAB8AAAAGAAMAAAAIACAAAAAHAAAAAAAJAB0AAAAHAAEAAAAJAB4AAAAHAAIAAAAJAB8AAAAHAAMAAAAJACAAAAAIAAAAAAAKAB0AAAAIAAEAAAAKAB4AAAAIAAIAAAAKAB8AAAAIAAMAAAAKACAAAAA=")
+tile_map_data = PackedByteArray("AAAFAAIAAAAHAB8AAAAFAAAAAAAHAB0AAAA=")
 tile_set = ExtResource("1_83oeu")
 
 [node name="PropsCrypts" type="TileMapLayer" parent="TileMaps"]
@@ -100,6 +100,7 @@ position = Vector2(879, 734)
 z_index = 0
 position = Vector2(176, 61)
 collision_mask = 17
+camera_zoom = 3.5
 
 [node name="AudioListenerArea2" parent="." instance=ExtResource("4_1ps7i")]
 modulate = Color(1, 1, 1, 0)
