@@ -27,7 +27,7 @@ func init(_character: CharacterBody2D, _animator: AnimationPlayer, _init_behavio
 	update_state(initial_state)
 
 
-func _process(delta):
+func process(delta):
 	if is_active:
 		var next_state = current_state.update(delta)
 		if next_state:
@@ -35,7 +35,7 @@ func _process(delta):
 		current_state.update(delta)
 
 
-func _physics_process(delta):
+func physics_process(delta):
 	if is_active:
 		if character.is_hurt:
 			update_state(hurt)
@@ -49,7 +49,7 @@ func _physics_process(delta):
 		current_state.physics_update(delta)
 
 
-func _unhandled_input(event):
+func input(event):
 	if is_active:
 		var next_state = current_state.handle_input(event)
 		if next_state:

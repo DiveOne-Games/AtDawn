@@ -33,8 +33,13 @@ func _ready():
 		item.equip(self)
 
 
-func _physics_process(_delta: float) -> void:
-	health = hitbox.health
+func _process(delta):
+	state_machine.process(delta)
+	
+
+func _physics_process(delta: float) -> void:
+	state_machine.physics_process(delta)
+	
 	if is_dead: return
 	direction = get_last_motion()
 	if target:
@@ -42,6 +47,11 @@ func _physics_process(_delta: float) -> void:
 	facing_left = sprite.flip_h
 
 	move_and_slide()
+
+
+func _unhandled_input(event):
+	state_machine.input(event)
+
 
 
 func _on_react_zone_target_updated(unit: CharacterBody2D):
