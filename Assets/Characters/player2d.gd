@@ -1,13 +1,8 @@
 class_name Player2D extends CharacterBody2D
 
-signal health_changed
+signal character_died
 
 @export var stats: PlayerStats
-@export var health: int = 25 :
-	set(val):
-		health = val
-		health_changed.emit()
-@export var speed: float = 60
 @export_enum('Idle', 'Patrol') var initial_state: int
 
 var direction: Vector2
@@ -15,13 +10,18 @@ var origin : Vector2
 var target : CharacterBody2D
 var equipment : Array
 var facing_left := false
-var is_dead := false
+var is_dead : bool = false:
+	set(val):
+		is_dead = val
+		character_died.emit()
+var is_hurt := false
+var health : int
 
 @onready var state_machine : BehaviorMachine = $BehaviorMachine
 @onready var animator: AnimationPlayer = %AnimationPlayer
 @onready var sprite: Sprite2D = %Sprite2D
 @onready var equipment_node : Node2D = %Equipment
-@onready var hitbox : Area2D = $HitBox
+@onready var hitbox : Area2D = $Hitbox2D
 @onready var shape2d: CollisionShape2D = $CollisionShape2D
 
 
@@ -30,10 +30,11 @@ func _ready():
 	state_machine.init(self, animator, initial_state)
 	equipment = equipment_node.get_children() as Array[Equipable]
 	for item in equipment:
-		equip(item)
+		item.equip(self)
 
 
 func _physics_process(_delta: float) -> void:
+	health = hitbox.health
 	if is_dead: return
 	direction = get_last_motion()
 	if target:
@@ -48,17 +49,6 @@ func _on_react_zone_target_updated(unit: CharacterBody2D):
 	state_machine.target = unit  # TODO: Testing, might not be best approach.
 
 
-func equip(item):
-	item.equip(self)
-
-
-func update_health(amount):
-	health += amount
-	# FIXME: Animation gets clipped by next state. timers have no effect. wtf?
-	state_machine.update_state(state_machine.hurt)
-	health_changed.emit()
-
-
 func die():
 	is_dead = true
 	target = null
@@ -68,3 +58,10 @@ func die():
 	shape2d.disabled = true
 	for item in equipment:
 		item.disable()
+
+
+## Event usually triggered by a hitbox such as [HitBox2D].
+func _on_hitbox_active(health_update: int):
+	is_hurt = true
+	if health_update <= 0:
+		is_dead = true

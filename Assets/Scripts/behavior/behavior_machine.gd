@@ -17,6 +17,7 @@ var target : CharacterBody2D :
 		target_acquired.emit(unit)
 var behaviors : Array
 var behavior_map = {0: 'Idle', 1: 'Patrol'}  # TODO: Difficult to manage
+var is_active := true
 
 
 func init(_character: CharacterBody2D, _animator: AnimationPlayer, _init_behavior: int = 0):
@@ -27,24 +28,33 @@ func init(_character: CharacterBody2D, _animator: AnimationPlayer, _init_behavio
 
 
 func _process(delta):
-	var next_state = current_state.update(delta)
-	if next_state:
-		update_state(next_state)
-	current_state.update(delta)
+	if is_active:
+		var next_state = current_state.update(delta)
+		if next_state:
+			update_state(next_state)
+		current_state.update(delta)
 
 
 func _physics_process(delta):
-	var next_state = current_state.physics_update(delta)
-	if next_state:
-		update_state(next_state)
-	current_state.physics_update(delta)
+	if is_active:
+		if character.is_hurt:
+			update_state(hurt)
+		elif is_active and character.is_dead:
+			update_state(death)
+			#is_active = false
+
+		var next_state = current_state.physics_update(delta)
+		if next_state:
+			update_state(next_state)
+		current_state.physics_update(delta)
 
 
 func _unhandled_input(event):
-	var next_state = current_state.handle_input(event)
-	if next_state:
-		update_state(next_state)
-	current_state.handle_input(event)
+	if is_active:
+		var next_state = current_state.handle_input(event)
+		if next_state:
+			update_state(next_state)
+		current_state.handle_input(event)
 
 
 func initialize_behaviors(b_init = 0):
@@ -65,3 +75,7 @@ func update_state(next_state: Behavior):
 		prior = current_state
 	current_state = next_state
 	current_state.start(prior)
+
+
+func _on_character_died():
+	is_active = false

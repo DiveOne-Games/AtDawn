@@ -14,6 +14,7 @@ func start(old_state: Behavior = null):
 func end():
 	super()
 	counter = 0
+	character.is_hurt = false
 
 
 func physics_update(_delta: float) -> Behavior:

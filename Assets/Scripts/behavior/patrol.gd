@@ -31,7 +31,7 @@ func physics_update(_delta: float) -> Behavior:
 	if character.is_on_wall():
 		direction *= -1
 	if character:
-		character.velocity = direction * character.speed
+		character.velocity = direction * character.stats.speed
 	if character.target:
 		return chase 
 	return null

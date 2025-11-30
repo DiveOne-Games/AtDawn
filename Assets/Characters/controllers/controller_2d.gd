@@ -11,14 +11,16 @@ class_name Controller2D extends CharacterBody2D
 @onready var avatar2d : Sprite2D = $Avatar2D
 @onready var hitbox : HitBox2D = $Hitbox2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
-@onready var equipment : Node2D = $Equipment
+@onready var equipment_node : Node2D = $Equipment
 var facing_left := false
+var equipment : Array  # TODO: Throws error unless set as plain Array, seems like a bug.
 
 
-func _ready():
+func _ready(): 
+	# FIXME: Causes AnimationMixer warnings that break the game. Known bug since 2024.
 	#name = stats.name
-	var items = equipment.find_children('*', 'Equipable', false)
-	for item in items:
+	equipment = equipment_node.find_children('*', 'Equipable', false) as Array[Equipable]
+	for item in equipment:
 		item.equip(self)
 	state_machine.init(self, animator)
 
@@ -52,8 +54,13 @@ func die():
 	hitbox.monitoring = false
 	hitbox.monitorable = false
 	shape.disabled = true
+	is_dead = true
+	velocity = Vector2.ZERO
+	for item in equipment:
+		item.disable()
 
 
+## Event usually triggered by a hitbox such as [HitBox2D].
 func _on_hitbox_active(health_update: int):
 	is_hurt = true
 	if health_update <= 0:

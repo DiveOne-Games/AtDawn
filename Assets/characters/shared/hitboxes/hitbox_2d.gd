@@ -17,12 +17,11 @@ func _ready():
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
-		#monitoring = false
 		set_deferred('monitoring', false)
 		set_deferred('monitorable', false)
 		character.is_dead = true
+		is_dead = true
 	else:
-		#monitoring = true
 		set_deferred('monitoring', true)
 		set_deferred('monitorable', true)
 	wounded.emit(health)

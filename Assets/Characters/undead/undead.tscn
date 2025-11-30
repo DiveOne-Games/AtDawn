@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bt5rpt2qc4lbg"]
+[gd_scene load_steps=29 format=3 uid="uid://bt5rpt2qc4lbg"]
 
 [ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/characters/player2d.gd" id="1_3wt10"]
 [ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/characters/Zombie/undead_sprites_all.png" id="2_3wt10"]
@@ -16,7 +16,6 @@
 [ext_resource type="PackedScene" uid="uid://cay4ak2gn22pu" path="res://Assets/shared/behavior/attack.tscn" id="14_wkx1d"]
 [ext_resource type="PackedScene" uid="uid://ckbbg7l31od8a" path="res://Assets/shared/behavior/idle.tscn" id="15_cvawd"]
 [ext_resource type="PackedScene" uid="uid://dk4wlgy0qgxsy" path="res://Assets/shared/behavior/hurt.tscn" id="16_wtnpn"]
-[ext_resource type="Script" uid="uid://ciutknmu4ljw1" path="res://Assets/characters/hit_box.gd" id="17_614bx"]
 [ext_resource type="PackedScene" uid="uid://ctnihc2a51ncc" path="res://Assets/shared/behavior/patrol.tscn" id="17_kuwtn"]
 [ext_resource type="PackedScene" uid="uid://dlf6faof3gai6" path="res://Assets/shared/behavior/death.tscn" id="18_or24n"]
 [ext_resource type="PackedScene" uid="uid://c6g1kwrkllsks" path="res://Assets/characters/shared/hitboxes/hitbox_2d.tscn" id="20_bvc3r"]
@@ -30,9 +29,6 @@ metadata/_custom_type_script = "uid://sdivydjiascd"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sxu3u"]
 size = Vector2(20, 14)
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_614bx"]
-height = 44.0
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_3wt10"]
 _data = {
@@ -160,14 +156,9 @@ character = NodePath("..")
 script = ExtResource("3_7cv5a")
 character = NodePath("..")
 
-[node name="HitBox" type="Area2D" parent="." node_paths=PackedStringArray("character")]
+[node name="Hitbox2D" parent="." instance=ExtResource("20_bvc3r")]
 collision_layer = 33
 collision_mask = 2
-script = ExtResource("17_614bx")
-character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-shape = SubResource("CapsuleShape2D_614bx")
 
 [node name="ReactZone" parent="." node_paths=PackedStringArray("character") instance=ExtResource("12_5da4c")]
 character = NodePath("..")
@@ -226,14 +217,10 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[node name="Hitbox2D" parent="." instance=ExtResource("20_bvc3r")]
-visible = false
-collision_layer = 33
-collision_mask = 2
-
+[connection signal="character_died" from="." to="BehaviorMachine" method="_on_character_died"]
 [connection signal="velocity_changed" from="Velocity" to="Sprite2D" method="_on_velocity_changed"]
-[connection signal="area_shape_entered" from="HitBox" to="HitBox" method="_on_area_shape_entered"]
-[connection signal="target_updated" from="ReactZone" to="." method="_on_react_zone_target_updated"]
 [connection signal="area_shape_entered" from="Hitbox2D" to="Hitbox2D" method="_on_weapon_entered"]
+[connection signal="wounded" from="Hitbox2D" to="." method="_on_hitbox_active"]
+[connection signal="target_updated" from="ReactZone" to="." method="_on_react_zone_target_updated"]
 
 [editable path="ReactZone"]
