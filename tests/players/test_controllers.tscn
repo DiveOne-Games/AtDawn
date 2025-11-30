@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://ddauus7lflvm7"]
+[gd_scene load_steps=4 format=3 uid="uid://ddauus7lflvm7"]
 
 [ext_resource type="PackedScene" uid="uid://ct6yl0bvqgkho" path="res://tests/units/tile_map_sample.tscn" id="1_ryotc"]
 [ext_resource type="PackedScene" uid="uid://4xtmmjmm8v2h" path="res://Assets/characters/controllers/controller_2d.tscn" id="2_ryotc"]
+[ext_resource type="PackedScene" uid="uid://bt5rpt2qc4lbg" path="res://Assets/characters/undead/undead.tscn" id="3_jha6y"]
 
 [node name="TestControllers" type="Node2D"]
 
@@ -9,3 +10,8 @@
 
 [node name="Controller2D" parent="." instance=ExtResource("2_ryotc")]
 position = Vector2(966, 504)
+
+[node name="MeleeUnit" parent="." instance=ExtResource("3_jha6y")]
+position = Vector2(1211, 513)
+collision_layer = 32
+health = 10000

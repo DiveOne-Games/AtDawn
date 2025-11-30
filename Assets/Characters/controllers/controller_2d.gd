@@ -11,10 +11,15 @@ class_name Controller2D extends CharacterBody2D
 @onready var avatar2d : Sprite2D = $Avatar2D
 @onready var hitbox : HitBox2D = $Hitbox2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
+@onready var equipment : Node2D = $Equipment
 var facing_left := false
 
 
 func _ready():
+	#name = stats.name
+	var items = equipment.find_children('*', 'Equipable', false)
+	for item in items:
+		item.equip(self)
 	state_machine.init(self, animator)
 
 
@@ -45,6 +50,7 @@ func change_face(vector: float):
 
 func die():
 	hitbox.monitoring = false
+	hitbox.monitorable = false
 	shape.disabled = true
 
 

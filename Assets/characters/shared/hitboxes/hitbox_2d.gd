@@ -17,13 +17,17 @@ func _ready():
 func take_damage(damage):
 	health -= damage
 	if health <= 0:
-		monitoring = false
+		#monitoring = false
+		set_deferred('monitoring', false)
+		set_deferred('monitorable', false)
 		character.is_dead = true
 	else:
-		monitoring = true
+		#monitoring = true
+		set_deferred('monitoring', true)
+		set_deferred('monitorable', true)
 	wounded.emit(health)
 
 
 func _on_weapon_entered(_area_rid:RID, weapon: Area2D, _area_shape_index:int, _local_shape_index:int):
-	if weapon is Weapon2D:
-		take_damage(weapon.damage)
+	if weapon is Weapon2D or weapon is Equipable:
+		take_damage(weapon.damage())

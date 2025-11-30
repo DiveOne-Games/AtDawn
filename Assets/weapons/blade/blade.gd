@@ -1,4 +1,4 @@
-class_name BladeWeapon extends Area2D
+class_name BladeWeapon extends Equipable
 
 @export var stats: Weapon
 @export var sfx: AudioStream

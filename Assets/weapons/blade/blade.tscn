@@ -9,6 +9,7 @@ size = Vector2(32, 11)
 [node name="Blade" type="Area2D"]
 collision_mask = 40
 monitoring = false
+monitorable = false
 script = ExtResource("1_xnesh")
 stats = ExtResource("2_ru7xb")
 
