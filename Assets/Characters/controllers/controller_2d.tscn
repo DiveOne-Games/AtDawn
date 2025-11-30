@@ -5,12 +5,12 @@
 [ext_resource type="Texture2D" uid="uid://bq2eiav34innu" path="res://Assets/characters/Warrior/Sprites/warrior-all.png" id="2_kc6vb"]
 [ext_resource type="PackedScene" uid="uid://br2ksuobaey7g" path="res://Assets/weapons/blade/blade.tscn" id="3_8gq7q"]
 [ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="3_ehj3a"]
-[ext_resource type="Script" uid="uid://c010qahwsyktf" path="res://Assets/characters/player/state_machine/states/run.gd" id="4_rj4bc"]
+[ext_resource type="Script" uid="uid://c010qahwsyktf" path="res://Assets/characters/player/state_machine/states/run_state.gd" id="4_rj4bc"]
 [ext_resource type="AnimationLibrary" uid="uid://bmb7oo8dmb3w8" path="res://Assets/resources/animations/player/full.res" id="4_s3ihi"]
-[ext_resource type="Script" uid="uid://dxvugctpwibq8" path="res://Assets/characters/player/state_machine/states/idle.gd" id="4_ye7au"]
+[ext_resource type="Script" uid="uid://dxvugctpwibq8" path="res://Assets/characters/player/state_machine/states/idle_state.gd" id="4_ye7au"]
 [ext_resource type="PackedScene" uid="uid://c6g1kwrkllsks" path="res://Assets/characters/shared/hitboxes/hitbox_2d.tscn" id="5_7usag"]
 [ext_resource type="Script" uid="uid://c02nlt0qik5th" path="res://Assets/characters/player/state_machine/state_machine.gd" id="8_kc6vb"]
-[ext_resource type="Script" uid="uid://geq4u5r3w4mx" path="res://Assets/characters/player/state_machine/states/light_attack.gd" id="10_s3ihi"]
+[ext_resource type="Script" uid="uid://geq4u5r3w4mx" path="res://Assets/characters/player/state_machine/states/light_attack_state.gd" id="10_s3ihi"]
 [ext_resource type="Script" uid="uid://c573dpgc0qx6v" path="res://Assets/characters/player/state_machine/states/combat_state.gd" id="11_b3xas"]
 [ext_resource type="Script" uid="uid://ek28k0iwfgv1" path="res://Assets/characters/player/state_machine/states/medium_attack_state.gd" id="11_y3s1m"]
 [ext_resource type="Script" uid="uid://cq7qgltv7i1qu" path="res://Assets/characters/player/state_machine/states/heavy_attack_state.gd" id="12_ehj3a"]
@@ -78,9 +78,10 @@ position = Vector2(2, -2)
 texture = ExtResource("2_kc6vb")
 hframes = 22
 vframes = 7
-frame = 132
+frame = 44
 
 [node name="Hitbox2D" parent="." instance=ExtResource("5_7usag")]
+collision_layer = 2
 
 [node name="Equipment" type="Node2D" parent="."]
 
@@ -162,9 +163,10 @@ move_state = NodePath("../Idle")
 script = ExtResource("16_m8byq")
 animation = "full/death"
 
-[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("combat_state")]
+[node name="Hurt" type="Node" parent="StateMachine" node_paths=PackedStringArray("move_state", "combat_state")]
 script = ExtResource("17_shno7")
 animation = "full/hurt"
+move_state = NodePath("../Idle")
 combat_state = NodePath("../CombatState")
 
 [connection signal="wounded" from="Hitbox2D" to="." method="_on_hitbox_active"]

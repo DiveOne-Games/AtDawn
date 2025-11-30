@@ -1,4 +1,13 @@
 class_name StateMachine extends Node
+## Base state management machine. A state machine is a rigid structural pattern
+## that ensures only 1 state is active at any given time. To transition to a new
+## state, each [PlayState] must return the state that follows it.
+##
+## States are sequential: each one defines a discrete set of possible states
+## that are eligible to occur follow the parent.
+## 
+## The rigid structure of the StateMachine is by design. The goal is to be discrete
+## and have fine-tune control over a set of behaviors.
 
 @export var character : CharacterBody2D
 @export var initial_state : PlayState
@@ -31,6 +40,7 @@ func process(delta: float) -> void:
 
 func physics_process(delta: float) -> void:
 	if character.is_hurt:
+		#character.is_hurt = false
 		transition(hurt_state)
 	elif is_active and character.is_dead:
 		transition(death_state)

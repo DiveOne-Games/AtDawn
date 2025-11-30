@@ -3,14 +3,6 @@ class_name RunState extends MoveState
 @export var speed_scale : float = 1.5	## Increase movement speed by scaling current speed.
 
 
-func start():
-	super()
-
-
-func end():
-	super()
-
-
 func physics_process(_delta: float):
 	character.velocity = direction.normalized() * (speed *speed_scale)
 	if character.velocity == Vector2.ZERO:
