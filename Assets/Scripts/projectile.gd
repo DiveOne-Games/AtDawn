@@ -61,7 +61,7 @@ func travel():
 
 
 func _on_area_2d_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if is_instance_of(area, HitBox) or area is HitBox2D:
 		is_destroyed = true
 		area.take_damage(damage)
 		# Stick the arrow to the body

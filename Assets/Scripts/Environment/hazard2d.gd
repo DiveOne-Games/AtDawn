@@ -16,13 +16,15 @@ const ANIMATION_SHOOT := 'shoot'
 
 var state: HazardState = HazardState.ON
 
-@onready var anim_sprite : AnimatedSprite2D = $AnimatedSprite2D
+@onready var anim_sprite : AnimatedSprite2D
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var anim_player: AnimationPlayer = $AnimationPlayer
 @onready var audio: AudioStreamPlayer2D = $AudioStreamPlayer2D
 
 
 func _ready():
+	if trap and trap.is_animated:
+		anim_sprite = get_node('AnimatedSprite2D')
 	call_deferred("prepare")
 
 

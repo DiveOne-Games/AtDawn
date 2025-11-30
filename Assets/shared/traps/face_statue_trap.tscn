@@ -102,13 +102,14 @@ tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_b01px"]
 _data = {
-"RESET": SubResource("Animation_1lpyh"),
-"activate": SubResource("Animation_cl3l7"),
-"load": SubResource("Animation_kqos2"),
-"shoot": SubResource("Animation_vua6x")
+&"RESET": SubResource("Animation_1lpyh"),
+&"activate": SubResource("Animation_cl3l7"),
+&"load": SubResource("Animation_kqos2"),
+&"shoot": SubResource("Animation_vua6x")
 }
 
 [node name="FireFace" type="StaticBody2D"]
+collision_mask = 2
 script = ExtResource("1_7ru8x")
 projectile = ExtResource("2_8taki")
 launch_speed = 3.0
@@ -120,6 +121,7 @@ damage = 5
 shape = SubResource("CapsuleShape2D_050a5")
 
 [node name="AttackZone" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AttackZone"]
 self_modulate = Color(1, 0, 0.141176, 0.301961)
@@ -128,6 +130,7 @@ scale = Vector2(0.374385, 0.990625)
 polygon = PackedVector2Array(-81.4669, -5.04732, -215.019, 194.826, 207.006, 194.826, 70.7828, -5.04732)
 
 [node name="AggroZone" type="Area2D" parent="."]
+collision_mask = 2
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="AggroZone"]
 modulate = Color(1, 0.713726, 0, 0.52549)
@@ -147,12 +150,11 @@ position = Vector2(0, 25)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_b01px")
+&"": SubResource("AnimationLibrary_b01px")
 }
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 attenuation = 6.06286
-bus = &"SFX"
 
 [connection signal="area_shape_entered" from="AttackZone" to="." method="_on_attack_zone_player_entered"]
 [connection signal="area_shape_exited" from="AttackZone" to="." method="_on_attack_zone_area_shape_exited"]

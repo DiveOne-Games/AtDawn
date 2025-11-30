@@ -1,6 +1,6 @@
 [gd_scene load_steps=24 format=3 uid="uid://bek6qtmfykw8j"]
 
-[ext_resource type="Script" path="res://Assets/Scripts/projectile.gd" id="1_wik7o"]
+[ext_resource type="Script" uid="uid://dqysd7tnjqwy3" path="res://Assets/Scripts/projectile.gd" id="1_wik7o"]
 [ext_resource type="Texture2D" uid="uid://8jht87x4jv4p" path="res://Assets/StaticAssets/Environments/Crypt/Props/fireball-.png" id="2_o8d1f"]
 [ext_resource type="Texture2D" uid="uid://cjd7wgpdytmcp" path="res://Assets/StaticAssets/Environments/Crypt/Props/fireball-destroy.png" id="3_w7ths"]
 [ext_resource type="AudioStream" uid="uid://bohiassoul836" path="res://Assets/StaticAssets/SFX/fireball4-2.mp3" id="4_dwog1"]
@@ -157,6 +157,8 @@ animation = &"fire"
 autoplay = "fire"
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 18
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, 6)

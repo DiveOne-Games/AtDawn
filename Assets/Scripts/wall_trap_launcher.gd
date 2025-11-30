@@ -59,25 +59,25 @@ func get_launcher_position():
 
 
 func _on_attack_zone_player_entered(_area_rid:RID, area: Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if is_instance_of(area, HitBox) or area is HitBox2D:
 		attack_zone_empty = false
 		animation_player.play(ANIMATION_SHOOT)
 
 
 func _on_attack_zone_area_shape_exited(_area_rid:RID, area: Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if is_instance_of(area, HitBox) or area is HitBox2D:
 		attack_zone_empty = true
 		animation_player.play(ANIMATION_LOAD)
 
 
 func _on_aggro_zone_area_shape_entered(_area_rid:RID, area: Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if is_instance_of(area, HitBox) or area is HitBox2D:
 		animation_player.play(ANIMATION_ACTIVATE)
 		animation_player.queue(ANIMATION_LOAD)
 
 
 func _on_aggro_zone_area_shape_exited(_area_rid:RID, area: Area2D, _area_shape_index:int, _local_shape_index:int):
-	if is_instance_of(area, HitBox):
+	if is_instance_of(area, HitBox) or area is HitBox2D:
 		animation_player.play_backwards(ANIMATION_ACTIVATE)
 
 
