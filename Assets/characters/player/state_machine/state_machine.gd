@@ -40,7 +40,6 @@ func process(delta: float) -> void:
 
 func physics_process(delta: float) -> void:
 	if character.is_hurt:
-		#character.is_hurt = false
 		transition(hurt_state)
 	elif is_active and character.is_dead:
 		transition(death_state)

@@ -16,6 +16,6 @@ func end():
 func physics_update(_delta: float) -> Behavior:
 	if not character.target:
 		return idle
-	if character.health <= 0:
-		return machine.death
+	#if character.health <= 0:
+		#return machine.death
 	return self

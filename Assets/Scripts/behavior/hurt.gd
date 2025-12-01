@@ -18,8 +18,8 @@ func end():
 
 
 func physics_update(_delta: float) -> Behavior:
-	if character.health <= 0:
-		return death
+	#if character.is_dead:
+		#return death
 	if counter >= stagger_delay:
 		return idle
 	counter += _delta

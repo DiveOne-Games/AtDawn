@@ -26,8 +26,7 @@ func disable():
 
 
 func _on_area_shape_entered(_area_rid:RID, area:Area2D, _area_shape_index:int, _local_shape_index:int):
-	if area is HitBox:
+	if area is HitBox2D:
 		vfx.play("smack")
 		var dmg = damage()
-		print_debug("Weapon2D damage ", dmg)
 		area.take_damage(dmg)

@@ -11,6 +11,7 @@ script = ExtResource("1_tknoe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 unique_name_in_owner = true
+position = Vector2(14, 8)
 shape = SubResource("RectangleShape2D_8meau")
 disabled = true
 

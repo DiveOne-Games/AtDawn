@@ -81,12 +81,12 @@ limit_bottom = 1080
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("2_8gq7q")
-camera_zoom = 2.0
+camera_zoom = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ivauu")
 
-[node name="Avatar2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(2, -2)
 texture = ExtResource("2_kc6vb")
 hframes = 22
@@ -95,6 +95,7 @@ frame = 88
 
 [node name="Hitbox2D" parent="." instance=ExtResource("5_7usag")]
 collision_layer = 2
+collision_mask = 40
 
 [node name="Equipment" type="Node2D" parent="."]
 

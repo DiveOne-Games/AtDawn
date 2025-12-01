@@ -1,10 +1,10 @@
-class_name Behavior extends Node
+class_name Behavior extends PlayState
 
 @export var behavior_name: String
-@export var animation: String
+#@export var animation: String
 @export var resume := false  ## Resume the previous behavior state.
 
-var character : CharacterBody2D
+#var character : CharacterBody2D
 var previous_state: Behavior
 var machine : BehaviorMachine
 

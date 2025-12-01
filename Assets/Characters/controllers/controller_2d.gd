@@ -8,7 +8,7 @@ class_name Controller2D extends CharacterBody2D
 @export var is_hurt := false
 @export var is_dead := false
 
-@onready var avatar2d : Sprite2D = $Avatar2D
+@onready var sprite : Sprite2D = $Sprite2D
 @onready var hitbox : HitBox2D = $Hitbox2D
 @onready var shape: CollisionShape2D = $CollisionShape2D
 @onready var equipment_node : Node2D = $Equipment
@@ -47,7 +47,7 @@ func change_face(vector: float):
 		facing_left = true
 	elif vector > 0:
 		facing_left = false
-	avatar2d.flip_h = facing_left
+	sprite.flip_h = facing_left
 	
 
 func die():
