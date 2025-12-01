@@ -1,6 +1,6 @@
 [gd_scene load_steps=41 format=3 uid="uid://p5r27gn3d6hn"]
 
-[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/characters/player2d.gd" id="1_tot4p"]
+[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://unit_2d.gd" id="1_tot4p"]
 [ext_resource type="Script" uid="uid://ryg4ifudumer" path="res://Assets/Scripts/velocity.gd" id="2_q4ouk"]
 [ext_resource type="Resource" uid="uid://002d7glbis54" path="res://Assets/resources/characters/skeleton.tres" id="2_tot4p"]
 [ext_resource type="Texture2D" uid="uid://cuxsy4u6o4f53" path="res://Assets/characters/Skeleton/Sprites/skeleton1_all.png" id="3_1o2mj"]

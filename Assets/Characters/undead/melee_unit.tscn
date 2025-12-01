@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://caebdmwfuvw6n"]
 
-[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/characters/player2d.gd" id="1_iy2q1"]
+[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://unit_2d.gd" id="1_iy2q1"]
 [ext_resource type="Script" uid="uid://ryg4ifudumer" path="res://Assets/Scripts/velocity.gd" id="2_tqn2s"]
 [ext_resource type="Script" uid="uid://psdyf3ckvdta" path="res://Assets/Scripts/behavior/character_ctrl.gd" id="3_rrwq3"]
 [ext_resource type="PackedScene" uid="uid://cf2ta7mrj3mae" path="res://Assets/shared/weapon_2d.tscn" id="4_d1rke"]

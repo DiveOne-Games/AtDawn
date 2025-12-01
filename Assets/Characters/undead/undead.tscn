@@ -1,6 +1,6 @@
 [gd_scene load_steps=29 format=3 uid="uid://bt5rpt2qc4lbg"]
 
-[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/characters/player2d.gd" id="1_3wt10"]
+[ext_resource type="Script" uid="uid://tbs23lxrp7jb" path="res://Assets/characters/unit_2d.gd" id="1_3wt10"]
 [ext_resource type="Texture2D" uid="uid://bo5b8oeaf561n" path="res://Assets/characters/Zombie/undead_sprites_all.png" id="2_3wt10"]
 [ext_resource type="Script" uid="uid://sdivydjiascd" path="res://Assets/Scripts/Characters/player_stats.gd" id="2_wkx1d"]
 [ext_resource type="Script" uid="uid://psdyf3ckvdta" path="res://Assets/Scripts/behavior/character_ctrl.gd" id="3_7cv5a"]
@@ -139,10 +139,13 @@ _data = {
 &"walk": ExtResource("6_7cv5a")
 }
 
-[node name="MeleeUnit" type="CharacterBody2D" groups=["enemies", "undead"]]
+[node name="MeleeUnit" type="CharacterBody2D" node_paths=PackedStringArray("animator", "audio", "state_machine") groups=["enemies", "undead"]]
 collision_mask = 18
 script = ExtResource("1_3wt10")
 stats = SubResource("Resource_wtnpn")
+animator = NodePath("AnimationPlayer")
+audio = NodePath("AudioStreamPlayer2D")
+state_machine = NodePath("BehaviorMachine")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 18)
@@ -161,22 +164,22 @@ collision_layer = 33
 collision_mask = 2
 
 [node name="ReactZone" parent="." node_paths=PackedStringArray("character") instance=ExtResource("12_5da4c")]
+collision_layer = 32
 character = NodePath("..")
 
 [node name="Equipment" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="Weapon2D" parent="Equipment" instance=ExtResource("6_mlify")]
-position = Vector2(14, 8)
 collision_layer = 33
 collision_mask = 2
 item = ExtResource("5_jevvi")
 
-[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("initial_state", "hurt", "death", "idle") instance=ExtResource("12_6ixtw")]
-initial_state = NodePath("Idle")
+[node name="BehaviorMachine" parent="." node_paths=PackedStringArray("hurt", "death", "idle", "initial_state") instance=ExtResource("12_6ixtw")]
 hurt = NodePath("Hurt")
 death = NodePath("Death")
 idle = NodePath("Idle")
+initial_state = NodePath("Idle")
 
 [node name="Chase" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "attack") instance=ExtResource("13_e0lwe")]
 idle = NodePath("../Idle")
@@ -190,10 +193,8 @@ attack = NodePath("../Attack")
 patrol = NodePath("../Patrol")
 chase = NodePath("../Chase")
 
-[node name="Hurt" parent="BehaviorMachine" node_paths=PackedStringArray("idle", "death", "attack") instance=ExtResource("16_wtnpn")]
+[node name="Hurt" parent="BehaviorMachine" node_paths=PackedStringArray("idle") instance=ExtResource("16_wtnpn")]
 idle = NodePath("../Idle")
-death = NodePath("../Death")
-attack = NodePath("../Attack")
 
 [node name="Patrol" parent="BehaviorMachine" node_paths=PackedStringArray("chase", "idle") instance=ExtResource("17_kuwtn")]
 chase = NodePath("../Chase")
@@ -217,7 +218,6 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 
-[connection signal="character_died" from="." to="BehaviorMachine" method="_on_character_died"]
 [connection signal="velocity_changed" from="Velocity" to="Sprite2D" method="_on_velocity_changed"]
 [connection signal="area_shape_entered" from="Hitbox2D" to="Hitbox2D" method="_on_weapon_entered"]
 [connection signal="wounded" from="Hitbox2D" to="." method="_on_hitbox_active"]
