@@ -29,8 +29,8 @@ avatar = ExtResource("2_kc6vb")
 metadata/_custom_type_script = "uid://sdivydjiascd"
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ivauu"]
-radius = 12.0
-height = 46.0
+radius = 4.0
+height = 22.0
 
 [sub_resource type="Animation" id="Animation_hx6yc"]
 length = 0.001
@@ -84,6 +84,8 @@ script = ExtResource("2_8gq7q")
 camera_zoom = 3.5
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 21)
+rotation = 1.5707964
 shape = SubResource("CapsuleShape2D_ivauu")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

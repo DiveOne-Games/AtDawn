@@ -18,9 +18,9 @@ func _on_react_zone_target_updated(unit: CharacterBody2D):
 func change_face(vector: float):
 	super(vector)
 	if target:
-		if target.facing_left:
-			facing_left = false
-		if not target.facing_left:
+		if target.global_position.x < global_position.x:
 			facing_left = true
+		elif target.global_position.x > global_position.x:
+			facing_left = false
 		sprite.flip_h = facing_left
 	

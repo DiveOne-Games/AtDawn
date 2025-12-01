@@ -1,0 +1,25 @@
+[gd_scene load_steps=4 format=3 uid="uid://dvx04om7y0874"]
+
+[ext_resource type="Script" uid="uid://y105datcx8d6" path="res://Assets/weapons/weapon2d.gd" id="1_oeirq"]
+[ext_resource type="SpriteFrames" uid="uid://bcdybvbaetokv" path="res://Assets/resources/animations/anim_vfx.tres" id="2_xmujd"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8meau"]
+size = Vector2(16, 12)
+
+[node name="BareHand" type="Area2D"]
+script = ExtResource("1_oeirq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(14, 8)
+shape = SubResource("RectangleShape2D_8meau")
+disabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CollisionShape2D"]
+unique_name_in_owner = true
+sprite_frames = ExtResource("2_xmujd")
+animation = &"smack"
+frame = 11
+frame_progress = 1.0
+
+[connection signal="area_shape_entered" from="." to="." method="_on_area_shape_entered"]

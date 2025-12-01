@@ -1,9 +1,9 @@
 class_name ChaseBehavior extends Behavior
 
 
+@export var chase_distance: float = 40 
 var direction: Vector2
 var target: CharacterBody2D 		## Object or unit to follow.
-var max_distance: float = 10 	## Max distance from [member origin] unit will follow before returning home.
 
 @export_category("Behavior Transitions")
 @export var idle: Behavior
@@ -12,6 +12,7 @@ var max_distance: float = 10 	## Max distance from [member origin] unit will fol
 
 func start(old_state: Behavior = null):
 	super(old_state)
+	target = character.target
 
 
 func end():
@@ -19,11 +20,11 @@ func end():
 
 
 func physics_update(_delta: float):
-	# direction = character.position.direction_to(target.global_position)
-	# direction = target.global_position - character.global_position
+	var distance : Vector2
 	if target:
 		direction = character.position.direction_to(target.position)
-		character.velocity = direction.normalized() * character.speed
-	if direction.length() < max_distance:
+		character.velocity = direction.normalized() * character.stats.speed
+		distance = target.global_position - character.global_position
+	if distance.length() <= chase_distance:
 		return attack
 	return null

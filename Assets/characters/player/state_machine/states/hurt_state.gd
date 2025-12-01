@@ -9,13 +9,18 @@ var delay : float = 0.3
 
 
 func start():
+	if character.is_invulnerable:
+		end()
+		return
 	super()
+	character.is_invulnerable = true
 	
 
 func end():
 	super()
 	character.is_hurt = false
 	delay = recovery_delay
+	# temporary invulnerability to prevent getting locked into repeated hits
 
 
 func process(delta: float) -> PlayState:

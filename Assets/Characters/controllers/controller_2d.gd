@@ -7,6 +7,9 @@ class_name Controller2D extends CharacterBody2D
 @export var speed : float = 400
 @export var is_hurt := false
 @export var is_dead := false
+@export var is_invulnerable := false
+@export_range(0, 3, 0.05) var invulnerable_limit : float = 0.5
+var invulnerable_time : float = 0	## Accumulated seconds since becoming invulnerable.
 
 @onready var sprite : Sprite2D = $Sprite2D
 @onready var hitbox : HitBox2D = $Hitbox2D
@@ -26,6 +29,12 @@ func _ready():
 
 
 func _process(delta):
+	if is_invulnerable:
+		if invulnerable_time < invulnerable_limit:
+			invulnerable_time += delta
+		else:
+			is_invulnerable = false
+			invulnerable_time = 0
 	if state_machine.is_active:
 		state_machine.process(delta)
 
