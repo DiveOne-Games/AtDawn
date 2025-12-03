@@ -63,7 +63,6 @@ func die():
 	hitbox.monitoring = false
 	hitbox.monitorable = false
 	shape.disabled = true
-	is_dead = true
 	velocity = Vector2.ZERO
 	for item in equipment:
 		item.disable()

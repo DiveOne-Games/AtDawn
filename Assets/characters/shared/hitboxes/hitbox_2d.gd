@@ -5,7 +5,6 @@ signal wounded(updated_health: int)
 var character : CharacterBody2D
 var shape : CollisionShape2D
 @export var health: int 
-@export var is_dead : bool = false
 
 
 func _ready():
@@ -19,8 +18,6 @@ func take_damage(damage):
 	if health <= 0:
 		set_deferred('monitoring', false)
 		set_deferred('monitorable', false)
-		character.is_dead = true
-		is_dead = true
 	else:
 		set_deferred('monitoring', true)
 		set_deferred('monitorable', true)

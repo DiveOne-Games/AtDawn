@@ -20,7 +20,6 @@ func end():
 	super()
 	character.is_hurt = false
 	delay = recovery_delay
-	# temporary invulnerability to prevent getting locked into repeated hits
 
 
 func process(delta: float) -> PlayState:
